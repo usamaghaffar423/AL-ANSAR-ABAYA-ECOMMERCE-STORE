@@ -12,10 +12,11 @@ import { useAuth } from '../context/AuthContext';
 
 const SUGGESTED_CATEGORIES = [
     // Edenrobe
-    'Edenrobe Printed', 'Premium & Festive', 'Fragrance',
-    // General
-    'Shorts', 'Kurta', 'Shalwar Kameez', 'Imported Fragrance',
-    'Wrist Watches', 'Accessories', 'HandBags',
+    'Edenrobe Printed Lawn', 'Premium & Festive Collection',
+    // Fragrance
+    'Edenrobe Fragrance', 'Imported Fragrance',
+    // Other
+    'Imported Bags', 'Watches',
 ];
 
 const SIZE_OPTIONS = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', 'Free Size'];

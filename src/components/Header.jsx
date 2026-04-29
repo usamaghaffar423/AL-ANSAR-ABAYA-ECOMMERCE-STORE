@@ -7,15 +7,6 @@ import { useAuth } from '../context/AuthContext';
 import { API_BASE_URL } from '../config';
 import SearchModal from './SearchModal';
 
-const CAT_DESC = {
-    perfumes:  'Edenrobe & Imported',
-    watches:   'Tissot, Rizen & More',
-    handbags:  'Coach, Gucci & More',
-    wallets:   'Leather & Slim',
-    stitched:  'Ladies Collection',
-    jewellery: 'Gold & Silver',
-};
-
 const NAV_ITEMS = [
     { label: 'Home',         href: '/'                                                       },
     { label: 'Shop',         href: '/shop'                                                   },
@@ -279,33 +270,69 @@ const Header = () => {
                                                 </Link>
                                             </div>
 
-                                            {/* Category grid */}
-                                            <div className="p-6 grid grid-cols-3 gap-3">
-                                                {categories.map(cat => {
-                                                    const desc = CAT_DESC[cat.slug] || cat.description || '';
-                                                    return (
+                                            {/* Category grid with hierarchy */}
+                                            <div className="p-6 space-y-4">
+                                                {categories.map(cat => (
+                                                    <div key={cat.id}>
+                                                        {/* Parent category */}
                                                         <Link
-                                                            key={cat.id}
-                                                            to={`/category?category=${cat.slug}`}
-                                                            className="group flex flex-col p-4 rounded-2xl hover:bg-pink-50 transition-all hover:shadow-sm border border-transparent hover:border-pink-100"
+                                                            to={cat.children.length > 0 ? '#' : `/shop?category=${cat.slug}`}
+                                                            onClick={cat.children.length > 0 ? e => e.preventDefault() : undefined}
+                                                            className={`flex items-center justify-between px-4 py-3 rounded-2xl transition-all border border-transparent ${
+                                                                cat.children.length > 0
+                                                                    ? 'bg-gray-50 text-gray-700 cursor-default'
+                                                                    : 'hover:bg-pink-50 group hover:border-pink-100'
+                                                            }`}
                                                         >
-                                                            <span className="text-[11px] font-black uppercase tracking-wide text-gray-900 group-hover:text-[#EB3461] transition-colors leading-tight mb-1">
+                                                            <span className={`text-[11px] font-black uppercase tracking-wide transition-colors leading-tight ${
+                                                                cat.children.length > 0
+                                                                    ? 'text-gray-700'
+                                                                    : 'text-gray-900 group-hover:text-[#EB3461]'
+                                                            }`}>
                                                                 {cat.name}
                                                             </span>
-                                                            <span className="text-[9px] text-gray-400 font-medium leading-tight">{desc}</span>
+                                                            {cat.children.length === 0 && (
+                                                                <ArrowRight size={13} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
+                                                            )}
                                                         </Link>
-                                                    );
-                                                })}
+
+                                                        {/* Child categories (indented) */}
+                                                        {cat.children.length > 0 && (
+                                                            <div className="pl-4 mt-2 space-y-1">
+                                                                {cat.children.map(child => (
+                                                                    <Link
+                                                                        key={child.id}
+                                                                        to={`/shop?category=${child.slug}`}
+                                                                        className="group flex items-center justify-between px-4 py-2.5 rounded-xl hover:bg-pink-50 transition-all border border-transparent hover:border-pink-100"
+                                                                    >
+                                                                        <span className="text-[10px] font-black uppercase tracking-wide text-gray-700 group-hover:text-[#EB3461] transition-colors leading-tight">
+                                                                            {child.name}
+                                                                        </span>
+                                                                        <ArrowRight size={12} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
+                                                                    </Link>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                ))}
+
                                                 {/* View all tile */}
-                                                <Link
-                                                    to="/category"
-                                                    className="group flex flex-col p-4 rounded-2xl bg-gray-50 hover:bg-[#EB3461] transition-all border border-gray-100 hover:border-[#EB3461]"
-                                                >
-                                                    <span className="text-[11px] font-black uppercase tracking-wide text-gray-900 group-hover:text-white transition-colors leading-tight mb-1">
-                                                        All Products
-                                                    </span>
-                                                    <span className="text-[9px] text-gray-400 group-hover:text-white/70 font-medium leading-tight">Browse Everything</span>
-                                                </Link>
+                                                <div className="pt-2 border-t border-gray-100">
+                                                    <Link
+                                                        to="/category"
+                                                        className="group flex items-center justify-between px-4 py-3 rounded-2xl bg-gray-50 hover:bg-[#EB3461] transition-all border border-gray-100 hover:border-[#EB3461]"
+                                                    >
+                                                        <div>
+                                                            <span className="text-[11px] font-black uppercase tracking-wide text-gray-900 group-hover:text-white transition-colors leading-tight block mb-0.5">
+                                                                All Products
+                                                            </span>
+                                                            <span className="text-[9px] text-gray-400 group-hover:text-white/70 font-medium leading-tight">
+                                                                Browse Everything
+                                                            </span>
+                                                        </div>
+                                                        <ArrowRight size={14} className="text-gray-300 group-hover:text-white transition-colors shrink-0" />
+                                                    </Link>
+                                                </div>
                                             </div>
 
                                             {/* Bottom promo strip */}
@@ -458,17 +485,43 @@ const Header = () => {
                                             >
                                                 <div className="pl-4 space-y-1 pb-3">
                                                     {categories.map(cat => (
-                                                        <Link
-                                                            key={cat.id}
-                                                            to={`/category?category=${cat.slug}`}
-                                                            onClick={() => setIsMobileMenuOpen(false)}
-                                                            className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-pink-50 transition-all group"
-                                                        >
-                                                            <span className="text-[12px] font-black text-gray-700 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors">
-                                                                {cat.name}
-                                                            </span>
-                                                            <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] transition-colors shrink-0" />
-                                                        </Link>
+                                                        <div key={cat.id}>
+                                                            {/* Parent */}
+                                                            {cat.children.length > 0 ? (
+                                                                <div className="px-4 py-2.5 text-[12px] font-black text-gray-700 uppercase tracking-wide">
+                                                                    {cat.name}
+                                                                </div>
+                                                            ) : (
+                                                                <Link
+                                                                    to={`/shop?category=${cat.slug}`}
+                                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                                    className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-pink-50 transition-all group"
+                                                                >
+                                                                    <span className="text-[12px] font-black text-gray-700 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors">
+                                                                        {cat.name}
+                                                                    </span>
+                                                                    <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
+                                                                </Link>
+                                                            )}
+                                                            {/* Children */}
+                                                            {cat.children.length > 0 && (
+                                                                <div className="pl-2 space-y-0.5">
+                                                                    {cat.children.map(child => (
+                                                                        <Link
+                                                                            key={child.id}
+                                                                            to={`/shop?category=${child.slug}`}
+                                                                            onClick={() => setIsMobileMenuOpen(false)}
+                                                                            className="flex items-center justify-between px-4 py-2.5 rounded-xl hover:bg-pink-50 transition-all group"
+                                                                        >
+                                                                            <span className="text-[11px] font-black text-gray-600 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors">
+                                                                                {child.name}
+                                                                            </span>
+                                                                            <ArrowRight size={12} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
+                                                                        </Link>
+                                                                    ))}
+                                                                </div>
+                                                            )}
+                                                        </div>
                                                     ))}
                                                     <Link
                                                         to="/category"
