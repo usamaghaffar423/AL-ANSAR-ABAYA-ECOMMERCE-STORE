@@ -43,8 +43,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22
-          protocol: sftp
+          port: 21
+          protocol: ftps
           local-dir: ./dist/
           server-dir: /public_html/
           exclude: |
@@ -58,8 +58,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22
-          protocol: sftp
+          port: 21
+          protocol: ftps
           local-dir: ./api/
           server-dir: /public_html/api/
           exclude: |
