@@ -196,26 +196,16 @@ const Header = () => {
                                                         animate={{ opacity: 1, x: 0 }}
                                                         transition={{ delay: 0.1 + idx * 0.06, duration: 0.4, ease: 'easeOut' }}
                                                     >
-                                                        {/* Parent category */}
+                                                        {/* Parent category - always clickable */}
                                                         <Link
-                                                            to={cat.children.length > 0 ? '#' : `/shop?category=${cat.slug}`}
-                                                            onClick={cat.children.length > 0 ? e => e.preventDefault() : undefined}
-                                                            className={`flex items-center justify-between px-5 py-3.5 rounded-2xl transition-all border-2 ${
-                                                                cat.children.length > 0
-                                                                    ? 'bg-gray-50 text-gray-700 border-gray-100 cursor-default'
-                                                                    : 'border-transparent hover:bg-pink-50 hover:border-pink-200 group'
-                                                            }`}
+                                                            to={`/shop?category=${cat.slug}`}
+                                                            onClick={() => setIsCatOpen(false)}
+                                                            className="group flex items-center justify-between px-5 py-3.5 rounded-2xl transition-all border-2 border-transparent hover:bg-pink-50 hover:border-pink-200"
                                                         >
-                                                            <span className={`text-[12px] font-black uppercase tracking-wide transition-colors leading-tight ${
-                                                                cat.children.length > 0
-                                                                    ? 'text-gray-600'
-                                                                    : 'text-gray-900 group-hover:text-[#EB3461]'
-                                                            }`}>
+                                                            <span className="text-[12px] font-black uppercase tracking-wide text-gray-900 group-hover:text-[#EB3461] transition-colors leading-tight">
                                                                 {cat.name}
                                                             </span>
-                                                            {cat.children.length === 0 && (
-                                                                <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-1 transition-all" />
-                                                            )}
+                                                            <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-1 transition-all" />
                                                         </Link>
 
                                                         {/* Child categories (indented with animation) */}
@@ -389,23 +379,17 @@ const Header = () => {
                                                 <div className="pl-4 space-y-1 pb-3">
                                                     {categories.map(cat => (
                                                         <div key={cat.id}>
-                                                            {/* Parent */}
-                                                            {cat.children.length > 0 ? (
-                                                                <div className="px-4 py-2.5 text-[12px] font-black text-gray-700 uppercase tracking-wide">
+                                                            {/* Parent - always clickable */}
+                                                            <Link
+                                                                to={`/shop?category=${cat.slug}`}
+                                                                onClick={() => setIsMobileMenuOpen(false)}
+                                                                className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-pink-50 transition-all group"
+                                                            >
+                                                                <span className="text-[12px] font-black text-gray-700 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors">
                                                                     {cat.name}
-                                                                </div>
-                                                            ) : (
-                                                                <Link
-                                                                    to={`/shop?category=${cat.slug}`}
-                                                                    onClick={() => setIsMobileMenuOpen(false)}
-                                                                    className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-pink-50 transition-all group"
-                                                                >
-                                                                    <span className="text-[12px] font-black text-gray-700 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors">
-                                                                        {cat.name}
-                                                                    </span>
-                                                                    <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
-                                                                </Link>
-                                                            )}
+                                                                </span>
+                                                                <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
+                                                            </Link>
                                                             {/* Children */}
                                                             {cat.children.length > 0 && (
                                                                 <div className="pl-2 space-y-0.5">
