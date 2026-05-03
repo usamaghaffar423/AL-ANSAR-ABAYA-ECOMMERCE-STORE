@@ -1,5 +1,4 @@
-import logo2 from './assets/logo-2.png';
-import logo3 from './assets/logo-3.png';
+import logo from './assets/logo.png';
 import icon from './assets/icon.jpeg';
 import image105 from './assets/image-105.webp';
 import image110 from './assets/image-110.webp';
@@ -13,8 +12,8 @@ export const IMAGES = {
     hero: image105,
     hero_secondary: image110,
     hero_tertiary: image115,
-    logo: logo2,
-    logo_dark: logo3,
+    logo: logo,
+    logo_dark: logo,
     brand_icon: icon,
     category_red: image110,
     category_blue: image123,
