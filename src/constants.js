@@ -1,4 +1,4 @@
-import logo from './assets/logo.png';
+import logo from './assets/logo-2.png';
 import icon from './assets/icon.jpeg';
 import image105 from './assets/image-105.webp';
 import image110 from './assets/image-110.webp';
