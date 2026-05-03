@@ -68,10 +68,32 @@ const Header = () => {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'translate-y-0' : 'translate-y-0'}`}>
+            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out`}>
+
+                {/* ── Top Info Bar ──────────────────────────────────── */}
+                <div className="hidden md:block bg-[#EB3461] text-white px-4 md:px-12 lg:px-16 py-2.5">
+                    <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] font-bold uppercase tracking-wide">
+                        <div className="flex items-center gap-6">
+                            <a href="tel:+923481099433" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
+                                <Phone size={14} /> +92 348 1099433
+                            </a>
+                            <a href="mailto:support@classyfitters.shop" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
+                                <Mail size={14} /> support@classyfitters.shop
+                            </a>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <button className="hover:text-gray-100 transition-colors">English ▼</button>
+                            {!user && (
+                                <Link to="/login" className="hover:text-gray-100 transition-colors">
+                                    Login / Register
+                                </Link>
+                            )}
+                        </div>
+                    </div>
+                </div>
 
                 {/* ── Main Header ──────────────────────────────────── */}
-                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 lg:px-16 ${isScrolled ? 'bg-gradient-to-r from-white to-red-50/40 backdrop-blur-xl py-2.5 md:py-3 shadow-lg border-b border-gray-100/50' : 'bg-gradient-to-r from-white via-red-50/20 to-pink-50/30 py-3 md:py-4'}`}>
+                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 lg:px-16 bg-white ${isScrolled ? 'py-2.5 md:py-3 shadow-lg border-b border-gray-100' : 'py-3 md:py-4'}`}>
                     <div className="max-w-7xl mx-auto flex items-center justify-between gap-6 md:gap-8">
 
                         {/* Mobile: Hamburger */}
@@ -86,17 +108,17 @@ const Header = () => {
                             <img
                                 src={IMAGES.logo}
                                 alt="Classyfitters"
-                                className="h-14 md:h-20 lg:h-24 w-auto object-contain"
+                                className="h-12 md:h-16 w-auto object-contain"
                             />
                         </Link>
 
                         {/* ── Desktop Nav ─────────────────────────── */}
-                        <nav className="hidden lg:flex items-center space-x-7 flex-1 justify-center">
+                        <nav className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
                             {visibleNavItems.map((item) => (
                                 <Link
                                     key={item.label}
                                     to={item.href}
-                                    className="relative font-bold text-[12px] uppercase tracking-wider text-gray-800 hover:text-[#EB3461] transition-colors group"
+                                    className="relative font-bold text-[11px] uppercase tracking-widest text-gray-700 hover:text-[#EB3461] transition-colors group"
                                 >
                                     {item.label}
                                     {item.badge && (
@@ -114,7 +136,7 @@ const Header = () => {
                                 onMouseEnter={openCat}
                                 onMouseLeave={closeCat}
                             >
-                                <button className={`relative flex items-center gap-1.5 font-bold text-[13px] uppercase tracking-wider transition-colors group ${isCatOpen ? 'text-[#EB3461]' : 'text-gray-800 hover:text-[#EB3461]'}`}>
+                                <button className={`relative flex items-center gap-1.5 font-bold text-[11px] uppercase tracking-widest transition-colors group ${isCatOpen ? 'text-[#EB3461]' : 'text-gray-700 hover:text-[#EB3461]'}`}>
                                     Categories
                                     <ChevronDown size={14} className={`transition-transform duration-300 ${isCatOpen ? 'rotate-180' : ''}`} />
                                     <span className={`absolute bottom-[-4px] left-0 h-[2px] bg-[#EB3461] transition-all duration-300 ${isCatOpen ? 'w-full' : 'w-0 group-hover:w-full'}`} />
@@ -220,32 +242,32 @@ const Header = () => {
                         </nav>
 
                         {/* ── Right: Icons ────────────────────────── */}
-                        <div className="flex items-center space-x-1 md:space-x-2">
+                        <div className="flex items-center space-x-2">
                             <button
                                 onClick={() => setIsSearchOpen(true)}
-                                className="text-gray-800 hover:text-[#EB3461] transition-all p-2.5 rounded-full hover:bg-gray-50 hidden md:block group"
+                                className="text-gray-700 hover:text-[#EB3461] transition-all p-2 rounded-lg hover:bg-gray-100 hidden md:block group"
                                 title="Search"
                             >
-                                <Search size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                                <Search size={18} className="group-hover:scale-110 transition-transform duration-300" />
                             </button>
                             <button
                                 onClick={() => setIsCartOpen(true)}
-                                className="text-gray-800 hover:text-[#EB3461] transition-all p-2.5 rounded-full hover:bg-gray-50 relative group"
+                                className="text-gray-700 hover:text-[#EB3461] transition-all p-2 rounded-lg hover:bg-gray-100 relative group"
                                 title="Cart"
                             >
-                                <ShoppingBag size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                                <ShoppingBag size={18} className="group-hover:scale-110 transition-transform duration-300" />
                                 {cartCount > 0 && (
-                                    <span className="absolute top-1 right-1 bg-[#EB3461] text-white text-[9px] w-[18px] h-[18px] rounded-full flex items-center justify-center font-bold border-2 border-white">
+                                    <span className="absolute top-0 right-0 bg-[#EB3461] text-white text-[8px] w-[18px] h-[18px] rounded-full flex items-center justify-center font-bold border-2 border-white">
                                         {cartCount > 9 ? '9+' : cartCount}
                                     </span>
                                 )}
                             </button>
                             <button
                                 onClick={() => navigate(isAdmin ? '/admin' : (user ? '/profile' : '/login'))}
-                                className={`transition-all p-2.5 rounded-full hover:bg-gray-50 group ${user ? 'text-[#EB3461]' : 'text-gray-800 hover:text-[#EB3461]'}`}
+                                className={`transition-all p-2 rounded-lg hover:bg-gray-100 group ${user ? 'text-[#EB3461]' : 'text-gray-700 hover:text-[#EB3461]'}`}
                                 title={user ? `Hi, ${user.username}` : 'Login / Register'}
                             >
-                                <User size={20} className="group-hover:scale-110 transition-transform duration-300" />
+                                <User size={18} className="group-hover:scale-110 transition-transform duration-300" />
                             </button>
                         </div>
                     </div>
