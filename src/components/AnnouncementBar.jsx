@@ -1,41 +1,54 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const AnnouncementBar = () => {
   const messages = [
-    'STYLE',
-    'PESHAWAR SWAG',
-    'APNI GAME UP KAR',
-    'NEW ARRIVALS',
-    'DESI DRIP',
-    'FRESH FITS ONLY',
-    'MARDAN TO HINGORA',
     'CLASSYFITTERS',
+    '✦',
     'KPK KA STYLE',
-    'PESHAWAR',
+    '✦',
+    'PESHAWAR SWAG',
+    '✦',
+    'APNI GAME UP KAR',
+    '✦',
+    'NEW ARRIVALS',
+    '✦',
+    'DESI DRIP',
+    '✦',
+    'FRESH FITS ONLY',
+    '✦',
+    'MARDAN TO MINGORA',
+    '✦',
   ];
 
   return (
-    <div className="w-full bg-[#EB3461] text-white overflow-hidden py-3 md:py-4">
-      <motion.div
-        className="flex gap-16 md:gap-20 whitespace-nowrap"
-        initial={{ x: 0 }}
-        animate={{ x: '-100%' }}
-        transition={{
-          duration: 28,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
-      >
-        {[...messages, ...messages, ...messages].map((msg, idx) => (
-          <span
-            key={idx}
-            className="text-xs md:text-sm font-black uppercase tracking-widest flex-shrink-0"
-          >
-            {msg}
-          </span>
-        ))}
-      </motion.div>
+    <div className="bg-[#EB3461] py-0.5">
+      <div className="overflow-hidden whitespace-nowrap py-3">
+        <div className="inline-flex gap-8 animate-scroll">
+          {[...messages, ...messages].map((msg, idx) => (
+            <span
+              key={idx}
+              className={`text-[11px] font-black uppercase tracking-[0.3em] shrink-0 ${
+                msg === '✦' ? 'text-[#EB3461]' : 'text-white/60'
+              }`}
+            >
+              {msg}
+            </span>
+          ))}
+        </div>
+      </div>
+      <style>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll {
+          animation: scroll 40s linear infinite;
+        }
+      `}</style>
     </div>
   );
 };
