@@ -93,7 +93,7 @@ const Header = () => {
                 </div>
 
                 {/* ── Main Header ──────────────────────────────────── */}
-                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 lg:px-16 bg-white ${isScrolled ? 'py-2.5 md:py-3 shadow-lg border-b border-gray-100' : 'py-3 md:py-4'}`}>
+                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 lg:px-16 bg-white/40 backdrop-blur-2xl border border-white/30 ${isScrolled ? 'py-2.5 md:py-3 shadow-2xl border-b border-white/20' : 'py-3 md:py-4'}`}>
                     <div className="max-w-7xl mx-auto flex items-center justify-between gap-6 md:gap-8">
 
                         {/* Mobile: Hamburger */}
@@ -104,11 +104,11 @@ const Header = () => {
                         </div>
 
                         {/* Brand Logo */}
-                        <Link to="/" className="flex items-center group flex-shrink-0">
+                        <Link to="/" className="flex items-center group flex-shrink-0 hover:opacity-80 transition-opacity">
                             <img
                                 src={IMAGES.logo}
                                 alt="Classyfitters"
-                                className="h-12 md:h-16 w-auto object-contain"
+                                className="h-14 md:h-18 lg:h-20 w-auto object-contain drop-shadow-lg"
                             />
                         </Link>
 
