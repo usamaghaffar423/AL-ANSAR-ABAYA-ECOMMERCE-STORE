@@ -16,21 +16,6 @@ const NAV_ITEMS = [
     { label: 'Contact',      href: '/contact'                                                },
 ];
 
-const EDENROBE_GROUPS = [
-    {
-        group: 'Edenrobe',
-        items: [
-            { label: 'Edenrobe Printed',  desc: 'Vibrant seasonal lawn prints',         href: '/shop?category=Edenrobe+Printed'          },
-            { label: 'Premium & Festive', desc: 'Luxury fabrics for special occasions',  href: '/shop?category=Premium+Festive'           },
-        ],
-    },
-    {
-        group: 'Fragrance',
-        items: [
-            { label: 'Edenrobe',          desc: 'Signature Edenrobe scents',             href: '/shop?category=Fragrance&brand=edenrobe'  },
-        ],
-    },
-];
 
 const Header = () => {
     const [isMobileMenuOpen, setIsMobileMenuOpen]   = useState(false);
@@ -38,11 +23,8 @@ const Header = () => {
     const [isScrolled,       setIsScrolled]          = useState(false);
     const [isCatOpen,        setIsCatOpen]           = useState(false);
     const [isMobileCatOpen,  setIsMobileCatOpen]     = useState(false);
-    const [isEdenOpen,       setIsEdenOpen]          = useState(false);
-    const [isMobileEdenOpen, setIsMobileEdenOpen]    = useState(false);
     const [categories,       setCategories]          = useState([]);
     const catTimeoutRef  = useRef(null);
-    const edenTimeoutRef = useRef(null);
 
     const { cartCount, setIsCartOpen } = useCart();
     const { user, logout, isAdmin }    = useAuth();
@@ -76,7 +58,6 @@ const Header = () => {
     // Close all menus when navigating
     useEffect(() => {
         setIsCatOpen(false);
-        setIsEdenOpen(false);
         setIsMobileMenuOpen(false);
     }, [location.pathname]);
 
@@ -84,9 +65,6 @@ const Header = () => {
 
     const openCat  = () => { clearTimeout(catTimeoutRef.current);  setIsCatOpen(true); };
     const closeCat = () => { catTimeoutRef.current  = setTimeout(() => setIsCatOpen(false),  150); };
-
-    const openEden  = () => { clearTimeout(edenTimeoutRef.current); setIsEdenOpen(true); };
-    const closeEden = () => { edenTimeoutRef.current = setTimeout(() => setIsEdenOpen(false), 150); };
 
     return (
         <>
@@ -159,80 +137,6 @@ const Header = () => {
                                 </Link>
                             ))}
 
-                            {/* ── Edenrobe Dropdown ── */}
-                            <div
-                                className="relative"
-                                onMouseEnter={openEden}
-                                onMouseLeave={closeEden}
-                            >
-                                <button className={`relative flex items-center gap-1.5 font-bold text-[12px] uppercase tracking-wider transition-colors group ${isEdenOpen ? 'text-[#EB3461]' : 'text-gray-800 hover:text-[#EB3461]'}`}>
-                                    Edenrobe
-                                    <ChevronDown size={14} className={`transition-transform duration-300 ${isEdenOpen ? 'rotate-180' : ''}`} />
-                                    <span className="absolute -top-3 -right-7 bg-gray-900 text-white text-[7px] font-black uppercase tracking-wide px-1.5 py-0.5 rounded-full leading-none">Excl.</span>
-                                    <span className={`absolute bottom-[-4px] left-0 h-[2px] bg-[#EB3461] transition-all duration-300 ${isEdenOpen ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                                </button>
-
-                                <AnimatePresence>
-                                    {isEdenOpen && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 8 }}
-                                            transition={{ duration: 0.18 }}
-                                            onMouseEnter={openEden}
-                                            onMouseLeave={closeEden}
-                                            className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[420px] bg-white rounded-[28px] shadow-2xl shadow-gray-400/20 border border-gray-100 overflow-hidden"
-                                        >
-                                            {/* Dark header */}
-                                            <div className="bg-gradient-to-r from-gray-950 to-gray-800 px-7 py-5">
-                                                <p className="text-[9px] font-black uppercase tracking-[0.45em] text-white/40 mb-0.5">Exclusive Collection</p>
-                                                <h3 className="text-xl font-black text-white uppercase tracking-tight leading-none">Edenrobe</h3>
-                                            </div>
-
-                                            {/* Grouped sub-items */}
-                                            <div className="p-4 space-y-1">
-                                                {EDENROBE_GROUPS.map((grp, gi) => (
-                                                    <div key={grp.group}>
-                                                        {/* Section label */}
-                                                        <p className="px-4 pt-3 pb-1.5 text-[9px] font-black uppercase tracking-[0.35em] text-gray-400">
-                                                            {grp.group}
-                                                        </p>
-                                                        {grp.items.map(item => (
-                                                            <Link
-                                                                key={item.label}
-                                                                to={item.href}
-                                                                className="group flex items-center justify-between px-4 py-3 rounded-2xl hover:bg-gray-50 transition-all border border-transparent hover:border-gray-100"
-                                                            >
-                                                                <div>
-                                                                    <p className="text-[11px] font-black uppercase tracking-wide text-gray-900 group-hover:text-[#EB3461] transition-colors">{item.label}</p>
-                                                                    <p className="text-[10px] text-gray-400 font-medium mt-0.5 leading-tight">{item.desc}</p>
-                                                                </div>
-                                                                <ArrowRight size={13} className="text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-1 transition-all shrink-0" />
-                                                            </Link>
-                                                        ))}
-                                                        {/* Divider between groups */}
-                                                        {gi < EDENROBE_GROUPS.length - 1 && (
-                                                            <div className="mx-4 my-1 h-px bg-gray-100" />
-                                                        )}
-                                                    </div>
-                                                ))}
-                                            </div>
-
-                                            {/* Footer strip */}
-                                            <div className="mx-4 mb-4 flex items-center justify-between px-5 py-3.5 rounded-2xl border border-gray-100 bg-gray-50">
-                                                <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Explore All Edenrobe</p>
-                                                <Link
-                                                    to="/shop?brand=edenrobe"
-                                                    className="bg-gray-900 text-white px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#EB3461] transition-all"
-                                                >
-                                                    View All
-                                                </Link>
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </div>
-
                             {/* Categories Mega Menu Trigger */}
                             <div
                                 className="relative"
@@ -248,105 +152,105 @@ const Header = () => {
                                 <AnimatePresence>
                                     {isCatOpen && (
                                         <motion.div
-                                            initial={{ opacity: 0, y: 8 }}
-                                            animate={{ opacity: 1, y: 0 }}
-                                            exit={{ opacity: 0, y: 8 }}
-                                            transition={{ duration: 0.18 }}
+                                            initial={{ opacity: 0, y: -12, scale: 0.95 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            exit={{ opacity: 0, y: -12, scale: 0.95 }}
+                                            transition={{ type: 'spring', stiffness: 300, damping: 30, duration: 0.25 }}
                                             onMouseEnter={openCat}
                                             onMouseLeave={closeCat}
-                                            className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-[560px] bg-white rounded-[28px] shadow-2xl shadow-gray-300/30 border border-gray-100 overflow-hidden"
+                                            className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[620px] bg-white rounded-[32px] shadow-2xl shadow-gray-400/20 border border-gray-100 overflow-hidden backdrop-blur-xl"
                                         >
-                                            {/* Mega menu header */}
-                                            <div className="px-8 pt-6 pb-4 border-b border-gray-50 flex items-center justify-between">
+                                            {/* Mega menu header with gradient */}
+                                            <div className="px-8 pt-7 pb-5 bg-gradient-to-br from-gray-50 to-white border-b border-gray-100 flex items-center justify-between">
                                                 <div>
-                                                    <p className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400">Shop By</p>
-                                                    <h3 className="text-lg font-black text-gray-900 uppercase tracking-tight">Categories</h3>
+                                                    <motion.p
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        transition={{ delay: 0.05, duration: 0.3 }}
+                                                        className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 mb-1"
+                                                    >
+                                                        Browse
+                                                    </motion.p>
+                                                    <motion.h3
+                                                        initial={{ opacity: 0, y: 10 }}
+                                                        animate={{ opacity: 1, y: 0 }}
+                                                        transition={{ delay: 0.08, duration: 0.3 }}
+                                                        className="text-2xl font-black text-gray-900 uppercase tracking-tight leading-none"
+                                                    >
+                                                        Categories
+                                                    </motion.h3>
                                                 </div>
                                                 <Link
                                                     to="/category"
-                                                    className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#EB3461] hover:text-black transition-colors"
+                                                    className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#EB3461] hover:text-black transition-colors group"
                                                 >
-                                                    View All <ArrowRight size={12} />
+                                                    All <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
                                                 </Link>
                                             </div>
 
-                                            {/* Category grid with hierarchy */}
-                                            <div className="p-6 space-y-4">
-                                                {categories.map(cat => (
-                                                    <div key={cat.id}>
+                                            {/* Category grid with staggered animation */}
+                                            <div className="p-7 space-y-3">
+                                                {categories.map((cat, idx) => (
+                                                    <motion.div
+                                                        key={cat.id}
+                                                        initial={{ opacity: 0, x: -20 }}
+                                                        animate={{ opacity: 1, x: 0 }}
+                                                        transition={{ delay: 0.1 + idx * 0.06, duration: 0.4, ease: 'easeOut' }}
+                                                    >
                                                         {/* Parent category */}
                                                         <Link
                                                             to={cat.children.length > 0 ? '#' : `/shop?category=${cat.slug}`}
                                                             onClick={cat.children.length > 0 ? e => e.preventDefault() : undefined}
-                                                            className={`flex items-center justify-between px-4 py-3 rounded-2xl transition-all border border-transparent ${
+                                                            className={`flex items-center justify-between px-5 py-3.5 rounded-2xl transition-all border-2 ${
                                                                 cat.children.length > 0
-                                                                    ? 'bg-gray-50 text-gray-700 cursor-default'
-                                                                    : 'hover:bg-pink-50 group hover:border-pink-100'
+                                                                    ? 'bg-gray-50 text-gray-700 border-gray-100 cursor-default'
+                                                                    : 'border-transparent hover:bg-pink-50 hover:border-pink-200 group'
                                                             }`}
                                                         >
-                                                            <span className={`text-[11px] font-black uppercase tracking-wide transition-colors leading-tight ${
+                                                            <span className={`text-[12px] font-black uppercase tracking-wide transition-colors leading-tight ${
                                                                 cat.children.length > 0
-                                                                    ? 'text-gray-700'
+                                                                    ? 'text-gray-600'
                                                                     : 'text-gray-900 group-hover:text-[#EB3461]'
                                                             }`}>
                                                                 {cat.name}
                                                             </span>
                                                             {cat.children.length === 0 && (
-                                                                <ArrowRight size={13} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
+                                                                <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-1 transition-all" />
                                                             )}
                                                         </Link>
 
-                                                        {/* Child categories (indented) */}
+                                                        {/* Child categories (indented with animation) */}
                                                         {cat.children.length > 0 && (
-                                                            <div className="pl-4 mt-2 space-y-1">
-                                                                {cat.children.map(child => (
-                                                                    <Link
-                                                                        key={child.id}
-                                                                        to={`/shop?category=${child.slug}`}
-                                                                        className="group flex items-center justify-between px-4 py-2.5 rounded-xl hover:bg-pink-50 transition-all border border-transparent hover:border-pink-100"
-                                                                    >
-                                                                        <span className="text-[10px] font-black uppercase tracking-wide text-gray-700 group-hover:text-[#EB3461] transition-colors leading-tight">
-                                                                            {child.name}
-                                                                        </span>
-                                                                        <ArrowRight size={12} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
-                                                                    </Link>
-                                                                ))}
-                                                            </div>
+                                                            <motion.div
+                                                                initial={{ height: 0, opacity: 0 }}
+                                                                animate={{ height: 'auto', opacity: 1 }}
+                                                                transition={{ delay: 0.15 + idx * 0.06, duration: 0.4 }}
+                                                                className="overflow-hidden"
+                                                            >
+                                                                <div className="pl-6 pt-2 space-y-2">
+                                                                    {cat.children.map((child, cidx) => (
+                                                                        <motion.div
+                                                                            key={child.id}
+                                                                            initial={{ opacity: 0, x: -10 }}
+                                                                            animate={{ opacity: 1, x: 0 }}
+                                                                            transition={{ delay: 0.15 + idx * 0.06 + cidx * 0.05, duration: 0.3 }}
+                                                                        >
+                                                                            <Link
+                                                                                to={`/shop?category=${child.slug}`}
+                                                                                className="group flex items-center justify-between px-4 py-2.5 rounded-xl hover:bg-pink-50 transition-all border border-transparent hover:border-pink-200"
+                                                                            >
+                                                                                <span className="text-[11px] font-black uppercase tracking-wide text-gray-600 group-hover:text-[#EB3461] transition-colors leading-tight">
+                                                                                    {child.name}
+                                                                                </span>
+                                                                                <ArrowRight size={12} className="text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-0.5 transition-all" />
+                                                                            </Link>
+                                                                        </motion.div>
+                                                                    ))}
+                                                                </div>
+                                                            </motion.div>
                                                         )}
-                                                    </div>
+                                                    </motion.div>
                                                 ))}
-
-                                                {/* View all tile */}
-                                                <div className="pt-2 border-t border-gray-100">
-                                                    <Link
-                                                        to="/category"
-                                                        className="group flex items-center justify-between px-4 py-3 rounded-2xl bg-gray-50 hover:bg-[#EB3461] transition-all border border-gray-100 hover:border-[#EB3461]"
-                                                    >
-                                                        <div>
-                                                            <span className="text-[11px] font-black uppercase tracking-wide text-gray-900 group-hover:text-white transition-colors leading-tight block mb-0.5">
-                                                                All Products
-                                                            </span>
-                                                            <span className="text-[9px] text-gray-400 group-hover:text-white/70 font-medium leading-tight">
-                                                                Browse Everything
-                                                            </span>
-                                                        </div>
-                                                        <ArrowRight size={14} className="text-gray-300 group-hover:text-white transition-colors shrink-0" />
-                                                    </Link>
-                                                </div>
-                                            </div>
-
-                                            {/* Bottom promo strip */}
-                                            <div className="mx-6 mb-6 bg-gradient-to-r from-[#EB3461] to-rose-600 rounded-2xl p-4 flex items-center justify-between">
-                                                <div>
-                                                    <p className="text-white text-[10px] font-black uppercase tracking-widest">🔥 Hot Arrivals</p>
-                                                    <p className="text-white/80 text-[11px] font-medium mt-0.5">Har hafte naye styles — don't miss out!</p>
-                                                </div>
-                                                <Link
-                                                    to="/shop?trending=1"
-                                                    className="bg-white text-[#EB3461] px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-gray-900 hover:text-white transition-all"
-                                                >
-                                                    Dekho Abhi
-                                                </Link>
                                             </div>
                                         </motion.div>
                                     )}
@@ -532,72 +436,6 @@ const Header = () => {
                                                             All Products
                                                         </span>
                                                         <ArrowRight size={14} className="text-gray-300 group-hover:text-white transition-colors shrink-0" />
-                                                    </Link>
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-
-                                {/* Edenrobe Section */}
-                                <div className="border-t border-gray-100 pt-5 mt-1">
-                                    <button
-                                        onClick={() => setIsMobileEdenOpen(v => !v)}
-                                        className="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl hover:bg-gray-50 transition-all mb-1"
-                                    >
-                                        <div className="flex items-center gap-2.5">
-                                            <span className="text-[15px] font-black text-gray-900 uppercase tracking-wide">Edenrobe</span>
-                                            <span className="bg-gray-900 text-white text-[7px] font-black uppercase tracking-wide px-1.5 py-0.5 rounded-full leading-none">Excl.</span>
-                                        </div>
-                                        <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${isMobileEdenOpen ? 'rotate-180' : ''}`} />
-                                    </button>
-
-                                    <AnimatePresence>
-                                        {isMobileEdenOpen && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                className="overflow-hidden"
-                                            >
-                                                {/* Mini dark header */}
-                                                <div className="mx-4 mb-3 bg-gradient-to-r from-gray-950 to-gray-800 rounded-2xl px-4 py-3">
-                                                    <p className="text-[8px] font-black uppercase tracking-[0.4em] text-white/40">Exclusive</p>
-                                                    <p className="text-[13px] font-black text-white uppercase tracking-tight leading-none">Edenrobe Collection</p>
-                                                </div>
-
-                                                <div className="pl-4 space-y-0 pb-3">
-                                                    {EDENROBE_GROUPS.map((grp, gi) => (
-                                                        <div key={grp.group}>
-                                                            <p className="px-4 pt-3 pb-1 text-[9px] font-black uppercase tracking-[0.35em] text-gray-400">
-                                                                {grp.group}
-                                                            </p>
-                                                            {grp.items.map(cat => (
-                                                                <Link
-                                                                    key={cat.label}
-                                                                    to={cat.href}
-                                                                    onClick={() => setIsMobileMenuOpen(false)}
-                                                                    className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-pink-50 transition-all group"
-                                                                >
-                                                                    <div className="min-w-0">
-                                                                        <p className="text-[12px] font-black text-gray-700 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors leading-tight">{cat.label}</p>
-                                                                        <p className="text-[10px] text-gray-400 font-medium mt-0.5 leading-tight">{cat.desc}</p>
-                                                                    </div>
-                                                                    <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] transition-colors shrink-0" />
-                                                                </Link>
-                                                            ))}
-                                                            {gi < EDENROBE_GROUPS.length - 1 && (
-                                                                <div className="mx-4 my-1 h-px bg-gray-100" />
-                                                            )}
-                                                        </div>
-                                                    ))}
-                                                    <Link
-                                                        to="/shop?brand=edenrobe"
-                                                        onClick={() => setIsMobileMenuOpen(false)}
-                                                        className="flex items-center justify-between px-4 py-3 rounded-xl bg-gray-900 hover:bg-[#EB3461] transition-all group mt-2"
-                                                    >
-                                                        <span className="text-[12px] font-black text-white uppercase tracking-wide">All Edenrobe</span>
-                                                        <ArrowRight size={14} className="text-white/50 group-hover:text-white transition-colors shrink-0" />
                                                     </Link>
                                                 </div>
                                             </motion.div>
