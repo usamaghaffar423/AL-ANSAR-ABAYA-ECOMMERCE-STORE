@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, ShoppingBag } from 'lucide-react';
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight, ShoppingBag } from "lucide-react";
 
 const Hero = () => {
   return (
@@ -43,7 +43,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-tight mb-4 md:mb-6"
           >
-            Classy<span className="text-yellow-300">fitters</span>
+            Classy<span className="text-[#EB3461]">fitters</span>
           </motion.h1>
 
           {/* Subheading */}
@@ -53,7 +53,8 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="text-lg md:text-2xl text-white/90 font-bold mb-6 md:mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Experience authentic KPK style with premium quality fashion that defines who you are
+            Experience authentic KPK style with premium quality fashion that
+            defines who you are
           </motion.p>
 
           {/* Description */}
@@ -63,7 +64,8 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-sm md:text-base text-white/80 mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed font-medium"
           >
-            From Peshawar to the world. Discover exclusive collections crafted for the modern Pakistani fashionista.
+            From Peshawar to the world. Discover exclusive collections crafted
+            for the modern Pakistani fashionista.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -80,7 +82,10 @@ const Hero = () => {
             >
               <ShoppingBag size={18} />
               <span>Shop Now</span>
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight
+                size={16}
+                className="group-hover:translate-x-1 transition-transform"
+              />
             </Link>
 
             {/* Secondary CTA */}
@@ -89,7 +94,10 @@ const Hero = () => {
               className="group px-8 md:px-10 py-4 md:py-5 border-2 border-white text-white font-black uppercase tracking-widest text-sm md:text-base rounded-[20px] hover:bg-white/10 transition-all duration-300 backdrop-blur-sm hover:scale-105 flex items-center gap-2"
             >
               <span>New Arrivals</span>
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              <ArrowRight
+                size={16}
+                className="group-hover:translate-x-1 transition-transform"
+              />
             </Link>
           </motion.div>
 
@@ -102,15 +110,23 @@ const Hero = () => {
           >
             <div>
               <p className="text-2xl md:text-3xl font-black text-white">500+</p>
-              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">Products</p>
+              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">
+                Products
+              </p>
             </div>
             <div>
-              <p className="text-2xl md:text-3xl font-black text-white">24hrs</p>
-              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">Delivery</p>
+              <p className="text-2xl md:text-3xl font-black text-white">
+                24hrs
+              </p>
+              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">
+                Delivery
+              </p>
             </div>
             <div>
               <p className="text-2xl md:text-3xl font-black text-white">100%</p>
-              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">Authentic</p>
+              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">
+                Authentic
+              </p>
             </div>
           </motion.div>
         </div>
