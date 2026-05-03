@@ -71,8 +71,8 @@ const Header = () => {
             <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'translate-y-0' : 'translate-y-0'}`}>
 
                 {/* ── Main Header ──────────────────────────────────── */}
-                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 ${isScrolled ? 'bg-gradient-to-r from-white to-red-50/40 backdrop-blur-xl py-3 shadow-lg border-b border-gray-100/50' : 'bg-gradient-to-r from-white via-red-50/20 to-pink-50/30 py-4'}`}>
-                    <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
+                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 lg:px-16 ${isScrolled ? 'bg-gradient-to-r from-white to-red-50/40 backdrop-blur-xl py-2.5 md:py-3 shadow-lg border-b border-gray-100/50' : 'bg-gradient-to-r from-white via-red-50/20 to-pink-50/30 py-3 md:py-4'}`}>
+                    <div className="max-w-7xl mx-auto flex items-center justify-between gap-6 md:gap-8">
 
                         {/* Mobile: Hamburger */}
                         <div className="flex lg:hidden">
@@ -82,11 +82,11 @@ const Header = () => {
                         </div>
 
                         {/* Brand Logo */}
-                        <Link to="/" className="flex items-center group">
+                        <Link to="/" className="flex items-center group flex-shrink-0">
                             <img
                                 src={IMAGES.logo}
                                 alt="Classyfitters"
-                                className="h-16 md:h-20 w-auto object-contain"
+                                className="h-14 md:h-20 lg:h-24 w-auto object-contain"
                             />
                         </Link>
 
