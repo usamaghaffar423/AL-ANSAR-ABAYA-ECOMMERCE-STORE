@@ -157,20 +157,25 @@ switch ($method) {
         echo json_encode(['success' => true]);
         break;
 
-    // ── DELETE (soft-delete product + remove images) ───────────────────────
+    // ── DELETE (hard delete - completely remove from database) ─────────────
     case 'DELETE':
         $id = (int)($_GET['id'] ?? 0);
         if (!$id) { http_response_code(400); echo json_encode(['error' => 'ID required.']); exit; }
 
         try {
-            // Soft-delete product
-            $stmt = $pdo->prepare("UPDATE cf_products SET active = 0 WHERE id = ?");
-            $stmt->execute([$id]);
-
-            // Remove product images when product is deleted
+            // First, delete product images
             $pdo->prepare("DELETE FROM product_images WHERE product_id = ?")->execute([$id]);
 
-            echo json_encode(['success' => true, 'message' => 'Product deleted successfully.']);
+            // Then, completely remove the product from database
+            $stmt = $pdo->prepare("DELETE FROM cf_products WHERE id = ?");
+            $result = $stmt->execute([$id]);
+
+            if ($stmt->rowCount() > 0) {
+                echo json_encode(['success' => true, 'message' => 'Product permanently deleted.']);
+            } else {
+                http_response_code(404);
+                echo json_encode(['success' => false, 'error' => 'Product not found.']);
+            }
         } catch (\Throwable $e) {
             http_response_code(500);
             echo json_encode(['success' => false, 'error' => 'Failed to delete product: ' . $e->getMessage()]);
