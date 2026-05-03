@@ -37,8 +37,7 @@ const Header = () => {
             .then(r => r.ok ? r.json() : [])
             .then(data => {
                 if (Array.isArray(data)) {
-                    const topLevel = data.filter(c => !c.parent_id || c.parent_id === '0' || c.parent_id === null);
-                    setCategories(topLevel);
+                    setCategories(data);
                 }
             })
             .catch(() => {});
