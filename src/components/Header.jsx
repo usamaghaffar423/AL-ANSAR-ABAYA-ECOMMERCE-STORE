@@ -67,37 +67,7 @@ const Header = () => {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-in-out ${isScrolled ? 'translate-y-[-36px]' : 'translate-y-0'}`}>
-
-                {/* ── Top Bar ─────────────────────────────────────── */}
-                <div className={`bg-[#f8f8f8] h-[36px] hidden sm:flex items-center px-6 md:px-12 border-b border-gray-100 transition-opacity duration-300 ${isScrolled ? 'opacity-0' : 'opacity-100'}`}>
-                    <div className="max-w-7xl mx-auto w-full flex justify-between items-center text-[11px] text-gray-600 font-medium">
-                        <div className="flex items-center space-x-4">
-                            <a href="https://www.tiktok.com/@classyfitters_edenrobe?_r=1&_t=ZS-957yO3Wc4pw" target="_blank" rel="noreferrer" className="cursor-pointer hover:text-[#EB3461] transition-colors">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
-                            </a>
-                        </div>
-                        <p className="text-[11px] font-bold text-gray-600 hidden md:block">
-                            🇵🇰 KPK mein 3 din mein delivery · Rs. 2,500+ par free shipping poore Pakistan mein
-                        </p>
-                        <div className="flex items-center space-x-5">
-                            <div className="flex items-center space-x-1.5">
-                                <Mail size={13} />
-                                <span>support@classyfitters.shop</span>
-                            </div>
-                            <a href="tel:+923481099433" className="flex items-center space-x-1.5 hover:text-[#EB3461] transition-colors">
-                                <Phone size={13} />
-                                <span>+92 348 1099433</span>
-                            </a>
-                            {user && (
-                                <button onClick={logout} className="flex items-center space-x-1 hover:text-[#EB3461] transition-colors">
-                                    <LogOut size={12} />
-                                    <span>Logout ({user.username})</span>
-                                </button>
-                            )}
-                        </div>
-                    </div>
-                </div>
+            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'translate-y-0' : 'translate-y-0'}`}>
 
                 {/* ── Main Header ──────────────────────────────────── */}
                 <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 ${isScrolled ? 'bg-white/90 backdrop-blur-xl py-3 shadow-lg border-b border-gray-100/50' : 'bg-white py-4'}`}>
