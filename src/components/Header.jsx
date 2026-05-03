@@ -71,7 +71,7 @@ const Header = () => {
             <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out ${isScrolled ? 'translate-y-0' : 'translate-y-0'}`}>
 
                 {/* ── Main Header ──────────────────────────────────── */}
-                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 ${isScrolled ? 'bg-white/90 backdrop-blur-xl py-3 shadow-lg border-b border-gray-100/50' : 'bg-white py-4'}`}>
+                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 ${isScrolled ? 'bg-gradient-to-r from-white to-red-50/40 backdrop-blur-xl py-3 shadow-lg border-b border-gray-100/50' : 'bg-gradient-to-r from-white via-red-50/20 to-pink-50/30 py-4'}`}>
                     <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
 
                         {/* Mobile: Hamburger */}
