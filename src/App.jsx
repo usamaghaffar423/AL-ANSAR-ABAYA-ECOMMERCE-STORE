@@ -2,8 +2,8 @@ import React from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from './context/AuthContext'
+import AnnouncementBar from './components/AnnouncementBar'
 import Header from './components/Header'
-import SaleSlider from './components/SaleSlider'
 import Hero from './components/Hero'
 import PromoCards from './components/PromoCards'
 import BestSellers from './components/BestSellers'
@@ -34,7 +34,6 @@ const Section = ({ children }) => (
 
 const HomePage = () => (
   <>
-    <SaleSlider />
     <Hero />
     <Section><PromoCards /></Section>
     <Section><BestSellers /></Section>
@@ -103,6 +102,7 @@ function App() {
   // Store layout: header + footer + animated page content
   return (
     <div className="min-h-screen font-['Outfit'] antialiased bg-white selection:bg-pink-100 selection:text-pink-600">
+      <AnnouncementBar />
       <Header />
       <CartSidebar />
       <main className="pt-[100px] md:pt-[110px]">
