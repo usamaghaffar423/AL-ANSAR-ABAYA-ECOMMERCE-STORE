@@ -1,102 +1,124 @@
 import React from 'react';
-import { IMAGES } from '../constants';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Truck, Headset, ShieldCheck, Wallet, ArrowRight } from 'lucide-react';
-
-const FEATURES = [
-    { icon: <Truck size={24} />, title: "Poore Pakistan Delivery", desc: "KPK se karachi tak ghar tak" },
-    { icon: <Headset size={24} />, title: "Online Support", desc: "7 din, subah se raat tak" },
-    { icon: <ShieldCheck size={24} />, title: "Easy Returns", desc: "7 din mein wapsi guaranteed" },
-    { icon: <Wallet size={24} />, title: "Secure Payment", desc: "100% safe & protected" },
-];
+import { ArrowRight, ShoppingBag } from 'lucide-react';
 
 const Hero = () => {
-    return (
-        <section className="relative bg-white">
-            <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-24 grid lg:grid-cols-2 gap-8 items-center relative z-10 w-full">
-                {/* Text Content */}
-                <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="max-w-xl"
-                >
-                    <div className="flex items-start space-x-4 mb-8">
-                        <div className="w-[3px] h-14 bg-[#EB3461] rounded-full mt-1"></div>
-                        <div>
-                            <p className="text-gray-600 text-[14px] font-medium leading-relaxed tracking-wide">
-                                KPK ka No.1 Fashion Store<br />Watches · Perfumes · Handbags · Clothes
-                            </p>
-                        </div>
-                    </div>
+  return (
+    <section className="relative w-full h-screen min-h-[600px] md:min-h-[700px] overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/videos/shop-hero.mp4" type="video/mp4" />
+      </video>
 
-                    <h1 className="text-5xl md:text-[88px] font-black text-[#1A1A1A] leading-[0.95] mb-8 tracking-tighter uppercase transition-all">
-                        APKA STYLE,<br />
-                        <span className="text-[#EB3461]">APKI</span> PEHCHAAN
-                    </h1>
+      {/* Reddish Overlay */}
+      <div className="absolute inset-0 bg-[#EB3461] opacity-35 mix-blend-multiply" />
 
-                    <p className="text-gray-500 mb-10 text-[15px] md:text-base max-w-lg leading-relaxed font-medium">
-                        Wrist Watches, Perfumes, Ladies Handbags, Shorts aur Edenrobe Clothes — sab kuch ek jagah.
-                        Peshawar se Mardan tak, <strong className="text-gray-700">fast delivery guaranteed.</strong>
-                    </p>
-
-                    <div className="flex flex-wrap gap-8 items-center">
-                        <Link to="/shop" className="text-[13px] font-bold uppercase tracking-[0.15em] text-gray-900 border-none pb-1 hover:text-[#EB3461] transition-all flex items-center group">
-                            <span>Sab Dekho</span>
-                        </Link>
-                        <Link to="/shop" className="bg-[#EB3461] hover:bg-black text-white px-10 py-4.5 rounded-full text-[13px] font-bold uppercase tracking-[0.15em] transition-all shadow-xl shadow-pink-100 active:scale-95 text-center">
-                            Abhi Shop Karo
-                        </Link>
-                    </div>
-                </motion.div>
-
-                {/* Single Combined Image Composition */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative flex items-center justify-center lg:justify-end"
-                >
-                    <div className="relative z-10 w-full max-w-[850px]">
-                        <img
-                            src={IMAGES.hero}
-                            alt="Classyfitters – Wrist Watches, Perfumes, Ladies Handbags & Edenrobe Clothes KPK Pakistan"
-                            className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.1)]"
-                        />
-                    </div>
-                </motion.div>
+      {/* Content Container */}
+      <div className="relative h-full flex items-center justify-center px-4 md:px-6 lg:px-12">
+        <div className="max-w-4xl w-full text-center">
+          {/* Animated Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="inline-block mb-6 md:mb-8"
+          >
+            <div className="px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-[10px] md:text-xs font-black uppercase tracking-widest">
+              ✨ Premium Pakistani Fashion
             </div>
+          </motion.div>
 
-            {/* Features Bar - Refined for brand consistency and responsiveness */}
-            <div className="bg-[#fcfcfc] border-y border-gray-100 py-12 px-6 md:px-12">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
-                    {FEATURES.map((item, idx) => (
-                        <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.1, duration: 0.5 }}
-                            viewport={{ once: true }}
-                            className="flex items-center space-x-5 group cursor-default"
-                        >
-                            <div className="w-12 h-12 rounded-2xl bg-white shadow-sm flex items-center justify-center text-gray-400 group-hover:text-[#EB3461] transition-all duration-500 group-hover:scale-110 group-hover:shadow-md border border-gray-50">
-                                {item.icon}
-                            </div>
-                            <div>
-                                <h4 className="text-[14px] md:text-[15px] font-black uppercase tracking-wider text-gray-900 leading-tight">
-                                    {item.title}
-                                </h4>
-                                <p className="text-[11px] md:text-[12px] text-gray-400 font-bold uppercase tracking-widest mt-1.5 opacity-80">
-                                    {item.desc}
-                                </p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-tight mb-4 md:mb-6"
+          >
+            Classy<span className="text-yellow-300">fitters</span>
+          </motion.h1>
+
+          {/* Subheading */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-lg md:text-2xl text-white/90 font-bold mb-6 md:mb-10 max-w-2xl mx-auto leading-relaxed"
+          >
+            Experience authentic KPK style with premium quality fashion that defines who you are
+          </motion.p>
+
+          {/* Description */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-sm md:text-base text-white/80 mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed font-medium"
+          >
+            From Peshawar to the world. Discover exclusive collections crafted for the modern Pakistani fashionista.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center"
+          >
+            {/* Primary CTA */}
+            <Link
+              to="/shop"
+              className="group relative px-8 md:px-10 py-4 md:py-5 bg-white text-[#EB3461] font-black uppercase tracking-widest text-sm md:text-base rounded-[20px] hover:bg-yellow-300 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 flex items-center gap-2"
+            >
+              <ShoppingBag size={18} />
+              <span>Shop Now</span>
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            {/* Secondary CTA */}
+            <Link
+              to="/shop?trending=1"
+              className="group px-8 md:px-10 py-4 md:py-5 border-2 border-white text-white font-black uppercase tracking-widest text-sm md:text-base rounded-[20px] hover:bg-white/10 transition-all duration-300 backdrop-blur-sm hover:scale-105 flex items-center gap-2"
+            >
+              <span>New Arrivals</span>
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </motion.div>
+
+          {/* Bottom Stats */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-12 md:mt-16 pt-8 md:pt-12 border-t border-white/20 flex justify-around text-center"
+          >
+            <div>
+              <p className="text-2xl md:text-3xl font-black text-white">500+</p>
+              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">Products</p>
             </div>
-        </section>
-    );
+            <div>
+              <p className="text-2xl md:text-3xl font-black text-white">24hrs</p>
+              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">Delivery</p>
+            </div>
+            <div>
+              <p className="text-2xl md:text-3xl font-black text-white">100%</p>
+              <p className="text-white/70 text-xs md:text-sm font-bold uppercase tracking-wide mt-1">Authentic</p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Bottom Gradient Fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+    </section>
+  );
 };
 
 export default Hero;
