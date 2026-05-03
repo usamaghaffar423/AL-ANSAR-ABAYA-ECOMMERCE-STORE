@@ -15,24 +15,22 @@ const AnnouncementBar = () => {
     'PESHAWAR',
   ];
 
-  // Duplicate messages for seamless loop
-  const extendedMessages = [...messages, ...messages];
-
   return (
-    <div className="bg-[#EB3461] text-white overflow-hidden py-2.5 md:py-3 font-['Outfit']">
+    <div className="w-full bg-[#EB3461] text-white overflow-hidden py-3 md:py-3.5">
       <motion.div
-        className="flex gap-8 md:gap-12 whitespace-nowrap"
-        animate={{ x: [0, -1920] }}
+        className="flex gap-12 whitespace-nowrap"
+        initial={{ x: 0 }}
+        animate={{ x: '-100%' }}
         transition={{
-          duration: 20,
+          duration: 30,
           repeat: Infinity,
           ease: 'linear',
         }}
       >
-        {extendedMessages.map((msg, idx) => (
+        {[...messages, ...messages, ...messages].map((msg, idx) => (
           <span
             key={idx}
-            className="text-[10px] md:text-[11px] font-black uppercase tracking-widest flex-shrink-0"
+            className="text-[10px] md:text-xs font-black uppercase tracking-widest flex-shrink-0"
           >
             {msg}
           </span>
