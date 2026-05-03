@@ -14,10 +14,11 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
                 {/* Brand Column */}
                 <div>
-                    <span className="text-2xl font-black italic tracking-tighter mb-6 block">
-                        <span className="text-white">Classy</span>
-                        <span className="text-[#EB3461]">fitters</span>
-                    </span>
+                    <img
+                        src={IMAGES.logo}
+                        alt="Classyfitters"
+                        className="h-16 md:h-20 w-auto object-contain mb-6"
+                    />
                     <p className="text-gray-400 text-sm leading-relaxed mb-6">
                         Experience the pinnacle of fashion with classyfitters. We bring you the latest trends with premium quality and effortless style.
                     </p>
