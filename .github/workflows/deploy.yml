@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: Build & FTP Deploy
+    name: Build & SSH Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -36,32 +36,25 @@ jobs:
           sed -i "s|getenv('DB_PASS') ?: ''|getenv('DB_PASS') ?: '${{ secrets.DB_PASS }}'|g" api/config.php
           sed -i "s|getenv('DB_NAME') ?: ''|getenv('DB_NAME') ?: '${{ secrets.DB_NAME }}'|g" api/config.php
 
-      # ── 5. Deploy built frontend (dist/) → public_html/ ───────────────
-      - name: Deploy frontend to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      # ── 5. Deploy to Hostinger via SSH/SFTP ────────────────────────────
+      - name: Deploy to Hostinger
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          TARGET: ${{ secrets.SSH_TARGET }}
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          local-dir: ./dist/
-          server-dir: /public_html/
+          source: "dist/,api/"
+          target: ${{ secrets.SSH_TARGET }}
           exclude: |
-            **/.git*
-            **/.git*/**
-
-      # ── 6. Deploy PHP backend (api/) → public_html/api/ ───────────────
-      - name: Deploy API to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          local-dir: ./api/
-          server-dir: /public_html/api/
-          exclude: |
-            **/.git*
-            **/migrations/**
+            .git,
+            .github,
+            node_modules,
+            .gitignore,
+            .env,
+            migrations/
+          script_before: |
+            mkdir -p ${{ secrets.SSH_TARGET }}/api
+          script_after: |
+            echo "Deploy completed successfully"
