@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { API_BASE_URL } from '../config';
+import { IMAGES } from '../constants';
 import SearchModal from './SearchModal';
 
 const NAV_ITEMS = [
@@ -80,12 +81,13 @@ const Header = () => {
                             </button>
                         </div>
 
-                        {/* Brand */}
+                        {/* Brand Logo */}
                         <Link to="/" className="flex items-center group">
-                            <span className="text-xl md:text-2xl font-black italic tracking-tighter">
-                                <span className="text-black">Classy</span>
-                                <span className="text-[#EB3461]">fitters</span>
-                            </span>
+                            <img
+                                src={IMAGES.logo}
+                                alt="Classyfitters"
+                                className="h-12 md:h-14 w-auto object-contain"
+                            />
                         </Link>
 
                         {/* ── Desktop Nav ─────────────────────────── */}
