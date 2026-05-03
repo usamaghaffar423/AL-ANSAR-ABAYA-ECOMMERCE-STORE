@@ -500,8 +500,12 @@ const AdminPanel = () => {
                 setProducts(data);
                 const cats = [...new Set(data.map(p => p.category).filter(Boolean))].sort();
                 setCategories(cats);
+            } else {
+                console.error('Invalid products data:', data);
             }
-        } catch {}
+        } catch (e) {
+            console.error('Failed to fetch products:', e);
+        }
         finally { setPL(false); }
     }, [authFetch, search, filterCat]);
 
@@ -516,9 +520,11 @@ const AdminPanel = () => {
             const result = await res.json();
 
             if (result.success) {
-                // Remove from UI only after successful API deletion
+                // Remove from UI and refetch to confirm deletion from backend
                 setProducts(p => p.filter(x => x.id !== deleteTarget.id));
                 alert('Product deleted successfully!');
+                // Refetch to ensure consistency with backend
+                setTimeout(() => fetchProducts(), 300);
             } else {
                 alert(`Delete failed: ${result.error || 'Unknown error'}`);
             }
