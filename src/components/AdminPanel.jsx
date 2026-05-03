@@ -512,9 +512,20 @@ const AdminPanel = () => {
         if (!deleteTarget) return;
         setDeleting(true);
         try {
-            await authFetch(`${API_BASE_URL}/admin_products.php?id=${deleteTarget.id}`, { method: 'DELETE' });
-            setProducts(p => p.filter(x => x.id !== deleteTarget.id));
-        } catch {}
+            const res = await authFetch(`${API_BASE_URL}/admin_products.php?id=${deleteTarget.id}`, { method: 'DELETE' });
+            const result = await res.json();
+
+            if (result.success) {
+                // Remove from UI only after successful API deletion
+                setProducts(p => p.filter(x => x.id !== deleteTarget.id));
+                alert('Product deleted successfully!');
+            } else {
+                alert(`Delete failed: ${result.error || 'Unknown error'}`);
+            }
+        } catch (e) {
+            console.error('Delete error:', e);
+            alert(`Error deleting product: ${e.message}`);
+        }
         finally { setDeleting(false); setDT(null); }
     };
 
