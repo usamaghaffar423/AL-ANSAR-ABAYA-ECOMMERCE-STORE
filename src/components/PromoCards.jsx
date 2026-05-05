@@ -127,30 +127,6 @@ const PromoCards = () => {
       link: '/shop?category=jewellery',
       rowSpan: 'short',
     },
-    {
-      title: 'Premium Wallets',
-      itemCount: 65,
-      image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=700&q=80',
-      accentColor: '#059669',
-      link: '/shop?category=wallets',
-      rowSpan: 'short',
-    },
-    {
-      title: 'Stitched Clothes',
-      itemCount: 180,
-      image: 'https://images.unsplash.com/photo-1564423557776-b922d9e88f5e?w=700&q=80',
-      accentColor: '#7C3AED',
-      link: '/shop?category=stitched',
-      rowSpan: 'tall',
-    },
-    {
-      title: 'Ladies Shorts',
-      itemCount: 110,
-      image: 'https://images.unsplash.com/photo-1591195853828-11db59a44f43?w=700&q=80',
-      accentColor: '#0EA5E9',
-      link: '/shop?category=shorts',
-      rowSpan: 'short',
-    },
   ];
 
   return (
@@ -185,8 +161,8 @@ const PromoCards = () => {
           </motion.p>
         </motion.div>
 
-        {/* Masonry Grid - 4 columns desktop, 2 columns mobile */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[280px] md:auto-rows-[320px] lg:auto-rows-[360px] gap-6">
+        {/* Masonry Grid - 3 columns desktop, 2 columns mobile */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-[280px] md:auto-rows-[320px] lg:auto-rows-[360px] gap-6">
           {categories.map((category, idx) => (
             <MasonryCard
               key={idx}
