@@ -24,7 +24,7 @@ const MasonryCard = ({ title, itemCount, image, accentColor, link, rowSpan, dela
     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
     {/* Content Container */}
-    <div className="absolute inset-0 flex flex-col justify-between p-5 md:p-6">
+    <div className="absolute inset-0 flex flex-col justify-between p-3 md:p-5 lg:p-6">
       {/* Top: Accent Badge */}
       <div className="flex justify-start items-center gap-2">
         <motion.div
@@ -51,7 +51,7 @@ const MasonryCard = ({ title, itemCount, image, accentColor, link, rowSpan, dela
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: delay + 0.25, duration: 0.4 }}
-          className="text-lg md:text-2xl lg:text-3xl font-black text-white mb-2 leading-tight"
+          className="text-sm md:text-xl lg:text-3xl font-black text-white mb-1 md:mb-2 leading-tight"
         >
           {title}
         </motion.h3>
@@ -60,7 +60,7 @@ const MasonryCard = ({ title, itemCount, image, accentColor, link, rowSpan, dela
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: delay + 0.3, duration: 0.4 }}
-          className="text-[11px] text-white/60 mb-4 font-bold uppercase tracking-wide"
+          className="text-[9px] md:text-[11px] text-white/60 mb-2 md:mb-4 font-bold uppercase tracking-wide"
         >
           {itemCount}+ Items
         </motion.p>
@@ -130,7 +130,7 @@ const PromoCards = () => {
   ];
 
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-16 bg-white overflow-hidden">
+    <section className="py-16 md:py-24 px-4 md:px-12 lg:px-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -138,31 +138,31 @@ const PromoCards = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-12 md:mb-16 text-center"
         >
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="text-[13px] font-black uppercase tracking-[0.3em] text-[#EB3461] mb-4"
+            className="text-[11px] md:text-[13px] font-black uppercase tracking-[0.3em] text-[#EB3461] mb-3 md:mb-4"
           >
             Browse
           </motion.p>
-          <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-gray-900 uppercase tracking-tighter mb-6 leading-tight">
+          <h2 className="text-3xl md:text-6xl lg:text-8xl font-black text-gray-900 uppercase tracking-tighter mb-4 md:mb-6 leading-tight">
             Our Categories
           </h2>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto"
+            className="text-gray-600 text-sm md:text-lg lg:text-xl max-w-2xl mx-auto"
           >
             From KPK's finest selection — discover something new for every style
           </motion.p>
         </motion.div>
 
         {/* Masonry Grid - 3 columns desktop, 2 columns mobile */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-[280px] md:auto-rows-[320px] lg:auto-rows-[360px] gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-[220px] md:auto-rows-[280px] lg:auto-rows-[360px] gap-4 md:gap-6">
           {categories.map((category, idx) => (
             <MasonryCard
               key={idx}
@@ -178,14 +178,15 @@ const PromoCards = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-20 text-center"
+          className="mt-12 md:mt-20 text-center"
         >
           <Link
             to="/shop"
-            className="inline-flex items-center gap-3 px-12 py-6 bg-[#EB3461] text-white font-black uppercase text-sm tracking-widest rounded-full hover:bg-black transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1"
+            className="inline-flex items-center gap-2 md:gap-3 px-8 md:px-12 py-4 md:py-6 bg-[#EB3461] text-white font-black uppercase text-[10px] md:text-sm tracking-widest rounded-full hover:bg-black transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1"
           >
             Browse All Categories
-            <ArrowRight size={20} />
+            <ArrowRight size={16} className="md:block hidden" />
+            <ArrowRight size={14} className="md:hidden block" />
           </Link>
         </motion.div>
       </div>
