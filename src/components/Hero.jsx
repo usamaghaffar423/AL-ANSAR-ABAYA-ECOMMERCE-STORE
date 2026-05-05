@@ -5,14 +5,15 @@ import { ArrowRight, ShoppingBag } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-screen min-h-[600px] md:min-h-[700px] overflow-hidden">
+    <section id="main-content" className="relative w-full h-screen min-h-[600px] md:min-h-[700px] overflow-hidden">
       {/* Video Background */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="none"
+        aria-label="Background video"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/videos/background-video.mp4" type="video/mp4" />

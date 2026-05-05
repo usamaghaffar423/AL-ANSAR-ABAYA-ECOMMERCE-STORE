@@ -16,7 +16,8 @@ const MasonryCard = ({ title, itemCount, image, accentColor, link, rowSpan, dela
     {/* Background Image */}
     <img
       src={image}
-      alt={title}
+      alt={`${title} collection - Premium fashion from KPK`}
+      loading="lazy"
       className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
     />
 
