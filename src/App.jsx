@@ -11,6 +11,7 @@ import BestSellers from './components/BestSellers'
 import SaleBanner from './components/SaleBanner'
 import FeaturedCollection from './components/FeaturedCollection'
 import LeadCollection from './components/LeadCollection'
+import Testimonials from './components/Testimonials'
 import Footer from './components/Footer'
 import Shop from './components/Shop'
 import Categories from './components/Categories'
@@ -22,15 +23,16 @@ import AuthPage from './components/AuthPage'
 import UserProfile from './components/UserProfile'
 import ContactPage from './components/ContactPage'
 
-const Section = ({ children }) => (
-  <motion.div
+const Section = ({ children, ariaLabel }) => (
+  <motion.section
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true, margin: '-100px' }}
     transition={{ duration: 0.8, ease: 'easeOut' }}
+    aria-label={ariaLabel}
   >
     {children}
-  </motion.div>
+  </motion.section>
 )
 
 const HomePage = () => (
@@ -41,6 +43,7 @@ const HomePage = () => (
     <Section><SaleBanner /></Section>
     <Section><FeaturedCollection /></Section>
     <Section><LeadCollection /></Section>
+    <Section><Testimonials /></Section>
   </>
 )
 

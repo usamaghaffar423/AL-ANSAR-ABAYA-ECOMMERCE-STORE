@@ -67,8 +67,8 @@ const SearchModal = ({ isOpen, onClose }) => {
                     >
                         {/* Header */}
                         <div className="p-8 border-b border-gray-50 flex items-center space-x-6">
-                            <div className="w-12 h-12 bg-[#EB3461]/10 rounded-2xl flex items-center justify-center">
-                                <Search size={24} className="text-[#EB3461]" />
+                            <div className="w-12 h-12 bg-[#1a3a2a]/10 rounded-2xl flex items-center justify-center">
+                                <Search size={24} className="text-[#1a3a2a]" />
                             </div>
                             <input
                                 autoFocus
@@ -90,8 +90,8 @@ const SearchModal = ({ isOpen, onClose }) => {
                         <div className="flex-1 overflow-y-auto p-8 scrollbar-hide">
                             {loading && (
                                 <div className="flex flex-col items-center justify-center py-20 space-y-4">
-                                    <Loader2 size={32} className="text-[#EB3461] animate-spin" />
-                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Searching classyfitters Collection...</p>
+                                    <Loader2 size={32} className="text-[#1a3a2a] animate-spin" />
+                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Searching Bolqa House Collection...</p>
                                 </div>
                             )}
 
@@ -103,7 +103,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                                             initial={{ opacity: 0, x: -10 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: i * 0.05 }}
-                                            className="group flex items-center space-x-6 p-4 rounded-3xl border border-gray-50 hover:border-[#EB3461]/20 hover:bg-gray-50/50 transition-all cursor-pointer"
+                                            className="group flex items-center space-x-6 p-4 rounded-3xl border border-gray-50 hover:border-[#1a3a2a]/20 hover:bg-gray-50/50 transition-all cursor-pointer"
                                             onClick={() => {
                                                 navigate(`/shop?category=${product.category}`);
                                                 onClose();
@@ -117,7 +117,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                                                 />
                                             </div>
                                             <div className="flex-1 min-w-0">
-                                                <span className="text-[9px] font-black uppercase tracking-widest text-[#EB3461] mb-1 block">
+                                                <span className="text-[9px] font-black uppercase tracking-widest text-[#1a3a2a] mb-1 block">
                                                     {product.category}
                                                 </span>
                                                 <h4 className="font-black text-gray-900 uppercase tracking-tight text-lg leading-tight mb-2 truncate">
@@ -132,7 +132,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                                                             e.stopPropagation();
                                                             addToCart(product);
                                                         }}
-                                                        className="w-10 h-10 bg-black text-white rounded-xl flex items-center justify-center group-hover:bg-[#EB3461] transition-all"
+                                                        className="w-10 h-10 bg-black text-white rounded-xl flex items-center justify-center group-hover:bg-[#1a3a2a] transition-all"
                                                     >
                                                         <ShoppingBag size={16} />
                                                     </button>
@@ -156,7 +156,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                             {!query && !loading && (
                                 <div>
                                     <div className="flex items-center space-x-2 text-[10px] font-black uppercase tracking-[0.3em] text-gray-400 mb-8 px-2">
-                                        <TrendingUp size={12} className="text-[#EB3461]" />
+                                        <TrendingUp size={12} className="text-[#1a3a2a]" />
                                         <span>Popular Searches</span>
                                     </div>
                                     <div className="flex flex-wrap gap-3">
@@ -164,7 +164,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                                             <button
                                                 key={term}
                                                 onClick={() => setQuery(term)}
-                                                className="px-8 py-4 bg-gray-50 rounded-2xl text-xs font-black uppercase tracking-widest text-gray-600 hover:bg-[#EB3461] hover:text-white transition-all shadow-sm border border-gray-100"
+                                                className="px-8 py-4 bg-gray-50 rounded-2xl text-xs font-black uppercase tracking-widest text-gray-600 hover:bg-[#1a3a2a] hover:text-white transition-all shadow-sm border border-gray-100"
                                             >
                                                 {term}
                                             </button>
@@ -183,7 +183,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                             <Link
                                 to="/shop"
                                 onClick={onClose}
-                                className="flex items-center space-x-3 text-[10px] font-black uppercase tracking-widest text-gray-900 hover:text-[#EB3461] transition-colors"
+                                className="flex items-center space-x-3 text-[10px] font-black uppercase tracking-widest text-gray-900 hover:text-[#1a3a2a] transition-colors"
                             >
                                 <span>Browse All Masterpieces</span>
                                 <ArrowRight size={14} />
@@ -197,3 +197,5 @@ const SearchModal = ({ isOpen, onClose }) => {
 };
 
 export default SearchModal;
+
+

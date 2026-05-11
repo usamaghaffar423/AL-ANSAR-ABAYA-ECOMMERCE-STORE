@@ -35,11 +35,11 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="min-h-screen bg-white flex items-center justify-center p-6 font-['Outfit']">
+        <div className="min-h-screen bg-[#f5efe6] flex items-center justify-center p-6 font-['Outfit']">
             {/* Decoration */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-1/4 -right-20 w-80 h-80 rounded-full bg-pink-50/50 blur-3xl animate-pulse" />
-                <div className="absolute bottom-1/4 -left-20 w-80 h-80 rounded-full bg-pink-50/30 blur-3xl animate-pulse" />
+                <div className="absolute top-1/4 -right-20 w-80 h-80 rounded-full bg-[#c9a96e]/8 blur-3xl animate-pulse" />
+                <div className="absolute bottom-1/4 -left-20 w-80 h-80 rounded-full bg-[#1a3a2a]/8 blur-3xl animate-pulse" />
             </div>
 
             <motion.div
@@ -48,20 +48,20 @@ const RegisterPage = () => {
                 className="relative w-full max-w-lg"
             >
                 {/* Back Link */}
-                <Link to="/login" className="inline-flex items-center space-x-2 text-gray-400 hover:text-[#EB3461] transition-colors mb-8 group">
+                <Link to="/login" className="inline-flex items-center space-x-2 text-gray-400 hover:text-[#1a3a2a] transition-colors mb-8 group">
                     <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
                     <span className="text-[10px] font-black uppercase tracking-widest">Back to Sign In</span>
                 </Link>
 
-                <div className="bg-white rounded-[40px] border border-gray-100 shadow-2xl shadow-gray-200/50 p-12 overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#EB3461]/5 rounded-bl-[100px] -mr-16 -mt-16" />
+                <div className="bg-white rounded-[40px] border border-[#c9a96e]/20 shadow-2xl shadow-[#c9a96e]/20 p-12 overflow-hidden relative">
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#1a3a2a]/5 rounded-bl-[100px] -mr-16 -mt-16" />
 
                     <div className="text-center mb-12 relative">
-                        <div className="w-20 h-20 bg-[#EB3461]/10 rounded-[32px] flex items-center justify-center mx-auto mb-6 transform -rotate-6">
-                            <UserPlus size={36} className="text-[#EB3461]" />
+                        <div className="w-20 h-20 bg-[#1a3a2a]/10 rounded-[32px] flex items-center justify-center mx-auto mb-6 transform -rotate-6">
+                            <UserPlus size={36} className="text-[#1a3a2a]" />
                         </div>
                         <h1 className="text-4xl font-black text-gray-900 tracking-tighter uppercase leading-none">
-                            Join <span className="text-[#EB3461]">Classi</span>
+                            Join <span className="text-[#c9a96e]">Al Ansar</span>
                         </h1>
                         <p className="text-gray-400 text-[10px] font-bold uppercase tracking-[0.4em] mt-3">
                             Create Your Identity
@@ -72,14 +72,14 @@ const RegisterPage = () => {
                         <div className="space-y-2">
                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Username</label>
                             <div className="relative group">
-                                <User size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#EB3461] transition-colors" />
+                                <User size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#1a3a2a] transition-colors" />
                                 <input
                                     type="text"
                                     value={username}
                                     onChange={e => setUsername(e.target.value)}
                                     required
                                     placeholder="yourname"
-                                    className="w-full pl-14 pr-6 py-5 rounded-[24px] border border-gray-100 bg-gray-50/50 text-sm font-bold text-gray-900 focus:outline-none focus:border-[#EB3461] focus:bg-white transition-all shadow-sm"
+                                    className="w-full pl-14 pr-6 py-5 rounded-[24px] border border-gray-100 bg-gray-50/50 text-sm font-bold text-gray-900 focus:outline-none focus:border-[#1a3a2a] focus:bg-white transition-all shadow-sm"
                                 />
                             </div>
                         </div>
@@ -87,14 +87,14 @@ const RegisterPage = () => {
                         <div className="space-y-2">
                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Email Address</label>
                             <div className="relative group">
-                                <Mail size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#EB3461] transition-colors" />
+                                <Mail size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#1a3a2a] transition-colors" />
                                 <input
                                     type="email"
                                     value={email}
                                     onChange={e => setEmail(e.target.value)}
                                     required
                                     placeholder="hello@example.com"
-                                    className="w-full pl-14 pr-6 py-5 rounded-[24px] border border-gray-100 bg-gray-50/50 text-sm font-bold text-gray-900 focus:outline-none focus:border-[#EB3461] focus:bg-white transition-all shadow-sm"
+                                    className="w-full pl-14 pr-6 py-5 rounded-[24px] border border-gray-100 bg-gray-50/50 text-sm font-bold text-gray-900 focus:outline-none focus:border-[#1a3a2a] focus:bg-white transition-all shadow-sm"
                                 />
                             </div>
                         </div>
@@ -102,19 +102,19 @@ const RegisterPage = () => {
                         <div className="space-y-2">
                             <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-2">Password</label>
                             <div className="relative group">
-                                <Lock size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#EB3461] transition-colors" />
+                                <Lock size={18} className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#1a3a2a] transition-colors" />
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}
                                     required
                                     placeholder="••••••••"
-                                    className="w-full pl-14 pr-14 py-5 rounded-[24px] border border-gray-100 bg-gray-50/50 text-sm font-bold text-gray-900 focus:outline-none focus:border-[#EB3461] focus:bg-white transition-all shadow-sm"
+                                    className="w-full pl-14 pr-14 py-5 rounded-[24px] border border-gray-100 bg-gray-50/50 text-sm font-bold text-gray-900 focus:outline-none focus:border-[#1a3a2a] focus:bg-white transition-all shadow-sm"
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-[#EB3461] transition-colors"
+                                    className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-[#1a3a2a] transition-colors"
                                 >
                                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                 </button>
@@ -130,7 +130,7 @@ const RegisterPage = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-[#EB3461] text-white py-5 rounded-[24px] font-black uppercase tracking-[0.2em] text-xs hover:bg-black transition-all shadow-xl shadow-pink-100 hover:shadow-gray-200 disabled:opacity-50"
+                            className="w-full bg-[#1a3a2a] text-white py-5 rounded-[24px] font-black uppercase tracking-[0.2em] text-xs hover:bg-black transition-all shadow-xl shadow-[#1a3a2a]/10 hover:shadow-gray-200 disabled:opacity-50"
                         >
                             {loading ? "Creating Account..." : "Register Now"}
                         </button>
@@ -138,7 +138,7 @@ const RegisterPage = () => {
                 </div>
 
                 <div className="mt-12 text-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-                    Already have an account? <Link to="/login" className="text-[#EB3461] hover:underline">Sign In</Link>
+                    Already have an account? <Link to="/login" className="text-[#1a3a2a] hover:underline">Sign In</Link>
                 </div>
             </motion.div>
         </div>
@@ -146,3 +146,6 @@ const RegisterPage = () => {
 };
 
 export default RegisterPage;
+
+
+

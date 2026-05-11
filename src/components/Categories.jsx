@@ -11,45 +11,39 @@ import { useCart } from '../context/CartContext';
 const CATEGORY_META = {
     'all': {
         id: 'all', slug: 'all', label: 'All Products',
-        description: 'Explore our full premium collection — fragrances, watches, handbags, and more.',
-        image: IMAGES.hero_secondary, accent: '#EB3461',
-        bg: 'from-rose-900 to-black', icon: '✦',
+        description: 'Explore our full premium collection — abayas, bolqas, scarves, niqabs, and more.',
+        image: IMAGES.hero_secondary, accent: '#1a3a2a',
+        bg: 'from-emerald-900 to-black', icon: '✦',
     },
-    'perfumes': {
-        id: 'perfumes', slug: 'perfumes', label: 'Perfumes & Fragrances',
-        description: 'Luxury Edenrobe & imported scents crafted for the modern Pakistani.',
-        image: IMAGES.category_yellow, accent: '#d97706',
-        bg: 'from-amber-800 to-black', icon: '🌸',
+    'bolqa-abaya': {
+        id: 'bolqa-abaya', slug: 'bolqa-abaya', label: 'Bolqa & Abaya',
+        description: 'Full-length premium abayas and bolqas — plain and embroidered collections.',
+        image: IMAGES.category_black, accent: '#1a3a2a',
+        bg: 'from-emerald-900 to-black', icon: '👗',
     },
-    'watches': {
-        id: 'watches', slug: 'watches', label: 'Luxury Watches',
-        description: 'Premium Tissot, Rizen, and fashion timepieces — delivered across Pakistan.',
-        image: IMAGES.category_blue, accent: '#2563eb',
-        bg: 'from-blue-900 to-black', icon: '⌚',
+    'scarves-hijab': {
+        id: 'scarves-hijab', slug: 'scarves-hijab', label: 'Scarves & Hijab',
+        description: 'Chiffon, cotton, and printed scarves for hijab — premium quality fabrics.',
+        image: IMAGES.hero_tertiary, accent: '#c9a96e',
+        bg: 'from-amber-800 to-black', icon: '🧣',
     },
-    'handbags': {
-        id: 'handbags', slug: 'handbags', label: 'Designer Handbags',
-        description: 'Coach, Givenchy, Miu Miu, Valentino — statement bags for every occasion.',
-        image: IMAGES.hero_secondary, accent: '#EB3461',
-        bg: 'from-rose-800 to-black', icon: '👜',
+    'niqab-face-cover': {
+        id: 'niqab-face-cover', slug: 'niqab-face-cover', label: 'Niqab & Face Cover',
+        description: 'Premium niqab and face cover sets — comfortable and elegant designs.',
+        image: IMAGES.category_red, accent: '#1a3a2a',
+        bg: 'from-emerald-800 to-black', icon: '👤',
     },
-    'wallets': {
-        id: 'wallets', slug: 'wallets', label: 'Premium Wallets',
-        description: 'Slim bifold and cardholder wallets for the modern professional.',
-        image: IMAGES.category_red, accent: '#EB3461',
-        bg: 'from-rose-900 to-black', icon: '💼',
+    'kids-abaya': {
+        id: 'kids-abaya', slug: 'kids-abaya', label: 'Kids Abaya',
+        description: 'Comfortable abayas for kids age 5-12 — quality and style for young girls.',
+        image: IMAGES.category_yellow, accent: '#c9a96e',
+        bg: 'from-amber-800 to-black', icon: '👧',
     },
-    'stitched': {
-        id: 'stitched', slug: 'stitched', label: 'Stitched Clothing',
-        description: 'Premium stitched collections crafted for Pakistani women.',
-        image: IMAGES.category_black, accent: '#111',
-        bg: 'from-gray-900 to-black', icon: '👗',
-    },
-    'jewellery': {
-        id: 'jewellery', slug: 'jewellery', label: 'Gold Jewellery',
-        description: 'Elegant gold bangles, jhumkas and statement pieces for every occasion.',
-        image: IMAGES.hero_tertiary, accent: '#d97706',
-        bg: 'from-yellow-800 to-black', icon: '💍',
+    'premium-embroidered': {
+        id: 'premium-embroidered', slug: 'premium-embroidered', label: 'Premium Embroidered',
+        description: 'Luxury embroidered bolqas and abayas — exquisite designs and craftsmanship.',
+        image: IMAGES.hero_secondary, accent: '#c9a96e',
+        bg: 'from-amber-900 to-black', icon: '💎',
     },
 };
 
@@ -62,7 +56,7 @@ function buildCategory(dbCat) {
         label: dbCat.name,
         description: dbCat.description || `Explore our ${dbCat.name} collection.`,
         image: IMAGES.hero_secondary,
-        accent: '#EB3461',
+        accent: '#1a3a2a',
         bg: 'from-gray-900 to-black',
         icon: '🏷️',
     };
@@ -90,7 +84,7 @@ const ProductCard = ({ product, index }) => {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.06, type: 'spring', damping: 20 }}
-            className="group flex flex-col bg-white rounded-[28px] overflow-hidden border border-gray-100 hover:border-[#EB3461]/20 transition-all duration-700 hover:shadow-[0_30px_60px_-15px_rgba(235,52,97,0.12)]"
+            className="group flex flex-col bg-white rounded-[28px] overflow-hidden border border-gray-100 hover:border-[#1a3a2a]/20 transition-all duration-700 hover:shadow-[0_30px_60px_-15px_rgba(235,52,97,0.12)]"
         >
             {/* Image */}
             <Link to={`/product/${product.id}`} className="relative aspect-[4/5] overflow-hidden bg-gray-50 block">
@@ -102,13 +96,13 @@ const ProductCard = ({ product, index }) => {
                 />
                 <div className="absolute top-4 left-4 right-4 flex justify-between items-start">
                     {product.discount_pct > 0 && (
-                        <span className="bg-[#EB3461] text-white px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest shadow-sm">
+                        <span className="bg-[#1a3a2a] text-white px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-widest shadow-sm">
                             -{product.discount_pct}%
                         </span>
                     )}
                     <button
                         onClick={e => { e.preventDefault(); setWishlisted(v => !v); }}
-                        className={`ml-auto p-2.5 rounded-xl shadow-lg transition-all transform hover:-rotate-12 ${wishlisted ? 'bg-[#EB3461] text-white' : 'bg-white hover:bg-[#EB3461] hover:text-white'}`}
+                        className={`ml-auto p-2.5 rounded-xl shadow-lg transition-all transform hover:-rotate-12 ${wishlisted ? 'bg-[#1a3a2a] text-white' : 'bg-white hover:bg-[#1a3a2a] hover:text-white'}`}
                     >
                         <Heart size={14} fill={wishlisted ? 'currentColor' : 'none'} />
                     </button>
@@ -122,7 +116,7 @@ const ProductCard = ({ product, index }) => {
                     <span className="text-[9px] font-bold text-gray-300 uppercase tracking-widest ml-1">5.0</span>
                 </div>
                 <Link to={`/product/${product.id}`}>
-                    <h3 className="font-black text-gray-900 text-sm tracking-tight mb-2 uppercase leading-tight line-clamp-2 group-hover:text-[#EB3461] transition-colors text-center min-h-[38px]">
+                    <h3 className="font-black text-gray-900 text-sm tracking-tight mb-2 uppercase leading-tight line-clamp-2 group-hover:text-[#1a3a2a] transition-colors text-center min-h-[38px]">
                         {product.title}
                     </h3>
                 </Link>
@@ -138,7 +132,7 @@ const ProductCard = ({ product, index }) => {
                 </div>
                 <button
                     onClick={() => addToCart(product)}
-                    className="mt-auto w-full bg-gray-900 text-white py-3 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#EB3461] transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2"
+                    className="mt-auto w-full bg-gray-900 text-white py-3 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-[#1a3a2a] transition-all shadow-lg active:scale-95 flex items-center justify-center gap-2"
                 >
                     <ShoppingBag size={12} />
                     Add To Cart
@@ -245,7 +239,7 @@ const Categories = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 className="text-white/50 text-[10px] font-black uppercase tracking-[0.4em] block mb-3"
                             >
-                                classyfitters — Collection
+                                Bolqa House — Collection
                             </motion.span>
                             <motion.h1
                                 initial={{ opacity: 0, y: 16 }}
@@ -298,19 +292,19 @@ const Categories = () => {
                                         key={cat.id}
                                         onClick={() => selectCategory(cat)}
                                         className={`w-full flex items-center justify-between px-4 py-3.5 rounded-2xl mb-1 text-left transition-all group ${isActive
-                                            ? 'bg-[#EB3461] text-white shadow-lg shadow-pink-200/50'
+                                            ? 'bg-[#1a3a2a] text-white shadow-lg shadow-[#1a3a2a]/20/50'
                                             : 'text-gray-700 hover:bg-gray-50'
                                             }`}
                                     >
                                         <div className="flex items-center gap-3">
                                             <span className="text-lg leading-none">{cat.icon}</span>
-                                            <span className={`text-[11px] font-black uppercase tracking-wide ${isActive ? 'text-white' : 'text-gray-800 group-hover:text-[#EB3461]'}`}>
+                                            <span className={`text-[11px] font-black uppercase tracking-wide ${isActive ? 'text-white' : 'text-gray-800 group-hover:text-[#1a3a2a]'}`}>
                                                 {cat.label}
                                             </span>
                                         </div>
                                         <ChevronRight
                                             size={14}
-                                            className={`transition-transform ${isActive ? 'text-white translate-x-0.5' : 'text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-0.5'}`}
+                                            className={`transition-transform ${isActive ? 'text-white translate-x-0.5' : 'text-gray-300 group-hover:text-[#1a3a2a] group-hover:translate-x-0.5'}`}
                                         />
                                     </button>
                                 );
@@ -322,7 +316,7 @@ const Categories = () => {
                             <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-2">Need Help?</p>
                             <Link
                                 to="/#contact"
-                                className="text-[10px] font-black text-[#EB3461] uppercase tracking-wider hover:underline"
+                                className="text-[10px] font-black text-[#1a3a2a] uppercase tracking-wider hover:underline"
                             >
                                 Contact Us →
                             </Link>
@@ -346,7 +340,7 @@ const Categories = () => {
                         </div>
                         <Link
                             to="/shop"
-                            className="hidden md:flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#EB3461] transition-colors"
+                            className="hidden md:flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#1a3a2a] transition-colors"
                         >
                             <span>View All Shop</span>
                             <ArrowRight size={14} />
@@ -356,7 +350,7 @@ const Categories = () => {
                     {/* States */}
                     {loading ? (
                         <div className="flex flex-col items-center justify-center py-40 space-y-5">
-                            <div className="w-12 h-12 border-4 border-pink-50 border-t-[#EB3461] rounded-full animate-spin" />
+                            <div className="w-12 h-12 border-4 border-[#1a3a2a]/5 border-t-[#1a3a2a] rounded-full animate-spin" />
                             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Curating Collection…</p>
                         </div>
                     ) : products.length === 0 ? (
@@ -365,7 +359,7 @@ const Categories = () => {
                             <p className="text-gray-400 font-black uppercase tracking-widest text-xs mb-6">No products in this category yet</p>
                             <button
                                 onClick={() => selectCategory(CATEGORIES[0])}
-                                className="text-[10px] font-black uppercase tracking-widest text-[#EB3461] hover:underline"
+                                className="text-[10px] font-black uppercase tracking-widest text-[#1a3a2a] hover:underline"
                             >
                                 Browse All Products →
                             </button>
@@ -391,10 +385,10 @@ const Categories = () => {
                                     </p>
                                     <button
                                         onClick={() => setDisplayCount(p => p + 8)}
-                                        className="inline-flex items-center space-x-2 bg-black text-white px-10 py-4 rounded-[2rem] text-[10px] font-black uppercase tracking-widest hover:bg-[#EB3461] transition-all shadow-lg"
+                                        className="inline-flex items-center space-x-2 bg-black text-white px-10 py-4 rounded-[2rem] text-[10px] font-black uppercase tracking-widest hover:bg-[#1a3a2a] transition-all shadow-lg"
                                     >
                                         <span>Load More</span>
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#EB3461] animate-pulse" />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[#1a3a2a] animate-pulse" />
                                     </button>
                                 </div>
                             )}
@@ -408,19 +402,19 @@ const Categories = () => {
                 <div className="max-w-7xl mx-auto">
                     <div className="bg-black rounded-[50px] p-10 md:p-20 text-center relative overflow-hidden">
                         <div className="absolute inset-0 opacity-20 pointer-events-none">
-                            <div className="absolute top-0 left-1/4 w-1/2 h-full bg-[#EB3461] rounded-full blur-[150px] -translate-y-1/2" />
+                            <div className="absolute top-0 left-1/4 w-1/2 h-full bg-[#1a3a2a] rounded-full blur-[150px] -translate-y-1/2" />
                         </div>
                         <div className="relative z-10">
                             <h2 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter">
-                                Still Looking For <br />
-                                <span className="text-[#EB3461]">Something Else?</span>
+                                Aur Dekhne Hain <br />
+                                <span className="text-[#c9a96e]">Abayas?</span>
                             </h2>
                             <p className="text-gray-400 text-lg mb-10 max-w-xl mx-auto font-medium">
-                                Browse our full collection — fragrances, luxury watches, designer bags, and exclusive jewellery. Delivered anywhere in Pakistan.
+                                Browse our full collection — premium abayas, bolqas, scarves, niqabs, and kids wear. Delivered poore KPK mein.
                             </p>
                             <Link
                                 to="/shop"
-                                className="inline-flex items-center space-x-3 bg-[#EB3461] text-white px-12 py-5 rounded-[2rem] text-xs font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all shadow-[0_20px_40px_-10px_rgba(235,52,97,0.4)]"
+                                className="inline-flex items-center space-x-3 bg-[#1a3a2a] text-white px-12 py-5 rounded-[2rem] text-xs font-black uppercase tracking-widest hover:bg-[#c9a96e] hover:text-black transition-all shadow-[0_20px_40px_-10px_rgba(26,92,58,0.4)]"
                             >
                                 <span>View Full Shop</span>
                                 <ArrowRight size={16} />
@@ -434,3 +428,7 @@ const Categories = () => {
 };
 
 export default Categories;
+
+
+
+

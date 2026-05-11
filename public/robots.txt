@@ -1,0 +1,22 @@
+# Al Ansar Abaya Store - SEO Robots Configuration
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /checkout
+Disallow: /cart
+Disallow: /api/
+Crawl-delay: 1
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /api/
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+
+# Sitemap
+Sitemap: https://alansarabaya.pk/sitemap.xml

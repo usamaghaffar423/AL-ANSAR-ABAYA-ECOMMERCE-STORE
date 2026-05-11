@@ -81,13 +81,13 @@ const Checkout = () => {
     // Must be logged in to checkout
     if (!user) {
         return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6 text-center">
+            <div className="min-h-screen bg-[#f5efe6] flex items-center justify-center p-6 text-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     className="max-w-md w-full bg-white p-12 rounded-[40px] border border-gray-100 shadow-2xl shadow-gray-200"
                 >
-                    <div className="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-6 text-[#EB3461]">
+                    <div className="w-20 h-20 bg-[#1a3a2a]/5 rounded-full flex items-center justify-center mx-auto mb-6 text-[#1a3a2a]">
                         <UserPlus size={40} />
                     </div>
                     <h2 className="text-2xl font-black text-gray-900 mb-3 uppercase tracking-tight">Sign In Required</h2>
@@ -95,11 +95,11 @@ const Checkout = () => {
                         Create a free account or sign in to track your order and receive updates on your delivery status.
                     </p>
                     <div className="flex flex-col gap-3">
-                        <Link to="/register" className="inline-flex items-center justify-center gap-3 bg-[#EB3461] text-white px-10 py-4 rounded-3xl text-[10px] font-black uppercase tracking-widest hover:bg-[#d42d57] transition-all">
+                        <Link to="/register" className="inline-flex items-center justify-center gap-3 bg-[#1a3a2a] text-white px-10 py-4 rounded-3xl text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all">
                             <UserPlus size={15} />
                             <span>Create Free Account</span>
                         </Link>
-                        <Link to="/login" className="inline-flex items-center justify-center gap-3 border border-gray-200 text-gray-900 px-10 py-4 rounded-3xl text-[10px] font-black uppercase tracking-widest hover:border-[#EB3461] hover:text-[#EB3461] transition-all">
+                        <Link to="/login" className="inline-flex items-center justify-center gap-3 border border-gray-200 text-gray-900 px-10 py-4 rounded-3xl text-[10px] font-black uppercase tracking-widest hover:border-[#1a3a2a] hover:text-[#1a3a2a] transition-all">
                             <span>Already have an account? Sign In</span>
                         </Link>
                     </div>
@@ -110,18 +110,18 @@ const Checkout = () => {
 
     if (cartItems.length === 0 && !isSuccess) {
         return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6 text-center">
+            <div className="min-h-screen bg-[#f5efe6] flex items-center justify-center p-6 text-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="max-w-md w-full bg-white p-12 rounded-[40px] border border-gray-100 shadow-2xl shadow-gray-200"
+                    className="max-w-md w-full bg-white p-12 rounded-[40px] border border-[#c9a96e]/20 shadow-2xl shadow-[#c9a96e]/20"
                 >
-                    <div className="w-20 h-20 bg-pink-50 rounded-full flex items-center justify-center mx-auto mb-6 text-[#EB3461]">
+                    <div className="w-20 h-20 bg-[#1a3a2a]/5 rounded-full flex items-center justify-center mx-auto mb-6 text-[#1a3a2a]">
                         <ShoppingBag size={40} />
                     </div>
                     <h2 className="text-2xl font-black text-gray-900 mb-4 uppercase tracking-tight">Your Cart is Empty</h2>
-                    <p className="text-gray-500 mb-8 font-medium">Looks like you haven't added any masterpieces to your collection yet.</p>
-                    <Link to="/shop" className="inline-flex items-center space-x-3 bg-black text-white px-10 py-4 rounded-3xl text-[10px] font-black uppercase tracking-widest hover:bg-[#EB3461] transition-all">
+                    <p className="text-gray-500 mb-8 font-medium">Looks like you haven't added any items to your collection yet.</p>
+                    <Link to="/shop" className="inline-flex items-center space-x-3 bg-[#1a3a2a] text-white px-10 py-4 rounded-3xl text-[10px] font-black uppercase tracking-widest hover:bg-black transition-all">
                         <span>Go To Shop</span>
                     </Link>
                 </motion.div>
@@ -131,24 +131,24 @@ const Checkout = () => {
 
     if (isSuccess) {
         return (
-            <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6 text-center">
+            <div className="min-h-screen bg-[#f5efe6] flex items-center justify-center p-6 text-center">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                    className="max-w-2xl w-full bg-white p-16 rounded-[50px] border border-gray-100 shadow-2xl shadow-gray-200 relative overflow-hidden text-center"
+                    className="max-w-2xl w-full bg-white p-16 rounded-[50px] border border-[#c9a96e]/20 shadow-2xl shadow-[#c9a96e]/20 relative overflow-hidden text-center"
                 >
-                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#EB3461] to-purple-600"></div>
+                    <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#1a3a2a] via-[#2d6a4f] to-[#c9a96e]"></div>
                     <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-8 text-green-500">
                         <CheckCircle size={56} />
                     </div>
-                    <h2 className="text-5xl font-black text-gray-900 mb-4 tracking-tighter uppercase leading-[0.9]">Order <br /><span className="text-[#EB3461]">Confirmed!</span></h2>
-                    <p className="text-gray-500 mb-10 text-lg font-medium max-w-sm mx-auto">Thank you for choosing classyfitters. Your stylish new look is being prepared for shipment.</p>
+                    <h2 className="text-5xl font-black text-gray-900 mb-4 tracking-tighter uppercase leading-[0.9]">Order <br /><span className="text-[#1a3a2a]">Confirmed!</span></h2>
+                    <p className="text-gray-500 mb-10 text-lg font-medium max-w-sm mx-auto">Thank you for choosing Bolqa House. Your premium abaya is being prepared for shipment.</p>
 
                     <div className="bg-gray-50 p-6 rounded-3xl mb-10 text-left border border-gray-100">
                         <div className="flex justify-between items-center mb-2">
                             <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Order Number</span>
-                            <span className="text-sm font-black text-gray-900">#CLASS-{confirmedOrderId}</span>
+                            <span className="text-sm font-black text-gray-900">#BQ-{confirmedOrderId}</span>
                         </div>
                         <div className="flex justify-between items-center">
                             <span className="text-xs font-black text-gray-400 uppercase tracking-widest">Estimated Delivery</span>
@@ -156,7 +156,7 @@ const Checkout = () => {
                         </div>
                     </div>
 
-                    <Link to="/" className="inline-flex items-center space-x-3 bg-black text-white px-12 py-5 rounded-[2rem] text-xs font-black uppercase tracking-widest hover:bg-[#EB3461] transition-all shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]">
+                    <Link to="/" className="inline-flex items-center space-x-3 bg-black text-white px-12 py-5 rounded-[2rem] text-xs font-black uppercase tracking-widest hover:bg-[#1a3a2a] transition-all shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]">
                         <span>Continue Shopping</span>
                     </Link>
                 </motion.div>
@@ -170,11 +170,11 @@ const Checkout = () => {
             <div className="bg-white pt-16 pb-12 px-6 border-b border-gray-100">
                 <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
                     <div>
-                        <Link to="/shop" className="inline-flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-[#EB3461] hover:text-black transition-colors mb-2">
+                        <Link to="/shop" className="inline-flex items-center space-x-2 text-[10px] font-black uppercase tracking-widest text-[#1a3a2a] hover:text-black transition-colors mb-2">
                             <ArrowLeft size={14} />
                             <span>Return To Shop</span>
                         </Link>
-                        <h1 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter uppercase">Secure <span className="text-[#EB3461]">Checkout</span></h1>
+                        <h1 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tighter uppercase">Secure <span className="text-[#1a3a2a]">Checkout</span></h1>
                     </div>
                     <div className="flex items-center space-x-4 text-[10px] font-black uppercase tracking-widest text-gray-400">
                         <span className="text-black">Information</span>
@@ -193,7 +193,7 @@ const Checkout = () => {
                         {/* Shipping Section */}
                         <section className="bg-white p-8 md:p-12 rounded-[40px] border border-gray-100 shadow-xl shadow-gray-200/40">
                             <div className="flex items-center space-x-3 mb-8">
-                                <div className="p-3 bg-pink-50 rounded-2xl text-[#EB3461]">
+                                <div className="p-3 bg-[#1a3a2a]/5 rounded-2xl text-[#1a3a2a]">
                                     <Truck size={24} />
                                 </div>
                                 <h2 className="text-xl font-black text-gray-900 uppercase tracking-tight">Shipping Details</h2>
@@ -209,7 +209,7 @@ const Checkout = () => {
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         placeholder="alex@example.com"
-                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#EB3461] transition-all font-medium"
+                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#1a3a2a] transition-all font-medium"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -221,7 +221,7 @@ const Checkout = () => {
                                         value={formData.firstName}
                                         onChange={handleInputChange}
                                         placeholder="Alex"
-                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#EB3461] transition-all font-medium"
+                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#1a3a2a] transition-all font-medium"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -233,7 +233,7 @@ const Checkout = () => {
                                         value={formData.lastName}
                                         onChange={handleInputChange}
                                         placeholder="Smith"
-                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#EB3461] transition-all font-medium"
+                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#1a3a2a] transition-all font-medium"
                                     />
                                 </div>
                                 <div className="space-y-2 md:col-span-2">
@@ -245,7 +245,7 @@ const Checkout = () => {
                                         value={formData.address}
                                         onChange={handleInputChange}
                                         placeholder="123 Street Name"
-                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#EB3461] transition-all font-medium"
+                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#1a3a2a] transition-all font-medium"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -257,7 +257,7 @@ const Checkout = () => {
                                         value={formData.city}
                                         onChange={handleInputChange}
                                         placeholder="Karachi, Lahore, Islamabad..."
-                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#EB3461] transition-all font-medium"
+                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#1a3a2a] transition-all font-medium"
                                     />
                                 </div>
                                 <div className="space-y-2">
@@ -269,7 +269,7 @@ const Checkout = () => {
                                         value={formData.postalCode}
                                         onChange={handleInputChange}
                                         placeholder="75500"
-                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#EB3461] transition-all font-medium"
+                                        className="w-full bg-gray-50 border-none p-4 rounded-2xl focus:ring-2 focus:ring-[#1a3a2a] transition-all font-medium"
                                     />
                                 </div>
                                 <div className="space-y-2 md:col-span-2">
@@ -305,14 +305,14 @@ const Checkout = () => {
                                         type="button"
                                         onClick={() => setFormData({ ...formData, paymentMethod: method.id })}
                                         className={`flex items-center space-x-4 p-5 rounded-2xl border-2 transition-all ${formData.paymentMethod === method.id
-                                            ? 'border-[#EB3461] bg-pink-50'
+                                            ? 'border-[#1a3a2a] bg-[#1a3a2a]/5'
                                             : 'border-gray-50 bg-gray-50 hover:border-gray-200'
                                             }`}
                                     >
-                                        <div className={`p-2 rounded-xl ${formData.paymentMethod === method.id ? 'bg-[#EB3461] text-white' : 'bg-white text-gray-400'}`}>
+                                        <div className={`p-2 rounded-xl ${formData.paymentMethod === method.id ? 'bg-[#1a3a2a] text-white' : 'bg-white text-gray-400'}`}>
                                             <method.icon size={18} />
                                         </div>
-                                        <span className={`font-black uppercase text-[10px] tracking-widest ${formData.paymentMethod === method.id ? 'text-[#EB3461]' : 'text-gray-500'}`}>
+                                        <span className={`font-black uppercase text-[10px] tracking-widest ${formData.paymentMethod === method.id ? 'text-[#1a3a2a]' : 'text-gray-500'}`}>
                                             {method.label}
                                         </span>
                                     </button>
@@ -328,7 +328,7 @@ const Checkout = () => {
                                         exit={{ opacity: 0, height: 0 }}
                                         className="mt-8 p-6 bg-gray-50 rounded-3xl border border-gray-100 space-y-4"
                                     >
-                                        <p className="text-[10px] font-black uppercase tracking-widest text-[#EB3461]">Transfer Instructions</p>
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-[#1a3a2a]">Transfer Instructions</p>
                                         <div className="space-y-3">
                                             {formData.paymentMethod === 'bank' && (
                                                 <>
@@ -338,7 +338,7 @@ const Checkout = () => {
                                                     </div>
                                                     <div className="flex justify-between text-xs">
                                                         <span className="text-gray-400 font-bold uppercase">Account Title</span>
-                                                        <span className="font-black text-gray-900 uppercase">classyfitters STORE</span>
+                                                        <span className="font-black text-gray-900 uppercase">Bolqa House Store</span>
                                                     </div>
                                                     <div className="flex justify-between text-xs">
                                                         <span className="text-gray-400 font-bold uppercase">Account No</span>
@@ -391,7 +391,7 @@ const Checkout = () => {
                                         <div className="flex-1 min-w-0 py-1">
                                             <h3 className="font-bold text-gray-900 text-sm line-clamp-1">{item.title}</h3>
                                             <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest mt-1">QTY: {item.quantity}</p>
-                                            <p className="text-[#EB3461] font-black text-xs mt-1 font-['Space_Mono']">Rs. {(item.price * item.quantity).toLocaleString()}</p>
+                                            <p className="text-[#1a3a2a] font-black text-xs mt-1 font-['Space_Mono']">Rs. {(item.price * item.quantity).toLocaleString()}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -408,14 +408,14 @@ const Checkout = () => {
                                 </div>
                                 <div className="flex justify-between items-center pt-4 text-xl font-black text-gray-900 uppercase">
                                     <span>Total</span>
-                                    <span className="text-2xl text-[#EB3461] tracking-tighter">Rs. {cartTotal.toLocaleString()}</span>
+                                    <span className="text-2xl text-[#1a3a2a] tracking-tighter">Rs. {cartTotal.toLocaleString()}</span>
                                 </div>
                             </div>
 
                             <button
                                 type="submit"
                                 disabled={isProcessing}
-                                className="w-full mt-10 bg-black text-white py-6 rounded-3xl font-black uppercase text-xs tracking-[0.2em] shadow-2xl hover:bg-[#EB3461] transition-all transform hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:translate-y-0 disabled:cursor-not-allowed flex items-center justify-center space-x-3"
+                                className="w-full mt-10 bg-black text-white py-6 rounded-3xl font-black uppercase text-xs tracking-[0.2em] shadow-2xl hover:bg-[#1a3a2a] transition-all transform hover:-translate-y-1 active:translate-y-0 disabled:opacity-50 disabled:translate-y-0 disabled:cursor-not-allowed flex items-center justify-center space-x-3"
                             >
                                 <AnimatePresence mode="wait">
                                     {isProcessing ? (
@@ -454,3 +454,7 @@ const Checkout = () => {
 };
 
 export default Checkout;
+
+
+
+

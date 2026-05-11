@@ -19,7 +19,7 @@ const Contact = () => {
     }, []);
 
     return (
-        <section id="contact" className="py-24 px-6 md:px-12 bg-white overflow-hidden">
+        <section id="contact" className="py-24 px-6 md:px-12 bg-[#f5efe6] overflow-hidden">
             <div className="max-w-7xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -30,10 +30,10 @@ const Contact = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="text-[#EB3461] text-xs font-black uppercase tracking-[0.3em] mb-4 block">Get In Touch</span>
+                        <span className="text-[#1a3a2a] text-xs font-black uppercase tracking-[0.3em] mb-4 block">Get In Touch</span>
                         <h2 className="text-4xl md:text-6xl font-black text-gray-900 leading-tight mb-8 tracking-tighter">
                             Let's Talk About <br />
-                            <span className="text-[#EB3461]">Your Style</span>
+                            <span className="text-[#c9a96e]">Your Collection</span>
                         </h2>
                         <p className="text-gray-500 text-lg leading-relaxed mb-12 max-w-md">
                             Have questions about our collections or need help with an order? Our team is here to provide you with the ultimate fashion experience.
@@ -41,9 +41,9 @@ const Contact = () => {
 
                         <div className="space-y-8">
                             {[
-                                { icon: <Mail className="text-[#EB3461]" size={24} />, title: "Email Us", detail: "info@osamaghaffar.pro" },
-                                { icon: <Phone className="text-[#EB3461]" size={24} />, title: "Call Us", detail: "+92 345 6789100" },
-                                { icon: <MapPin className="text-[#EB3461]" size={24} />, title: "Visit Us", detail: "Batkhela, Malakand, Pakistan" }
+                                { icon: <Mail className="text-[#1a3a2a]" size={24} />, title: "Email Us", detail: "info@osamaghaffar.pro" },
+                                { icon: <Phone className="text-[#1a3a2a]" size={24} />, title: "Call Us", detail: "+92 345 6789100" },
+                                { icon: <MapPin className="text-[#1a3a2a]" size={24} />, title: "Visit Us", detail: "Batkhela, Malakand, Pakistan" }
                             ].map((item, i) => (
                                 <motion.div
                                     key={i}
@@ -53,7 +53,7 @@ const Contact = () => {
                                     transition={{ delay: i * 0.1 }}
                                     className="flex items-center space-x-6 group"
                                 >
-                                    <div className="w-14 h-14 rounded-2xl bg-pink-50 flex items-center justify-center group-hover:bg-[#EB3461] group-hover:text-white transition-all duration-300">
+                                    <div className="w-14 h-14 rounded-2xl bg-[#1a3a2a]/5 flex items-center justify-center group-hover:bg-[#1a3a2a] group-hover:text-white transition-all duration-300">
                                         {item.icon}
                                     </div>
                                     <div>
@@ -73,9 +73,9 @@ const Contact = () => {
                         transition={{ duration: 0.8 }}
                         className="relative"
                     >
-                        <div className="absolute -top-10 -right-10 w-64 h-64 bg-pink-50 rounded-full blur-3xl opacity-60 z-0"></div>
+                        <div className="absolute -top-10 -right-10 w-64 h-64 bg-[#c9a96e]/8 rounded-full blur-3xl opacity-60 z-0"></div>
 
-                        <div className="relative z-10 bg-white border border-gray-100 p-8 md:p-12 rounded-[40px] shadow-2xl shadow-pink-100/20">
+                        <div className="relative z-10 bg-white border border-[#c9a96e]/20 p-8 md:p-12 rounded-[40px] shadow-2xl shadow-[#c9a96e]/20">
                             <form action="/api/contact.php" method="POST" className="space-y-6">
                                 <input type="hidden" name="request" value="contactsform" />
 
@@ -87,7 +87,7 @@ const Contact = () => {
                                             type="text"
                                             placeholder="John Doe"
                                             required
-                                            className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-pink-100 outline-none transition-all font-medium"
+                                            className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition-all font-medium"
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -97,7 +97,7 @@ const Contact = () => {
                                             type="email"
                                             placeholder="john@example.com"
                                             required
-                                            className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-pink-100 outline-none transition-all font-medium"
+                                            className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition-all font-medium"
                                         />
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@ const Contact = () => {
                                         name="phone"
                                         type="tel"
                                         placeholder="+92 345 6789100"
-                                        className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-pink-100 outline-none transition-all font-medium"
+                                        className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition-all font-medium"
                                     />
                                 </div>
 
@@ -119,7 +119,7 @@ const Contact = () => {
                                         rows="4"
                                         placeholder="How can we help you today?"
                                         required
-                                        className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-pink-100 outline-none transition-all font-medium resize-none"
+                                        className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition-all font-medium resize-none"
                                     ></textarea>
                                 </div>
 
@@ -130,7 +130,7 @@ const Contact = () => {
 
                                 <button
                                     type="submit"
-                                    className="w-full bg-[#EB3461] text-white rounded-2xl py-5 px-8 flex items-center justify-center gap-3 font-black uppercase text-xs tracking-widest hover:bg-black transition-all shadow-xl shadow-pink-100 hover:-translate-y-1 active:translate-y-0"
+                                    className="w-full bg-[#1a3a2a] text-white rounded-2xl py-5 px-8 flex items-center justify-center gap-3 font-black uppercase text-xs tracking-widest hover:bg-black transition-all shadow-xl shadow-[#1a3a2a]/10 hover:-translate-y-1 active:translate-y-0"
                                 >
                                     Send Message
                                     <Send size={16} />
@@ -145,3 +145,6 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+

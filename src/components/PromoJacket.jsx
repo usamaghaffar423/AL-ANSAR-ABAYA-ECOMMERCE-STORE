@@ -24,14 +24,14 @@ const PromoJacket = () => {
                     <div className="relative z-10 max-w-sm">
                         <h3 className="text-3xl font-black text-gray-900 mb-4">Timeless Fashion for Every Wardrobe</h3>
                         <p className="text-gray-700 mb-8">Elevate your style with our curated collection of premium leather and cotton jackets.</p>
-                        <button className="bg-[#EB3461] text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black transition-all">
+                        <button className="bg-[#1a3a2a] text-white px-8 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-black transition-all">
                             Shop Now
                         </button>
                     </div>
                 </div>
 
                 {/* Right Side: Sale Content with Model Overlay */}
-                <div className="relative rounded-[40px] overflow-hidden bg-[#EB3461] min-h-[500px]">
+                <div className="relative rounded-[40px] overflow-hidden bg-[#1a3a2a] min-h-[500px]">
                     <img
                         src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&q=80&w=800"
                         className="absolute right-0 bottom-0 h-full w-2/3 object-cover mix-blend-overlay opacity-30"
@@ -52,3 +52,5 @@ const PromoJacket = () => {
 };
 
 export default PromoJacket;
+
+

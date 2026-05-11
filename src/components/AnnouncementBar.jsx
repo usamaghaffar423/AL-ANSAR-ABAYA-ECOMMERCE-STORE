@@ -21,14 +21,14 @@ const AnnouncementBar = () => {
   ];
 
   return (
-    <div className="bg-[#EB3461] py-0.5">
+    <div className="bg-[#1a3a2a] py-0.5">
       <div className="overflow-hidden whitespace-nowrap py-3">
         <div className="inline-flex gap-8 animate-scroll">
           {[...messages, ...messages].map((msg, idx) => (
             <span
               key={idx}
               className={`text-[11px] font-black uppercase tracking-[0.3em] shrink-0 ${
-                msg === '✦' ? 'text-[#EB3461]' : 'text-white/60'
+                msg === '✦' ? 'text-[#1a3a2a]' : 'text-white/60'
               }`}
             >
               {msg}
@@ -54,3 +54,5 @@ const AnnouncementBar = () => {
 };
 
 export default AnnouncementBar;
+
+

@@ -8,18 +8,18 @@ const Field = ({ icon: Icon, type, value, onChange, placeholder, label, required
     <div className="space-y-1.5">
         <label className="block text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 ml-1">{label}</label>
         <div className="relative group">
-            <Icon size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#EB3461] transition-colors pointer-events-none" />
+            <Icon size={17} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-[#1a3a2a] transition-colors pointer-events-none" />
             <input
                 type={type}
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
                 required={required}
-                className="w-full pl-11 pr-12 py-4 rounded-2xl border-2 border-gray-100 bg-white text-sm font-semibold text-gray-900 placeholder:text-gray-300 outline-none focus:border-[#EB3461] transition-all"
+                className="w-full pl-11 pr-12 py-4 rounded-2xl border-2 border-gray-100 bg-white text-sm font-semibold text-gray-900 placeholder:text-gray-300 outline-none focus:border-[#1a3a2a] transition-all"
             />
             {action && (
                 <button type="button" onClick={action.fn}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-[#EB3461] transition-colors">
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300 hover:text-[#1a3a2a] transition-colors">
                     {action.icon}
                 </button>
             )}
@@ -71,9 +71,9 @@ const LoginForm = ({ onSwitch }) => {
                 </AnimatePresence>
 
                 <button type="submit" disabled={loading}
-                    className="w-full bg-[#EB3461] text-white py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-[#d42d57] active:scale-[0.98] transition-all shadow-lg shadow-pink-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2">
+                    className="w-full bg-[#1a3a2a] text-white py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-[#a07840] active:scale-[0.98] transition-all shadow-lg shadow-[#1a3a2a]/20 disabled:opacity-60 flex items-center justify-center gap-2 mt-2">
                     {loading
-                        ? <><div className="w-4 h-4 border-2 border-pink-200 border-t-white rounded-full animate-spin" /> Signing in…</>
+                        ? <><div className="w-4 h-4 border-2 border-[#1a3a2a]/20 border-t-white rounded-full animate-spin" /> Signing in…</>
                         : <><span>Sign In</span><ChevronRight size={16} /></>
                     }
                 </button>
@@ -81,7 +81,7 @@ const LoginForm = ({ onSwitch }) => {
 
             <p className="text-center text-[11px] text-gray-400 font-semibold mt-6">
                 New here?{' '}
-                <button onClick={onSwitch} className="text-[#EB3461] font-black hover:underline">Create account</button>
+                <button onClick={onSwitch} className="text-[#1a3a2a] font-black hover:underline">Create account</button>
             </p>
 
         </motion.div>
@@ -149,16 +149,16 @@ const RegisterForm = ({ onSwitch }) => {
             </AnimatePresence>
 
             <button type="submit" disabled={loading}
-                className="w-full bg-[#EB3461] text-white py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-[#d42d57] active:scale-[0.98] transition-all shadow-lg shadow-pink-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2">
+                className="w-full bg-[#1a3a2a] text-white py-4 rounded-2xl font-black uppercase tracking-widest text-sm hover:bg-[#a07840] active:scale-[0.98] transition-all shadow-lg shadow-[#1a3a2a]/20 disabled:opacity-60 flex items-center justify-center gap-2 mt-2">
                 {loading
-                    ? <><div className="w-4 h-4 border-2 border-pink-200 border-t-white rounded-full animate-spin" /> Creating Account…</>
+                    ? <><div className="w-4 h-4 border-2 border-[#1a3a2a]/20 border-t-white rounded-full animate-spin" /> Creating Account…</>
                     : <><span>Create Account</span><ChevronRight size={16} /></>
                 }
             </button>
 
             <p className="text-center text-[11px] text-gray-400 font-semibold mt-4">
                 Already have an account?{' '}
-                <button type="button" onClick={onSwitch} className="text-[#EB3461] font-black hover:underline">Sign in</button>
+                <button type="button" onClick={onSwitch} className="text-[#1a3a2a] font-black hover:underline">Sign in</button>
             </p>
         </form>
     );
@@ -186,7 +186,7 @@ const AuthPage = ({ defaultTab = 'login' }) => {
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="hidden lg:flex lg:w-[45%] bg-[#EB3461] flex-col justify-between p-12 relative overflow-hidden"
+                className="hidden lg:flex lg:w-[45%] bg-[#1a3a2a] flex-col justify-between p-12 relative overflow-hidden"
             >
                 {/* Background decorations */}
                 <div className="absolute inset-0 pointer-events-none">
@@ -199,9 +199,9 @@ const AuthPage = ({ defaultTab = 'login' }) => {
                 {/* Logo */}
                 <div className="relative z-10">
                     <h1 className="text-4xl font-black text-white uppercase tracking-tight leading-none">
-                        Classy<span className="opacity-70">fitters</span>
+                        Bolqa<span className="opacity-70"> House</span>
                     </h1>
-                    <p className="text-white/60 text-xs font-bold uppercase tracking-[0.3em] mt-2">Pakistan's Fashion Store</p>
+                    <p className="text-white/60 text-xs font-bold uppercase tracking-[0.3em] mt-2">Premium Abayas & Bolqas</p>
                 </div>
 
                 {/* Center content */}
@@ -227,7 +227,7 @@ const AuthPage = ({ defaultTab = 'login' }) => {
 
                 {/* Bottom tagline */}
                 <div className="relative z-10">
-                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em]">© 2026 Classyfitters</p>
+                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em]">© 2026 Bolqa House</p>
                 </div>
             </motion.div>
 
@@ -243,9 +243,9 @@ const AuthPage = ({ defaultTab = 'login' }) => {
                     {/* Mobile logo */}
                     <div className="lg:hidden text-center mb-8">
                         <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tight">
-                            Classy<span className="text-[#EB3461]">fitters</span>
+                            Bolqa<span className="text-[#1a3a2a]"> House</span>
                         </h1>
-                        <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-1">Pakistan's Fashion Store</p>
+                        <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-1">Premium Abayas & Bolqas</p>
                     </div>
 
                     {/* Card */}
@@ -261,7 +261,7 @@ const AuthPage = ({ defaultTab = 'login' }) => {
                                     {label}
                                     {tab === key && (
                                         <motion.div layoutId="tab-indicator"
-                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#EB3461]"
+                                            className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#1a3a2a]"
                                             transition={{ type: 'spring', stiffness: 400, damping: 30 }} />
                                     )}
                                 </button>
@@ -306,3 +306,7 @@ const AuthPage = ({ defaultTab = 'login' }) => {
 };
 
 export default AuthPage;
+
+
+
+

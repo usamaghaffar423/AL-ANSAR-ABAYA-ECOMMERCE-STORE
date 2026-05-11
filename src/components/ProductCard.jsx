@@ -43,21 +43,21 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                         onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                     />
                     {hasDiscount && (
-                        <div className="absolute top-4 left-4 bg-[#EB3461] text-white px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest">
+                        <div className="absolute top-4 left-4 bg-[#1a3a2a] text-white px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest">
                             -{discount.toFixed(0)}%
                         </div>
                     )}
                     <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
                         <button
                             onClick={(e) => { e.stopPropagation(); setWishlisted(!wishlisted); }}
-                            className={`p-2.5 rounded-full shadow-lg transition-all ${wishlisted ? 'bg-[#EB3461] text-white' : 'bg-white hover:bg-black hover:text-white'}`}
+                            className={`p-2.5 rounded-full shadow-lg transition-all ${wishlisted ? 'bg-[#1a3a2a] text-white' : 'bg-white hover:bg-black hover:text-white'}`}
                         >
                             <Heart size={16} fill={wishlisted ? 'currentColor' : 'none'} />
                         </button>
                         {!isOutOfStock && (
                             <button
                                 onClick={(e) => { e.stopPropagation(); addToCart(product); }}
-                                className="bg-white p-2.5 rounded-full shadow-lg hover:bg-[#EB3461] hover:text-white transition-all"
+                                className="bg-white p-2.5 rounded-full shadow-lg hover:bg-[#1a3a2a] hover:text-white transition-all"
                             >
                                 <ShoppingBag size={16} />
                             </button>
@@ -71,11 +71,11 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                         <span>5.0</span>
                     </div>
                 </div>
-                <h4 className="text-sm font-black text-gray-900 leading-tight mb-2 group-hover:text-[#EB3461] transition-colors line-clamp-2 uppercase">
+                <h4 className="text-sm font-black text-gray-900 leading-tight mb-2 group-hover:text-[#1a3a2a] transition-colors line-clamp-2 uppercase">
                     {product.title}
                 </h4>
                 <div className="flex gap-2 items-center">
-                    <span className="text-[#EB3461] font-black text-base tracking-tighter">Rs. {price.toLocaleString()}</span>
+                    <span className="text-[#1a3a2a] font-black text-base tracking-tighter">Rs. {price.toLocaleString()}</span>
                     {hasDiscount && (
                         <span className="text-gray-300 line-through text-[10px] font-bold">Rs. {oldPrice.toLocaleString()}</span>
                     )}
@@ -105,12 +105,12 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                 <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
                     {product.is_trending && (
                         <div className="bg-black text-white px-3 py-1.5 rounded-full flex items-center gap-1.5 text-[8px] font-black uppercase tracking-[0.2em]">
-                            <Flame size={10} className="text-[#EB3461]" />
+                            <Flame size={10} className="text-[#1a3a2a]" />
                             Trending
                         </div>
                     )}
                     {hasDiscount && (
-                        <div className="bg-[#EB3461] text-white px-3 py-1.5 rounded-full flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.2em]">
+                        <div className="bg-[#1a3a2a] text-white px-3 py-1.5 rounded-full flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.2em]">
                             <Tag size={9} />
                             -{discount.toFixed(0)}% OFF
                         </div>
@@ -125,14 +125,14 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                 <div className="absolute top-4 right-4 flex flex-col gap-2 z-10 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
                     <button
                         onClick={(e) => { e.stopPropagation(); setWishlisted(!wishlisted); }}
-                        className={`p-2.5 rounded-full shadow-xl backdrop-blur-md transition-all ${wishlisted ? 'bg-[#EB3461] text-white' : 'bg-white/90 hover:bg-black hover:text-white'}`}
+                        className={`p-2.5 rounded-full shadow-xl backdrop-blur-md transition-all ${wishlisted ? 'bg-[#1a3a2a] text-white' : 'bg-white/90 hover:bg-black hover:text-white'}`}
                     >
                         <Heart size={18} fill={wishlisted ? 'currentColor' : 'none'} />
                     </button>
                     {!isOutOfStock && (
                         <button
                             onClick={(e) => { e.stopPropagation(); addToCart(product); }}
-                            className="bg-white/90 p-2.5 rounded-full shadow-xl backdrop-blur-md hover:bg-[#EB3461] hover:text-white transition-all delay-75"
+                            className="bg-white/90 p-2.5 rounded-full shadow-xl backdrop-blur-md hover:bg-[#1a3a2a] hover:text-white transition-all delay-75"
                         >
                             <ShoppingBag size={18} />
                         </button>
@@ -141,8 +141,8 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
             </div>
 
             <div className="p-5 pt-2 text-center flex-1 flex flex-col">
-                <span className="text-[9px] font-black text-[#EB3461] uppercase tracking-[0.2em] mb-1">{product.category}</span>
-                <h3 className="font-black text-gray-900 group-hover:text-[#EB3461] transition-colors text-sm uppercase tracking-tight leading-tight mb-3 line-clamp-2">
+                <span className="text-[9px] font-black text-[#1a3a2a] uppercase tracking-[0.2em] mb-1">{product.category}</span>
+                <h3 className="font-black text-gray-900 group-hover:text-[#1a3a2a] transition-colors text-sm uppercase tracking-tight leading-tight mb-3 line-clamp-2">
                     {product.title}
                 </h3>
                 <div className="flex items-center justify-center gap-1 mb-3">
@@ -161,7 +161,7 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                     className={`mt-4 w-full py-3.5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all transform active:scale-95 shadow-lg shadow-gray-200 ${
                         isOutOfStock
                             ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                            : 'bg-gray-950 text-white hover:bg-[#EB3461]'
+                            : 'bg-gray-950 text-white hover:bg-[#1a3a2a]'
                     }`}
                 >
                     {isOutOfStock ? 'Out of Stock' : 'Add To Cart'}
@@ -172,3 +172,5 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
 });
 
 export default ProductCard;
+
+

@@ -48,16 +48,16 @@ const UserProfile = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-50/50 pb-20 font-['Outfit']">
+        <div className="min-h-screen bg-[#f5efe6] pb-20 font-['Outfit']">
             {/* Header / Profile Info */}
-            <div className="bg-white border-b border-gray-100 pt-32 pb-16 px-6">
+            <div className="bg-[#f5efe6] border-b border-[#c9a96e]/20 pt-32 pb-16 px-6">
                 <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start space-y-8 md:space-y-0 md:space-x-12">
                     <motion.div
                         initial={{ scale: 0.9, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="w-32 h-32 rounded-[48px] bg-[#EB3461]/10 flex items-center justify-center relative group"
+                        className="w-32 h-32 rounded-[48px] bg-[#1a3a2a]/10 flex items-center justify-center relative group"
                     >
-                        <User size={48} className="text-[#EB3461]" />
+                        <User size={48} className="text-[#1a3a2a]" />
                         <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-black text-white rounded-full flex items-center justify-center border-4 border-white">
                             <Settings size={16} />
                         </div>
@@ -90,14 +90,14 @@ const UserProfile = () => {
                             {isAdmin && (
                                 <button
                                     onClick={() => navigate('/admin')}
-                                    className="bg-black text-white px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#EB3461] transition-all"
+                                    className="bg-black text-white px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#1a3a2a] transition-all"
                                 >
                                     Admin Dashboard
                                 </button>
                             )}
                             <button
                                 onClick={logout}
-                                className="border border-gray-200 text-gray-900 px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-[#EB3461] hover:text-[#EB3461] transition-all flex items-center space-x-2"
+                                className="border border-gray-200 text-gray-900 px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-[#1a3a2a] hover:text-[#1a3a2a] transition-all flex items-center space-x-2"
                             >
                                 <LogOut size={14} />
                                 <span>Logout</span>
@@ -117,10 +117,10 @@ const UserProfile = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 + i * 0.1 }}
-                            className="bg-white p-8 rounded-[32px] border border-gray-100 shadow-sm"
+                            className="bg-white p-8 rounded-[32px] border border-[#c9a96e]/20 shadow-sm"
                         >
-                            <div className={`w-12 h-12 bg-[#EB3461]/5 rounded-2xl flex items-center justify-center mb-4`}>
-                                <stat.icon size={24} className="text-[#EB3461]" />
+                            <div className={`w-12 h-12 bg-[#1a3a2a]/5 rounded-2xl flex items-center justify-center mb-4`}>
+                                <stat.icon size={24} className="text-[#1a3a2a]" />
                             </div>
                             <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">{stat.label}</p>
                             <p className="text-2xl font-black text-gray-900">{stat.value}</p>
@@ -133,7 +133,7 @@ const UserProfile = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="bg-white p-8 rounded-[40px] border border-gray-100 shadow-sm md:col-span-2"
+                    className="bg-white p-8 rounded-[40px] border border-[#c9a96e]/20 shadow-sm md:col-span-2"
                 >
                     <div className="flex items-center justify-between mb-8">
                         <h3 className="text-lg font-black text-gray-900 uppercase tracking-tight">Recent Orders</h3>
@@ -141,7 +141,7 @@ const UserProfile = () => {
 
                     {loading ? (
                         <div className="flex justify-center py-10">
-                            <div className="w-8 h-8 border-4 border-gray-100 border-t-[#EB3461] rounded-full animate-spin"></div>
+                            <div className="w-8 h-8 border-4 border-gray-100 border-t-[#1a3a2a] rounded-full animate-spin"></div>
                         </div>
                     ) : orders.length > 0 ? (
                         <div className="space-y-4">
@@ -154,7 +154,7 @@ const UserProfile = () => {
                                         </p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="font-black text-[#EB3461]">Rs. {Number(order.total).toLocaleString()}</p>
+                                        <p className="font-black text-[#1a3a2a]">Rs. {Number(order.total).toLocaleString()}</p>
                                         {(() => {
                                             const s = order.status || 'Pending';
                                             const style = STATUS_STYLES[s] || STATUS_STYLES.Pending;
@@ -179,7 +179,7 @@ const UserProfile = () => {
 
                     <button
                         onClick={() => navigate('/shop')}
-                        className="w-full mt-8 bg-black text-white py-5 rounded-[24px] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-[#EB3461] transition-all flex items-center justify-center space-x-3 group"
+                        className="w-full mt-8 bg-black text-white py-5 rounded-[24px] font-black uppercase tracking-[0.2em] text-[10px] hover:bg-[#1a3a2a] transition-all flex items-center justify-center space-x-3 group"
                     >
                         <span>Start Shopping</span>
                         <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -191,3 +191,5 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
+

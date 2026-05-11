@@ -3,6 +3,11 @@
 :root {
   font-family: 'Outfit', sans-serif;
   scroll-behavior: smooth;
+  --color-primary: #1a3a2a;
+  --color-primary-light: #2d6a4f;
+  --color-accent: #c9a96e;
+  --color-accent-dark: #a07840;
+  --color-bg: #f5efe6;
 }
 
 body {
@@ -10,6 +15,8 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg);
+  color: #1c1c1c;
 }
 
 .scrollbar-hide::-webkit-scrollbar {

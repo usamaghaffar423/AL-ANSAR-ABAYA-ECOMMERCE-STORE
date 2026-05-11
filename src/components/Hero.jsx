@@ -5,69 +5,94 @@ import { ArrowRight, ShoppingBag } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section id="main-content" className="relative w-full h-screen min-h-[600px] md:min-h-[700px] overflow-hidden">
+    <section id="main-content" className="relative w-full h-screen min-h-[600px] md:min-h-[700px] overflow-hidden bg-black">
       {/* Video Background */}
       <video
         autoPlay
         muted
         loop
         playsInline
-        preload="none"
+        preload="metadata"
         aria-label="Background video"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/videos/background-video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
       </video>
 
-      {/* Reddish Overlay */}
-      <div className="absolute inset-0 bg-[#EB3461] opacity-35 mix-blend-multiply" />
+      {/* Dark Green Base Overlay */}
+      <div className="absolute inset-0 bg-[#1a3a2a] opacity-40 mix-blend-multiply" />
+
+      {/* Brand Color Gradient Overlay for Shining Effect */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#1a3a2a]/60 via-[#2d6a4f]/40 to-[#c9a96e]/20 mix-blend-overlay" />
+
+      {/* Gold Accent Glow */}
+      <div className="absolute inset-0 bg-gradient-to-t from-[#c9a96e]/10 via-transparent to-transparent mix-blend-screen" />
 
       {/* Content Container */}
       <div className="relative h-full flex items-center justify-center px-4 md:px-6 lg:px-12">
-        <div className="max-w-4xl w-full text-center">
-          {/* Animated Badge */}
+        <div className="max-w-5xl w-full text-center">
+          {/* Premium Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
             className="inline-block mb-6 md:mb-8"
           >
-            <div className="px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-white text-[10px] md:text-xs font-black uppercase tracking-widest">
-              ✨ Premium Pakistani Fashion
+            <div className="px-6 md:px-8 py-2.5 md:py-3.5 rounded-full bg-[#c9a96e]/20 backdrop-blur-md border border-[#c9a96e]/40 text-[#c9a96e] text-[11px] md:text-sm font-black uppercase tracking-widest">
+              ✦ Premium Abayas Direct from KPK
             </div>
           </motion.div>
 
-          {/* Main Heading */}
+          {/* Main Heading - Extra Large */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-black text-white uppercase tracking-tighter leading-tight mb-4 md:mb-6"
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="text-6xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter leading-none mb-4 md:mb-6"
           >
-            Classy<span className="text-[#EB3461]">fitters</span>
+            Al Ansar<br />
+            <span className="text-[#c9a96e]">Abaya Store</span>
           </motion.h1>
 
-          {/* Subheading */}
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-lg md:text-2xl text-white/90 font-bold mb-6 md:mb-10 max-w-2xl mx-auto leading-relaxed"
-          >
-            Experience authentic KPK style with premium quality fashion that
-            defines who you are
-          </motion.p>
+          {/* Divider */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="h-1 w-24 bg-gradient-to-r from-[#c9a96e] to-white/20 mx-auto mb-8 md:mb-10"
+          />
 
-          {/* Description */}
+          {/* Main Value Proposition */}
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-sm md:text-base text-white/80 mb-8 md:mb-12 max-w-xl mx-auto leading-relaxed font-medium"
+            className="text-xl md:text-3xl lg:text-4xl font-black text-white mb-6 md:mb-8 leading-tight"
           >
-            From Peshawar to the world. Discover exclusive collections crafted
-            for the modern Pakistani fashionista.
+            Authentic Premium Abayas, Direct from Chakdara
           </motion.p>
+
+          {/* Key Benefits */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-col sm:flex-row justify-center gap-4 md:gap-8 mb-12 md:mb-16 text-white/90 text-sm md:text-base font-bold"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-[#c9a96e] font-black">✓</span>
+              Fast KPK-Wide Delivery
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#c9a96e] font-black">✓</span>
+              100% Authentic
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-[#c9a96e] font-black">✓</span>
+              Easy Returns
+            </div>
+          </motion.div>
 
           {/* CTA Buttons */}
           <motion.div
@@ -79,10 +104,10 @@ const Hero = () => {
             {/* Primary CTA */}
             <Link
               to="/shop"
-              className="group relative px-8 md:px-10 py-4 md:py-5 bg-white text-[#EB3461] font-black uppercase tracking-widest text-sm md:text-base rounded-[20px] hover:bg-yellow-300 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 flex items-center gap-2"
+              className="group relative px-8 md:px-10 py-4 md:py-5 bg-white text-[#1a3a2a] font-black uppercase tracking-widest text-sm md:text-base rounded-[20px] hover:bg-[#c9a96e] hover:text-white transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-105 flex items-center gap-2"
             >
               <ShoppingBag size={18} />
-              <span>Shop Now</span>
+              <span>Abhi Shop Karein</span>
               <ArrowRight
                 size={16}
                 className="group-hover:translate-x-1 transition-transform"
@@ -137,3 +162,6 @@ const Hero = () => {
 };
 
 export default Hero;
+
+
+

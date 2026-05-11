@@ -50,13 +50,13 @@ const SaleSlider = () => {
     }
 
     return (
-        <div className="bg-gradient-to-r from-[#EB3461]/5 to-red-50/5 border-b border-gray-100 py-4 md:py-6 overflow-hidden">
+        <div className="bg-gradient-to-r from-[#1a3a2a]/5 to-red-50/5 border-b border-gray-100 py-4 md:py-6 overflow-hidden">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Header */}
                 <div className="flex items-center gap-3 mb-4 md:mb-5">
                     <div className="flex items-center gap-1.5">
-                        <Flame size={18} className="text-[#EB3461]" />
-                        <span className="text-[11px] font-black uppercase tracking-widest text-[#EB3461]">
+                        <Flame size={18} className="text-[#1a3a2a]" />
+                        <span className="text-[11px] font-black uppercase tracking-widest text-[#1a3a2a]">
                             Flash Sale
                         </span>
                     </div>
@@ -80,7 +80,7 @@ const SaleSlider = () => {
                             >
                                 <Link
                                     to={`/product/${product.id}`}
-                                    className="group block bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-[#EB3461] transition-all shadow-sm hover:shadow-md h-full"
+                                    className="group block bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-[#1a3a2a] transition-all shadow-sm hover:shadow-md h-full"
                                 >
                                     {/* Image Container */}
                                     <div className="relative aspect-square overflow-hidden bg-gray-50">
@@ -91,7 +91,7 @@ const SaleSlider = () => {
                                         />
 
                                         {/* Discount Badge */}
-                                        <div className="absolute top-3 right-3 bg-[#EB3461] text-white px-2.5 py-1 rounded-xl flex items-center gap-1">
+                                        <div className="absolute top-3 right-3 bg-[#1a3a2a] text-white px-2.5 py-1 rounded-xl flex items-center gap-1">
                                             <span className="text-[10px] font-black">-{product.discount_pct}%</span>
                                         </div>
 
@@ -103,13 +103,13 @@ const SaleSlider = () => {
 
                                     {/* Content */}
                                     <div className="p-3 md:p-4">
-                                        <h3 className="text-[11px] md:text-[12px] font-black uppercase tracking-wide text-gray-900 line-clamp-2 mb-2 group-hover:text-[#EB3461] transition-colors">
+                                        <h3 className="text-[11px] md:text-[12px] font-black uppercase tracking-wide text-gray-900 line-clamp-2 mb-2 group-hover:text-[#1a3a2a] transition-colors">
                                             {product.title}
                                         </h3>
 
                                         {/* Pricing */}
                                         <div className="flex items-center gap-2 mb-3">
-                                            <span className="text-sm md:text-base font-black text-[#EB3461]">
+                                            <span className="text-sm md:text-base font-black text-[#1a3a2a]">
                                                 Rs. {Math.floor(product.price).toLocaleString()}
                                             </span>
                                             <span className="text-[10px] text-gray-400 line-through font-bold">
@@ -118,7 +118,7 @@ const SaleSlider = () => {
                                         </div>
 
                                         {/* CTA Button */}
-                                        <div className="flex items-center gap-1.5 text-[10px] font-black text-[#EB3461] uppercase tracking-widest group-hover:translate-x-1 transition-transform">
+                                        <div className="flex items-center gap-1.5 text-[10px] font-black text-[#1a3a2a] uppercase tracking-widest group-hover:translate-x-1 transition-transform">
                                             <span>View</span>
                                             <ChevronRight size={12} />
                                         </div>
@@ -136,7 +136,7 @@ const SaleSlider = () => {
                                 onClick={() => setCurrentIndex(idx)}
                                 className={`rounded-full transition-all ${
                                     idx === currentIndex
-                                        ? 'bg-[#EB3461] w-2 h-2'
+                                        ? 'bg-[#1a3a2a] w-2 h-2'
                                         : 'bg-gray-300 w-1.5 h-1.5 hover:bg-gray-400'
                                 }`}
                                 whileHover={{ scale: 1.2 }}
@@ -151,3 +151,5 @@ const SaleSlider = () => {
 };
 
 export default SaleSlider;
+
+

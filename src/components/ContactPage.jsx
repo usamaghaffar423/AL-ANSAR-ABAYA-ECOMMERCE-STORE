@@ -9,19 +9,19 @@ const CONTACT_INFO = [
         primary: '+92 348 1099433',
         secondary: 'Mon – Sat · 9 AM to 9 PM PKT',
         href: 'tel:+923481099433',
-        bg: 'bg-emerald-50',
+        bg: 'bg-[#1a3a2a]/5',
         iconColor: 'text-emerald-600',
-        iconBg: 'bg-emerald-100 group-hover:bg-emerald-500',
+        iconBg: 'bg-[#1a3a2a]/10 group-hover:bg-[#1a3a2a]/50',
     },
     {
         icon: Mail,
         label: 'Email Us',
-        primary: 'support@classyfitters.shop',
+        primary: 'support@bolqahouse.pk',
         secondary: 'We reply within 24 hours',
-        href: 'mailto:support@classyfitters.shop',
-        bg: 'bg-pink-50',
-        iconColor: 'text-[#EB3461]',
-        iconBg: 'bg-pink-100 group-hover:bg-[#EB3461]',
+        href: 'mailto:support@bolqahouse.pk',
+        bg: 'bg-[#1a3a2a]/5',
+        iconColor: 'text-[#1a3a2a]',
+        iconBg: 'bg-[#1a3a2a]/10 group-hover:bg-[#1a3a2a]',
     },
     {
         icon: MapPin,
@@ -60,22 +60,22 @@ const ContactPage = () => {
             {/* ── Hero Banner ──────────────────────────────────── */}
             <section className="relative bg-white border-b border-gray-100 overflow-hidden pt-16 pb-20 px-6 md:px-12">
                 {/* Pink glow */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-[#EB3461] opacity-5 rounded-full blur-[100px] pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#EB3461] opacity-5 rounded-full blur-[80px] pointer-events-none" />
+                <div className="absolute top-0 right-0 w-96 h-96 bg-[#1a3a2a] opacity-5 rounded-full blur-[100px] pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#1a3a2a] opacity-5 rounded-full blur-[80px] pointer-events-none" />
 
                 <div className="max-w-7xl mx-auto relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
                         className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-8"
                     >
-                        <Link to="/" className="hover:text-[#EB3461] transition-colors">Home</Link>
+                        <Link to="/" className="hover:text-[#1a3a2a] transition-colors">Home</Link>
                         <ChevronRight size={12} />
-                        <span className="text-[#EB3461]">Contact</span>
+                        <span className="text-[#1a3a2a]">Contact</span>
                     </motion.div>
 
                     <motion.span
                         initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-                        className="text-[#EB3461] text-[10px] font-black uppercase tracking-[0.4em] mb-4 block"
+                        className="text-[#1a3a2a] text-[10px] font-black uppercase tracking-[0.4em] mb-4 block"
                     >
                         Hum Se Baat Karo
                     </motion.span>
@@ -84,7 +84,7 @@ const ContactPage = () => {
                         className="text-5xl md:text-7xl font-black text-gray-900 leading-[0.9] tracking-tighter mb-6 uppercase"
                     >
                         Apna Style<br />
-                        <span className="text-[#EB3461]">Hum Dhundh Dete Hain</span>
+                        <span className="text-[#1a3a2a]">Hum Dhundh Dete Hain</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
@@ -132,7 +132,7 @@ const ContactPage = () => {
                             className="lg:col-span-2 rounded-[32px] overflow-hidden border border-gray-100 shadow-xl min-h-[420px]"
                         >
                             <iframe
-                                title="Classyfitters – Main GT Road Amandara"
+                                title="Bolqa House – Chakdara, Dir Lower"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.0!2d72.0503!3d34.38!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38de6c3e4f9db491%3A0x5a2e2e0f3c8c2b6a!2sAmandara%2C+Khyber+Pakhtunkhwa%2C+Pakistan!5e0!3m2!1sen!2spk!4v1700000000000"
                                 width="100%" height="100%"
                                 style={{ border: 0, minHeight: '420px' }}
@@ -148,8 +148,8 @@ const ContactPage = () => {
                         >
                             <div>
                                 <div className="flex items-center gap-3 mb-6">
-                                    <div className="w-11 h-11 rounded-xl bg-pink-50 flex items-center justify-center">
-                                        <Clock size={20} className="text-[#EB3461]" />
+                                    <div className="w-11 h-11 rounded-xl bg-[#1a3a2a]/5 flex items-center justify-center">
+                                        <Clock size={20} className="text-[#1a3a2a]" />
                                     </div>
                                     <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-900">Business Hours</h3>
                                 </div>
@@ -183,9 +183,9 @@ const ContactPage = () => {
                         className="bg-white rounded-[40px] border border-gray-100 shadow-xl p-8 md:p-12"
                     >
                         <div className="text-center mb-10">
-                            <span className="text-[#EB3461] text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">FAQ</span>
+                            <span className="text-[#1a3a2a] text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">FAQ</span>
                             <h2 className="text-3xl md:text-4xl font-black text-gray-900 uppercase tracking-tighter">
-                                Aksar Pooche Gaye <span className="text-[#EB3461]">Sawaal</span>
+                                Aksar Pooche Gaye <span className="text-[#1a3a2a]">Sawaal</span>
                             </h2>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -205,3 +205,6 @@ const ContactPage = () => {
 };
 
 export default ContactPage;
+
+
+

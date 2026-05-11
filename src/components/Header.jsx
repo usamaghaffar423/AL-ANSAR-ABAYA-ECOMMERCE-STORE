@@ -11,11 +11,13 @@ import SearchModal from './SearchModal';
 const NAV_ITEMS = [
     { label: 'Home',         href: '/'                                                       },
     { label: 'Shop',         href: '/shop'                                                   },
-    { label: 'New Arrivals', href: '/shop?trending=1', badge: 'New',    badgeColor: 'bg-emerald-500' },
-    { label: 'Sale',         href: '/shop',            badge: '30% Off',badgeColor: 'bg-[#EB3461]'   },
+    { label: 'New Arrivals', href: '/shop?trending=1', badge: 'New',    badgeColor: 'bg-[#1a3a2a]/50' },
+    { label: 'Sale',         href: '/shop',            badge: '30% Off',badgeColor: 'bg-[#1a3a2a]'   },
     { label: 'My Orders',    href: '/profile'                                                },
     { label: 'Contact',      href: '/contact'                                                },
 ];
+
+const CATEGORIES_INDEX = 1;
 
 
 const Header = () => {
@@ -32,16 +34,61 @@ const Header = () => {
     const navigate  = useNavigate();
     const location  = useLocation();
 
-    // Fetch top-level categories for the mega menu
+    // Dummy abaya categories
+    const dummyCategories = [
+        {
+            id: 1,
+            name: 'Premium Abayas',
+            slug: 'premium-abayas',
+            children: [
+                { id: 11, name: 'Embroidered Abayas', slug: 'embroidered-abayas' },
+                { id: 12, name: 'Designer Abayas', slug: 'designer-abayas' },
+                { id: 13, name: 'Luxury Collection', slug: 'luxury-abayas' }
+            ]
+        },
+        {
+            id: 2,
+            name: 'Casual Abayas',
+            slug: 'casual-abayas',
+            children: [
+                { id: 21, name: 'Plain Abayas', slug: 'plain-abayas' },
+                { id: 22, name: 'Printed Abayas', slug: 'printed-abayas' },
+                { id: 23, name: 'Everyday Wear', slug: 'everyday-abayas' }
+            ]
+        },
+        {
+            id: 3,
+            name: 'Formal Abayas',
+            slug: 'formal-abayas',
+            children: [
+                { id: 31, name: 'Party Wear', slug: 'party-abayas' },
+                { id: 32, name: 'Wedding Collection', slug: 'wedding-abayas' },
+                { id: 33, name: 'Special Occasions', slug: 'special-occasion-abayas' }
+            ]
+        },
+        {
+            id: 4,
+            name: 'Kids Abayas',
+            slug: 'kids-abayas',
+            children: [
+                { id: 41, name: 'Girls Abayas', slug: 'girls-abayas' },
+                { id: 42, name: 'Boys Abayas', slug: 'boys-abayas' }
+            ]
+        },
+        {
+            id: 5,
+            name: 'Accessories',
+            slug: 'abaya-accessories',
+            children: [
+                { id: 51, name: 'Hijabs & Scarves', slug: 'hijabs-scarves' },
+                { id: 52, name: 'Niqabs', slug: 'niqabs' },
+                { id: 53, name: 'Belts & Embellishments', slug: 'belts-embellishments' }
+            ]
+        }
+    ];
+
     useEffect(() => {
-        fetch(`${API_BASE_URL}/get_categories.php`)
-            .then(r => r.ok ? r.json() : [])
-            .then(data => {
-                if (Array.isArray(data)) {
-                    setCategories(data);
-                }
-            })
-            .catch(() => {});
+        setCategories(dummyCategories);
     }, []);
 
     useEffect(() => {
@@ -71,14 +118,14 @@ const Header = () => {
             <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out`}>
 
                 {/* ── Top Info Bar ──────────────────────────────────── */}
-                <div className="hidden md:block bg-[#EB3461] text-white px-4 md:px-12 lg:px-16 py-2.5">
+                <div className="hidden md:block bg-[#1a3a2a] text-white px-4 md:px-12 lg:px-16 py-2.5">
                     <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] font-bold uppercase tracking-wide">
                         <div className="flex items-center gap-6">
                             <a href="tel:+923481099433" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
                                 <Phone size={14} /> +92 348 1099433
                             </a>
-                            <a href="mailto:support@classyfitters.shop" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
-                                <Mail size={14} /> support@classyfitters.shop
+                            <a href="mailto:support@bolqahouse.pk" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
+                                <Mail size={14} /> support@bolqahouse.pk
                             </a>
                         </div>
                         <div className="flex items-center gap-4">
@@ -93,12 +140,12 @@ const Header = () => {
                 </div>
 
                 {/* ── Main Header ──────────────────────────────────── */}
-                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 lg:px-16 bg-white/40 backdrop-blur-2xl border border-white/30 ${isScrolled ? 'py-2.5 md:py-3 shadow-2xl border-b border-white/20' : 'py-3 md:py-4'}`}>
+                <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 lg:px-16 bg-white border-b border-gray-200 ${isScrolled ? 'py-2.5 md:py-3 shadow-lg' : 'py-3 md:py-4'}`}>
                     <div className="max-w-7xl mx-auto flex items-center justify-between gap-6 md:gap-8">
 
                         {/* Mobile: Hamburger */}
                         <div className="flex lg:hidden">
-                            <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-900 hover:text-[#EB3461] transition-colors">
+                            <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-900 hover:text-[#1a3a2a] transition-colors">
                                 <Menu size={24} strokeWidth={1.5} />
                             </button>
                         </div>
@@ -107,18 +154,18 @@ const Header = () => {
                         <Link to="/" className="flex items-center group flex-shrink-0 hover:opacity-80 transition-opacity">
                             <img
                                 src={IMAGES.logo}
-                                alt="Classyfitters"
+                                alt="Bolqa House"
                                 className="h-14 md:h-18 lg:h-20 w-auto object-contain drop-shadow-lg"
                             />
                         </Link>
 
                         {/* ── Desktop Nav ─────────────────────────── */}
                         <nav className="hidden lg:flex items-center space-x-8 flex-1 justify-center">
-                            {visibleNavItems.map((item) => (
+                            {visibleNavItems.slice(0, CATEGORIES_INDEX + 1).map((item, idx) => (
                                 <Link
                                     key={item.label}
                                     to={item.href}
-                                    className="relative font-bold text-[11px] uppercase tracking-widest text-gray-700 hover:text-[#EB3461] transition-colors group"
+                                    className="relative font-bold text-[11px] uppercase tracking-widest text-gray-700 hover:text-[#1a3a2a] transition-colors group"
                                 >
                                     {item.label}
                                     {item.badge && (
@@ -126,145 +173,162 @@ const Header = () => {
                                             {item.badge}
                                         </span>
                                     )}
-                                    <span className="absolute bottom-[-4px] left-0 h-[2px] w-0 bg-[#EB3461] transition-all duration-300 origin-left group-hover:w-full" />
+                                    <span className="absolute bottom-[-4px] left-0 h-[2px] w-0 bg-[#1a3a2a] transition-all duration-300 origin-left group-hover:w-full" />
                                 </Link>
                             ))}
 
-                            {/* Categories Mega Menu Trigger */}
+                            {/* Categories Mega Menu */}
                             <div
                                 className="relative"
                                 onMouseEnter={openCat}
                                 onMouseLeave={closeCat}
                             >
-                                <button className={`relative flex items-center gap-1.5 font-bold text-[11px] uppercase tracking-widest transition-colors group ${isCatOpen ? 'text-[#EB3461]' : 'text-gray-700 hover:text-[#EB3461]'}`}>
-                                    Categories
-                                    <ChevronDown size={14} className={`transition-transform duration-300 ${isCatOpen ? 'rotate-180' : ''}`} />
-                                    <span className={`absolute bottom-[-4px] left-0 h-[2px] bg-[#EB3461] transition-all duration-300 ${isCatOpen ? 'w-full' : 'w-0 group-hover:w-full'}`} />
-                                </button>
+                                            <button className={`relative flex items-center gap-1.5 font-bold text-[11px] uppercase tracking-widest transition-colors group ${isCatOpen ? 'text-[#1a3a2a]' : 'text-gray-700 hover:text-[#1a3a2a]'}`}>
+                                                Categories
+                                                <ChevronDown size={14} className={`transition-transform duration-300 ${isCatOpen ? 'rotate-180' : ''}`} />
+                                                <span className={`absolute bottom-[-4px] left-0 h-[2px] bg-[#1a3a2a] transition-all duration-300 ${isCatOpen ? 'w-full' : 'w-0 group-hover:w-full'}`} />
+                                            </button>
 
-                                <AnimatePresence>
-                                    {isCatOpen && (
-                                        <motion.div
-                                            initial={{ opacity: 0, y: -12, scale: 0.95 }}
-                                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                                            exit={{ opacity: 0, y: -12, scale: 0.95 }}
-                                            transition={{ type: 'spring', stiffness: 300, damping: 30, duration: 0.25 }}
-                                            onMouseEnter={openCat}
-                                            onMouseLeave={closeCat}
-                                            className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[620px] bg-white rounded-[32px] shadow-2xl shadow-gray-400/20 border border-gray-100 overflow-hidden backdrop-blur-xl"
-                                        >
-                                            {/* Mega menu header with gradient */}
-                                            <div className="px-8 pt-7 pb-5 bg-gradient-to-br from-gray-50 to-white border-b border-gray-100 flex items-center justify-between">
-                                                <div>
-                                                    <motion.p
-                                                        initial={{ opacity: 0, y: 10 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        transition={{ delay: 0.05, duration: 0.3 }}
-                                                        className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 mb-1"
-                                                    >
-                                                        Browse
-                                                    </motion.p>
-                                                    <motion.h3
-                                                        initial={{ opacity: 0, y: 10 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        transition={{ delay: 0.08, duration: 0.3 }}
-                                                        className="text-2xl font-black text-gray-900 uppercase tracking-tight leading-none"
-                                                    >
-                                                        Categories
-                                                    </motion.h3>
-                                                </div>
-                                                <Link
-                                                    to="/category"
-                                                    className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#EB3461] hover:text-black transition-colors group"
-                                                >
-                                                    All <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
-                                                </Link>
-                                            </div>
-
-                                            {/* Category grid with staggered animation */}
-                                            <div className="p-7 space-y-3">
-                                                {categories.map((cat, idx) => (
+                                            <AnimatePresence>
+                                                {isCatOpen && (
                                                     <motion.div
-                                                        key={cat.id}
-                                                        initial={{ opacity: 0, x: -20 }}
-                                                        animate={{ opacity: 1, x: 0 }}
-                                                        transition={{ delay: 0.1 + idx * 0.06, duration: 0.4, ease: 'easeOut' }}
+                                                        initial={{ opacity: 0, y: -12, scale: 0.95 }}
+                                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                        exit={{ opacity: 0, y: -12, scale: 0.95 }}
+                                                        transition={{ type: 'spring', stiffness: 300, damping: 30, duration: 0.25 }}
+                                                        onMouseEnter={openCat}
+                                                        onMouseLeave={closeCat}
+                                                        className="absolute top-full left-1/2 -translate-x-1/2 mt-6 w-[620px] bg-white rounded-[32px] shadow-2xl shadow-gray-400/20 border border-gray-100 overflow-hidden backdrop-blur-xl"
                                                     >
-                                                        {/* Parent category - always clickable */}
-                                                        <Link
-                                                            to={`/shop?category=${cat.slug}`}
-                                                            onClick={() => setIsCatOpen(false)}
-                                                            className="group flex items-center justify-between px-5 py-3.5 rounded-2xl transition-all border-2 border-transparent hover:bg-pink-50 hover:border-pink-200"
-                                                        >
-                                                            <span className="text-[12px] font-black uppercase tracking-wide text-gray-900 group-hover:text-[#EB3461] transition-colors leading-tight">
-                                                                {cat.name}
-                                                            </span>
-                                                            <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-1 transition-all" />
-                                                        </Link>
-
-                                                        {/* Child categories (indented with animation) */}
-                                                        {cat.children.length > 0 && (
-                                                            <motion.div
-                                                                initial={{ height: 0, opacity: 0 }}
-                                                                animate={{ height: 'auto', opacity: 1 }}
-                                                                transition={{ delay: 0.15 + idx * 0.06, duration: 0.4 }}
-                                                                className="overflow-hidden"
+                                                        {/* Mega menu header with gradient */}
+                                                        <div className="px-8 pt-7 pb-5 bg-gradient-to-br from-gray-50 to-white border-b border-gray-100 flex items-center justify-between">
+                                                            <div>
+                                                                <motion.p
+                                                                    initial={{ opacity: 0, y: 10 }}
+                                                                    animate={{ opacity: 1, y: 0 }}
+                                                                    transition={{ delay: 0.05, duration: 0.3 }}
+                                                                    className="text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 mb-1"
+                                                                >
+                                                                    Browse
+                                                                </motion.p>
+                                                                <motion.h3
+                                                                    initial={{ opacity: 0, y: 10 }}
+                                                                    animate={{ opacity: 1, y: 0 }}
+                                                                    transition={{ delay: 0.08, duration: 0.3 }}
+                                                                    className="text-2xl font-black text-gray-900 uppercase tracking-tight leading-none"
+                                                                >
+                                                                    Categories
+                                                                </motion.h3>
+                                                            </div>
+                                                            <Link
+                                                                to="/category"
+                                                                className="flex items-center gap-1.5 text-[10px] font-black uppercase tracking-widest text-[#1a3a2a] hover:text-black transition-colors group"
                                                             >
-                                                                <div className="pl-6 pt-2 space-y-2">
-                                                                    {cat.children.map((child, cidx) => (
+                                                                All <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                                                            </Link>
+                                                        </div>
+
+                                                        {/* Category grid with staggered animation */}
+                                                        <div className="p-7 space-y-3">
+                                                            {categories.map((cat, idx) => (
+                                                                <motion.div
+                                                                    key={cat.id}
+                                                                    initial={{ opacity: 0, x: -20 }}
+                                                                    animate={{ opacity: 1, x: 0 }}
+                                                                    transition={{ delay: 0.1 + idx * 0.06, duration: 0.4, ease: 'easeOut' }}
+                                                                >
+                                                                    {/* Parent category - always clickable */}
+                                                                    <Link
+                                                                        to={`/shop?category=${cat.slug}`}
+                                                                        onClick={() => setIsCatOpen(false)}
+                                                                        className="group flex items-center justify-between px-5 py-3.5 rounded-2xl transition-all border-2 border-transparent hover:bg-[#1a3a2a]/5 hover:border-[#1a3a2a]/20"
+                                                                    >
+                                                                        <span className="text-[12px] font-black uppercase tracking-wide text-gray-900 group-hover:text-[#1a3a2a] transition-colors leading-tight">
+                                                                            {cat.name}
+                                                                        </span>
+                                                                        <ArrowRight size={14} className="text-gray-300 group-hover:text-[#1a3a2a] group-hover:translate-x-1 transition-all" />
+                                                                    </Link>
+
+                                                                    {/* Child categories (indented with animation) */}
+                                                                    {cat.children.length > 0 && (
                                                                         <motion.div
-                                                                            key={child.id}
-                                                                            initial={{ opacity: 0, x: -10 }}
-                                                                            animate={{ opacity: 1, x: 0 }}
-                                                                            transition={{ delay: 0.15 + idx * 0.06 + cidx * 0.05, duration: 0.3 }}
+                                                                            initial={{ height: 0, opacity: 0 }}
+                                                                            animate={{ height: 'auto', opacity: 1 }}
+                                                                            transition={{ delay: 0.15 + idx * 0.06, duration: 0.4 }}
+                                                                            className="overflow-hidden"
                                                                         >
-                                                                            <Link
-                                                                                to={`/shop?category=${child.slug}`}
-                                                                                className="group flex items-center justify-between px-4 py-2.5 rounded-xl hover:bg-pink-50 transition-all border border-transparent hover:border-pink-200"
-                                                                            >
-                                                                                <span className="text-[11px] font-black uppercase tracking-wide text-gray-600 group-hover:text-[#EB3461] transition-colors leading-tight">
-                                                                                    {child.name}
-                                                                                </span>
-                                                                                <ArrowRight size={12} className="text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-0.5 transition-all" />
-                                                                            </Link>
+                                                                            <div className="pl-6 pt-2 space-y-2">
+                                                                                {cat.children.map((child, cidx) => (
+                                                                                    <motion.div
+                                                                                        key={child.id}
+                                                                                        initial={{ opacity: 0, x: -10 }}
+                                                                                        animate={{ opacity: 1, x: 0 }}
+                                                                                        transition={{ delay: 0.15 + idx * 0.06 + cidx * 0.05, duration: 0.3 }}
+                                                                                    >
+                                                                                        <Link
+                                                                                            to={`/shop?category=${child.slug}`}
+                                                                                            className="group flex items-center justify-between px-4 py-2.5 rounded-xl hover:bg-[#1a3a2a]/5 transition-all border border-transparent hover:border-[#1a3a2a]/20"
+                                                                                        >
+                                                                                            <span className="text-[11px] font-black uppercase tracking-wide text-gray-600 group-hover:text-[#1a3a2a] transition-colors leading-tight">
+                                                                                                {child.name}
+                                                                                            </span>
+                                                                                            <ArrowRight size={12} className="text-gray-300 group-hover:text-[#1a3a2a] group-hover:translate-x-0.5 transition-all" />
+                                                                                        </Link>
+                                                                                    </motion.div>
+                                                                                ))}
+                                                                            </div>
                                                                         </motion.div>
-                                                                    ))}
-                                                                </div>
-                                                            </motion.div>
-                                                        )}
+                                                                    )}
+                                                                </motion.div>
+                                                            ))}
+                                                        </div>
                                                     </motion.div>
-                                                ))}
-                                            </div>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
+                                                )}
+                                            </AnimatePresence>
                             </div>
+
+                            {/* Remaining nav items */}
+                            {visibleNavItems.slice(CATEGORIES_INDEX + 1).map((item) => (
+                                <Link
+                                    key={item.label}
+                                    to={item.href}
+                                    className="relative font-bold text-[11px] uppercase tracking-widest text-gray-700 hover:text-[#1a3a2a] transition-colors group"
+                                >
+                                    {item.label}
+                                    {item.badge && (
+                                        <span className={`absolute -top-3 -right-6 ${item.badgeColor} text-white text-[7px] font-black uppercase tracking-wide px-1.5 py-0.5 rounded-full leading-none`}>
+                                            {item.badge}
+                                        </span>
+                                    )}
+                                    <span className="absolute bottom-[-4px] left-0 h-[2px] w-0 bg-[#1a3a2a] transition-all duration-300 origin-left group-hover:w-full" />
+                                </Link>
+                            ))}
                         </nav>
 
                         {/* ── Right: Icons ────────────────────────── */}
                         <div className="flex items-center space-x-2">
                             <button
                                 onClick={() => setIsSearchOpen(true)}
-                                className="text-gray-700 hover:text-[#EB3461] transition-all p-2 rounded-lg hover:bg-gray-100 hidden md:block group"
+                                className="text-gray-700 hover:text-[#1a3a2a] transition-all p-2 rounded-lg hover:bg-gray-100 hidden md:block group"
                                 title="Search"
                             >
                                 <Search size={18} className="group-hover:scale-110 transition-transform duration-300" />
                             </button>
                             <button
                                 onClick={() => setIsCartOpen(true)}
-                                className="text-gray-700 hover:text-[#EB3461] transition-all p-2 rounded-lg hover:bg-gray-100 relative group"
+                                className="text-gray-700 hover:text-[#1a3a2a] transition-all p-2 rounded-lg hover:bg-gray-100 relative group"
                                 title="Cart"
                             >
                                 <ShoppingBag size={18} className="group-hover:scale-110 transition-transform duration-300" />
                                 {cartCount > 0 && (
-                                    <span className="absolute top-0 right-0 bg-[#EB3461] text-white text-[8px] w-[18px] h-[18px] rounded-full flex items-center justify-center font-bold border-2 border-white">
+                                    <span className="absolute top-0 right-0 bg-[#1a3a2a] text-white text-[8px] w-[18px] h-[18px] rounded-full flex items-center justify-center font-bold border-2 border-white">
                                         {cartCount > 9 ? '9+' : cartCount}
                                     </span>
                                 )}
                             </button>
                             <button
                                 onClick={() => navigate(isAdmin ? '/admin' : (user ? '/profile' : '/login'))}
-                                className={`transition-all p-2 rounded-lg hover:bg-gray-100 group ${user ? 'text-[#EB3461]' : 'text-gray-700 hover:text-[#EB3461]'}`}
+                                className={`transition-all p-2 rounded-lg hover:bg-gray-100 group ${user ? 'text-[#1a3a2a]' : 'text-gray-700 hover:text-[#1a3a2a]'}`}
                                 title={user ? `Hi, ${user.username}` : 'Login / Register'}
                             >
                                 <User size={18} className="group-hover:scale-110 transition-transform duration-300" />
@@ -297,21 +361,22 @@ const Header = () => {
                         >
                             {/* Sidebar Header */}
                             <div className="p-5 flex items-center justify-between border-b border-gray-100">
-                                <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-                                    <span className="text-xl font-black italic tracking-tighter">
-                                        <span className="text-black">Classy</span>
-                                        <span className="text-[#EB3461]">fitters</span>
-                                    </span>
+                                <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center group flex-shrink-0 hover:opacity-80 transition-opacity">
+                                    <img
+                                        src={IMAGES.logo}
+                                        alt="Al Ansar Abaya Store"
+                                        className="h-12 w-auto object-contain drop-shadow-lg"
+                                    />
                                 </Link>
-                                <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-500 hover:text-[#EB3461] transition-colors rounded-xl hover:bg-gray-50">
+                                <button onClick={() => setIsMobileMenuOpen(false)} className="p-2 text-gray-500 hover:text-[#1a3a2a] transition-colors rounded-xl hover:bg-gray-50">
                                     <X size={22} />
                                 </button>
                             </div>
 
                             {/* User greeting */}
                             {user && (
-                                <div className="px-5 py-3 bg-pink-50 border-b border-pink-100 flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-[#EB3461] flex items-center justify-center text-white text-xs font-black uppercase">
+                                <div className="px-5 py-3 bg-[#1a3a2a]/5 border-b border-[#1a3a2a]/10 flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-full bg-[#1a3a2a] flex items-center justify-center text-white text-xs font-black uppercase">
                                         {user.username?.[0]}
                                     </div>
                                     <div>
@@ -325,100 +390,103 @@ const Header = () => {
                                 {/* Main Nav Items */}
                                 <div className="space-y-1 mb-6">
                                     {visibleNavItems.map((item, idx) => (
-                                        <motion.div
-                                            key={item.label}
-                                            initial={{ opacity: 0, x: -16 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: 0.05 + idx * 0.04 }}
-                                        >
-                                            <Link
-                                                to={item.href}
-                                                className="group flex items-center justify-between px-4 py-3.5 rounded-2xl hover:bg-gray-50 transition-all"
-                                                onClick={() => setIsMobileMenuOpen(false)}
+                                        <div key={item.label}>
+                                            <motion.div
+                                                initial={{ opacity: 0, x: -16 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ delay: 0.05 + idx * 0.04 }}
                                             >
-                                                <span className="flex items-center gap-2.5">
-                                                    <span className="text-[15px] font-black text-gray-900 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors">
-                                                        {item.label}
-                                                    </span>
-                                                    {item.badge && (
-                                                        <span className={`${item.badgeColor} text-white text-[7px] font-black uppercase tracking-wide px-1.5 py-0.5 rounded-full leading-none`}>
-                                                            {item.badge}
+                                                <Link
+                                                    to={item.href}
+                                                    className="group flex items-center justify-between px-4 py-3.5 rounded-2xl hover:bg-gray-50 transition-all"
+                                                    onClick={() => setIsMobileMenuOpen(false)}
+                                                >
+                                                    <span className="flex items-center gap-2.5">
+                                                        <span className="text-[15px] font-black text-gray-900 group-hover:text-[#1a3a2a] uppercase tracking-wide transition-colors">
+                                                            {item.label}
                                                         </span>
-                                                    )}
-                                                </span>
-                                                <ArrowRight size={16} className="text-gray-300 group-hover:text-[#EB3461] group-hover:translate-x-1 transition-all" />
-                                            </Link>
-                                        </motion.div>
+                                                        {item.badge && (
+                                                            <span className={`${item.badgeColor} text-white text-[7px] font-black uppercase tracking-wide px-1.5 py-0.5 rounded-full leading-none`}>
+                                                                {item.badge}
+                                                            </span>
+                                                        )}
+                                                    </span>
+                                                    <ArrowRight size={16} className="text-gray-300 group-hover:text-[#1a3a2a] group-hover:translate-x-1 transition-all" />
+                                                </Link>
+                                            </motion.div>
+                                            {idx === CATEGORIES_INDEX && (
+                                                <div className="border-t border-gray-100 pt-6 mt-4">
+                                                    <button
+                                                        onClick={() => setIsMobileCatOpen(v => !v)}
+                                                        className="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl hover:bg-gray-50 transition-all mb-1"
+                                                    >
+                                                        <span className="text-[15px] font-black text-gray-900 uppercase tracking-wide">Categories</span>
+                                                        <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${isMobileCatOpen ? 'rotate-180' : ''}`} />
+                                                    </button>
+
+                                                    <AnimatePresence>
+                                                        {isMobileCatOpen && (
+                                                            <motion.div
+                                                                initial={{ height: 0, opacity: 0 }}
+                                                                animate={{ height: 'auto', opacity: 1 }}
+                                                                exit={{ height: 0, opacity: 0 }}
+                                                                className="overflow-hidden"
+                                                            >
+                                                                <div className="pl-4 space-y-1 pb-3">
+                                                                    {categories.map(cat => (
+                                                                        <div key={cat.id}>
+                                                                            {/* Parent - always clickable */}
+                                                                            <Link
+                                                                                to={`/shop?category=${cat.slug}`}
+                                                                                onClick={() => setIsMobileMenuOpen(false)}
+                                                                                className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-[#1a3a2a]/5 transition-all group"
+                                                                            >
+                                                                                <span className="text-[12px] font-black text-gray-700 group-hover:text-[#1a3a2a] uppercase tracking-wide transition-colors">
+                                                                                    {cat.name}
+                                                                                </span>
+                                                                                <ArrowRight size={14} className="text-gray-300 group-hover:text-[#1a3a2a] transition-colors" />
+                                                                            </Link>
+                                                                            {/* Children */}
+                                                                            {cat.children.length > 0 && (
+                                                                                <div className="pl-2 space-y-0.5">
+                                                                                    {cat.children.map(child => (
+                                                                                        <Link
+                                                                                            key={child.id}
+                                                                                            to={`/shop?category=${child.slug}`}
+                                                                                            onClick={() => setIsMobileMenuOpen(false)}
+                                                                                            className="flex items-center justify-between px-4 py-2.5 rounded-xl hover:bg-[#1a3a2a]/5 transition-all group"
+                                                                                        >
+                                                                                            <span className="text-[11px] font-black text-gray-600 group-hover:text-[#1a3a2a] uppercase tracking-wide transition-colors">
+                                                                                                {child.name}
+                                                                                            </span>
+                                                                                            <ArrowRight size={12} className="text-gray-300 group-hover:text-[#1a3a2a] transition-colors" />
+                                                                                        </Link>
+                                                                                    ))}
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
+                                                                    ))}
+                                                                    <Link
+                                                                        to="/category"
+                                                                        onClick={() => setIsMobileMenuOpen(false)}
+                                                                        className="flex items-center justify-between px-4 py-3 rounded-xl bg-gray-50 hover:bg-[#1a3a2a] transition-all group mt-2"
+                                                                    >
+                                                                        <span className="text-[12px] font-black text-gray-700 group-hover:text-white uppercase tracking-wide transition-colors">
+                                                                            All Products
+                                                                        </span>
+                                                                        <ArrowRight size={14} className="text-gray-300 group-hover:text-white transition-colors shrink-0" />
+                                                                    </Link>
+                                                                </div>
+                                                            </motion.div>
+                                                        )}
+                                                    </AnimatePresence>
+                                                </div>
+                                            )}
+                                        </div>
                                     ))}
                                 </div>
 
-                                {/* Categories Section */}
-                                <div className="border-t border-gray-100 pt-5">
-                                    <button
-                                        onClick={() => setIsMobileCatOpen(v => !v)}
-                                        className="w-full flex items-center justify-between px-4 py-3.5 rounded-2xl hover:bg-gray-50 transition-all mb-1"
-                                    >
-                                        <span className="text-[15px] font-black text-gray-900 uppercase tracking-wide">Categories</span>
-                                        <ChevronDown size={16} className={`text-gray-400 transition-transform duration-300 ${isMobileCatOpen ? 'rotate-180' : ''}`} />
-                                    </button>
-
-                                    <AnimatePresence>
-                                        {isMobileCatOpen && (
-                                            <motion.div
-                                                initial={{ height: 0, opacity: 0 }}
-                                                animate={{ height: 'auto', opacity: 1 }}
-                                                exit={{ height: 0, opacity: 0 }}
-                                                className="overflow-hidden"
-                                            >
-                                                <div className="pl-4 space-y-1 pb-3">
-                                                    {categories.map(cat => (
-                                                        <div key={cat.id}>
-                                                            {/* Parent - always clickable */}
-                                                            <Link
-                                                                to={`/shop?category=${cat.slug}`}
-                                                                onClick={() => setIsMobileMenuOpen(false)}
-                                                                className="flex items-center justify-between px-4 py-3 rounded-xl hover:bg-pink-50 transition-all group"
-                                                            >
-                                                                <span className="text-[12px] font-black text-gray-700 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors">
-                                                                    {cat.name}
-                                                                </span>
-                                                                <ArrowRight size={14} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
-                                                            </Link>
-                                                            {/* Children */}
-                                                            {cat.children.length > 0 && (
-                                                                <div className="pl-2 space-y-0.5">
-                                                                    {cat.children.map(child => (
-                                                                        <Link
-                                                                            key={child.id}
-                                                                            to={`/shop?category=${child.slug}`}
-                                                                            onClick={() => setIsMobileMenuOpen(false)}
-                                                                            className="flex items-center justify-between px-4 py-2.5 rounded-xl hover:bg-pink-50 transition-all group"
-                                                                        >
-                                                                            <span className="text-[11px] font-black text-gray-600 group-hover:text-[#EB3461] uppercase tracking-wide transition-colors">
-                                                                                {child.name}
-                                                                            </span>
-                                                                            <ArrowRight size={12} className="text-gray-300 group-hover:text-[#EB3461] transition-colors" />
-                                                                        </Link>
-                                                                    ))}
-                                                                </div>
-                                                            )}
-                                                        </div>
-                                                    ))}
-                                                    <Link
-                                                        to="/category"
-                                                        onClick={() => setIsMobileMenuOpen(false)}
-                                                        className="flex items-center justify-between px-4 py-3 rounded-xl bg-gray-50 hover:bg-[#EB3461] transition-all group mt-2"
-                                                    >
-                                                        <span className="text-[12px] font-black text-gray-700 group-hover:text-white uppercase tracking-wide transition-colors">
-                                                            All Products
-                                                        </span>
-                                                        <ArrowRight size={14} className="text-gray-300 group-hover:text-white transition-colors shrink-0" />
-                                                    </Link>
-                                                </div>
-                                            </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
+                                {/* Old Categories Section - removed */}
 
                                 {/* Search in mobile */}
                                 <div className="border-t border-gray-100 pt-5 mt-2">
@@ -436,7 +504,7 @@ const Header = () => {
                             <div className="p-5 border-t border-gray-100 space-y-3">
                                 <button
                                     onClick={() => { setIsMobileMenuOpen(false); navigate(user ? '/profile' : '/login'); }}
-                                    className="w-full bg-[#EB3461] text-white py-4 rounded-2xl font-black text-[12px] uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg shadow-pink-100 hover:bg-black transition-all"
+                                    className="w-full bg-[#1a3a2a] text-white py-4 rounded-2xl font-black text-[12px] uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg shadow-[#1a3a2a]/10 hover:bg-black transition-all"
                                 >
                                     <User size={16} />
                                     <span>{user ? `My Account` : 'Login / Register'}</span>
@@ -460,3 +528,6 @@ const Header = () => {
 };
 
 export default Header;
+
+
+

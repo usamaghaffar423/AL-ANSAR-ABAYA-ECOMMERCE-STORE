@@ -23,20 +23,20 @@ const TrendyClothes = () => {
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-6">
                     <div>
-                        <span className="text-[#EB3461] text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">
+                        <span className="text-[#1a3a2a] text-[10px] font-black uppercase tracking-[0.4em] mb-3 block">
                             Hot Arrivals 🔥
                         </span>
                         <h2 className="text-4xl md:text-5xl font-black text-gray-900 leading-[0.9] tracking-tighter uppercase">
                             Naye Dor Ki <br />
-                            <span className="text-[#EB3461]">Collections</span>
+                            <span className="text-[#1a3a2a]">Collections</span>
                         </h2>
                     </div>
                     <Link
                         to="/shop"
-                        className="group flex items-center gap-3 text-[11px] font-black uppercase tracking-widest text-gray-900 hover:text-[#EB3461] transition-all self-start sm:self-auto"
+                        className="group flex items-center gap-3 text-[11px] font-black uppercase tracking-widest text-gray-900 hover:text-[#1a3a2a] transition-all self-start sm:self-auto"
                     >
                         Sab Dekho
-                        <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#EB3461] group-hover:bg-[#EB3461] group-hover:text-white transition-all">
+                        <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#1a3a2a] group-hover:bg-[#1a3a2a] group-hover:text-white transition-all">
                             <ChevronRight size={16} />
                         </div>
                     </Link>
@@ -67,3 +67,5 @@ const TrendyClothes = () => {
 };
 
 export default TrendyClothes;
+
+

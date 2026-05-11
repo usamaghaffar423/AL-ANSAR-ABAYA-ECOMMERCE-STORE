@@ -31,14 +31,14 @@ const CartSidebar = () => {
                         {/* Header */}
                         <div className="p-6 flex items-center justify-between border-b border-gray-100">
                             <div className="flex items-center space-x-3">
-                                <span className="p-2 bg-pink-50 rounded-xl text-[#EB3461]">
+                                <span className="p-2 bg-[#1a3a2a]/5 rounded-xl text-[#1a3a2a]">
                                     <ShoppingBag size={20} />
                                 </span>
                                 <h2 className="text-xl font-black tracking-tight text-gray-900">YOUR CART ({cartCount})</h2>
                             </div>
                             <button
                                 onClick={() => setIsCartOpen(false)}
-                                className="p-2 text-gray-400 hover:text-[#EB3461] hover:bg-pink-50 rounded-xl transition-all"
+                                className="p-2 text-gray-400 hover:text-[#1a3a2a] hover:bg-[#1a3a2a]/5 rounded-xl transition-all"
                             >
                                 <X size={24} />
                             </button>
@@ -57,7 +57,7 @@ const CartSidebar = () => {
                                     </div>
                                     <button
                                         onClick={() => setIsCartOpen(false)}
-                                        className="bg-[#EB3461] text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black transition-all shadow-lg shadow-pink-100"
+                                        className="bg-[#1a3a2a] text-white px-8 py-3 rounded-full text-xs font-black uppercase tracking-widest hover:bg-black transition-all shadow-lg shadow-[#1a3a2a]/10"
                                     >
                                         Start Shopping
                                     </button>
@@ -71,7 +71,7 @@ const CartSidebar = () => {
                                         <div className="flex-1 flex flex-col justify-between py-1">
                                             <div>
                                                 <div className="flex justify-between items-start">
-                                                    <h3 className="font-bold text-gray-900 line-clamp-1 group-hover:text-[#EB3461] transition-colors">
+                                                    <h3 className="font-bold text-gray-900 line-clamp-1 group-hover:text-[#1a3a2a] transition-colors">
                                                         {item.title || item.name}
                                                     </h3>
                                                     <button
@@ -90,14 +90,14 @@ const CartSidebar = () => {
                                                 <div className="flex items-center space-x-3 bg-gray-50 rounded-xl p-1">
                                                     <button
                                                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                                        className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-[#EB3461] transition-all"
+                                                        className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-[#1a3a2a] transition-all"
                                                     >
                                                         <Minus size={14} />
                                                     </button>
                                                     <span className="text-sm font-black w-4 text-center">{item.quantity}</span>
                                                     <button
                                                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                                        className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-[#EB3461] transition-all"
+                                                        className="w-8 h-8 flex items-center justify-center bg-white rounded-lg shadow-sm hover:text-[#1a3a2a] transition-all"
                                                     >
                                                         <Plus size={14} />
                                                     </button>
@@ -126,13 +126,13 @@ const CartSidebar = () => {
                                     </div>
                                     <div className="flex justify-between items-center pt-3 border-t border-gray-100">
                                         <span className="text-lg font-black text-gray-900 uppercase tracking-tight">Total</span>
-                                        <span className="text-2xl font-black text-[#EB3461] tracking-tighter">Rs. {cartTotal.toLocaleString()}</span>
+                                        <span className="text-2xl font-black text-[#1a3a2a] tracking-tighter">Rs. {cartTotal.toLocaleString()}</span>
                                     </div>
                                 </div>
                                 <Link
                                     to="/checkout"
                                     onClick={() => setIsCartOpen(false)}
-                                    className="w-full bg-[#EB3461] text-white py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl shadow-pink-100/50 hover:bg-black transition-all transform hover:-translate-y-1 active:translate-y-0 text-center block"
+                                    className="w-full bg-[#1a3a2a] text-white py-5 rounded-2xl font-black uppercase text-xs tracking-[0.2em] shadow-xl shadow-[#1a3a2a]/10/50 hover:bg-black transition-all transform hover:-translate-y-1 active:translate-y-0 text-center block"
                                 >
                                     Proceed to Checkout
                                 </Link>
@@ -146,3 +146,6 @@ const CartSidebar = () => {
 };
 
 export default CartSidebar;
+
+
+

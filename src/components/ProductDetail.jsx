@@ -35,17 +35,17 @@ const StickyBar = ({ product, selectedSize, selectedColor, quantity, onAdd, outO
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 80, opacity: 0 }}
         transition={{ type: 'spring', stiffness: 400, damping: 35 }}
-        className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-100 shadow-2xl shadow-black/10 px-6 py-4 flex items-center gap-4"
+        className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-[#c9a96e]/20 shadow-2xl shadow-black/10 px-6 py-4 flex items-center gap-4"
     >
         <div className="flex-1 min-w-0">
             <p className="text-xs font-black text-gray-900 uppercase tracking-tight line-clamp-1">{product.title}</p>
-            <p className="text-[#EB3461] font-black text-sm">Rs. {parseFloat(product.price).toLocaleString()}</p>
+            <p className="text-[#1a3a2a] font-black text-sm">Rs. {parseFloat(product.price).toLocaleString()}</p>
         </div>
         {selectedSize && <span className="text-[10px] font-black uppercase tracking-widest bg-gray-100 text-gray-700 px-3 py-1.5 rounded-xl">{selectedSize}</span>}
         <button
             onClick={onAdd}
             disabled={outOfStock}
-            className="flex items-center gap-2 bg-[#EB3461] text-white px-6 py-3 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-black transition-all disabled:opacity-40 flex-shrink-0"
+            className="flex items-center gap-2 bg-[#1a3a2a] text-white px-6 py-3 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-black transition-all disabled:opacity-40 flex-shrink-0"
         >
             <ShoppingBag size={15} />
             {outOfStock ? 'Sold Out' : 'Add to Cart'}
@@ -60,7 +60,7 @@ const Accordion = ({ label, children }) => {
         <div className="border-t border-gray-100">
             <button onClick={() => setOpen(o => !o)}
                 className="w-full flex items-center justify-between py-5 text-left group">
-                <span className="text-[11px] font-black uppercase tracking-widest text-gray-700 group-hover:text-[#EB3461] transition-colors">{label}</span>
+                <span className="text-[11px] font-black uppercase tracking-widest text-gray-700 group-hover:text-[#1a3a2a] transition-colors">{label}</span>
                 <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
                     <ChevronDown size={16} className="text-gray-400" />
                 </motion.div>
@@ -185,9 +185,9 @@ const ProductDetail = () => {
 
     // ── Loading ───────────────────────────────────────────────────────────
     if (loading) return (
-        <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="min-h-screen bg-[#f5efe6] flex items-center justify-center">
             <div className="flex flex-col items-center gap-4">
-                <div className="w-12 h-12 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" />
+                <div className="w-12 h-12 border-4 border-[#1a3a2a]/10 border-t-[#1a3a2a] rounded-full animate-spin" />
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-300">Loading...</p>
             </div>
         </div>
@@ -208,16 +208,16 @@ const ProductDetail = () => {
     const currentImg = images[activeImg]?.url || FALLBACK;
 
     return (
-        <div className="min-h-screen bg-white pb-32 font-['Outfit']">
+        <div className="min-h-screen bg-[#f5efe6] pb-32 font-['Outfit']">
 
             {/* ── Breadcrumb ── */}
-            <div className="border-b border-gray-50 bg-gray-50/50">
+            <div className="border-b border-[#c9a96e]/20 bg-[#f5efe6]/50">
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 py-4 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    <button onClick={() => navigate('/')} className="hover:text-[#EB3461] transition-colors">Home</button>
+                    <button onClick={() => navigate('/')} className="hover:text-[#1a3a2a] transition-colors">Home</button>
                     <span>/</span>
-                    <button onClick={() => navigate('/shop')} className="hover:text-[#EB3461] transition-colors">Shop</button>
+                    <button onClick={() => navigate('/shop')} className="hover:text-[#1a3a2a] transition-colors">Shop</button>
                     <span>/</span>
-                    <button onClick={() => navigate(`/shop?category=${product.category}`)} className="hover:text-[#EB3461] transition-colors">{product.category}</button>
+                    <button onClick={() => navigate(`/shop?category=${product.category}`)} className="hover:text-[#1a3a2a] transition-colors">{product.category}</button>
                     <span>/</span>
                     <span className="text-gray-600 line-clamp-1 max-w-[200px]">{product.title}</span>
                 </div>
@@ -242,7 +242,7 @@ const ProductDetail = () => {
                                             onClick={() => setActiveImg(i)}
                                             className={`relative w-[76px] h-[76px] rounded-2xl overflow-hidden border-2 transition-all shrink-0 ${
                                                 activeImg === i
-                                                    ? 'border-[#EB3461] shadow-lg shadow-pink-100 opacity-100'
+                                                    ? 'border-[#1a3a2a] shadow-lg shadow-[#1a3a2a]/10 opacity-100'
                                                     : 'border-gray-100 opacity-55 hover:opacity-90 hover:border-gray-300'
                                             }`}
                                         >
@@ -253,7 +253,7 @@ const ProductDetail = () => {
                                                 onError={e => { e.target.src = FALLBACK; }}
                                             />
                                             {activeImg === i && (
-                                                <div className="absolute inset-0 ring-2 ring-inset ring-[#EB3461] rounded-2xl" />
+                                                <div className="absolute inset-0 ring-2 ring-inset ring-[#1a3a2a] rounded-2xl" />
                                             )}
                                         </motion.button>
                                     ))}
@@ -292,7 +292,7 @@ const ProductDetail = () => {
                                     {/* Badges */}
                                     <div className="absolute top-6 left-6 flex flex-col gap-2 z-10">
                                         {product.is_trending && (
-                                            <div className="bg-[#EB3461] text-white px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest shadow-lg shadow-pink-200">
+                                            <div className="bg-[#1a3a2a] text-white px-3 py-1.5 rounded-xl flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest shadow-lg shadow-[#1a3a2a]/20">
                                                 <Flame size={11} /> Hot
                                             </div>
                                         )}
@@ -313,14 +313,14 @@ const ProductDetail = () => {
                                         <button
                                             onClick={() => setWishlisted(w => !w)}
                                             className={`w-10 h-10 rounded-2xl flex items-center justify-center shadow-lg backdrop-blur-sm transition-all ${
-                                                wishlisted ? 'bg-[#EB3461] text-white' : 'bg-white/90 text-gray-400 hover:text-[#EB3461]'
+                                                wishlisted ? 'bg-[#1a3a2a] text-white' : 'bg-white/90 text-gray-400 hover:text-[#1a3a2a]'
                                             }`}
                                         >
                                             <Heart size={17} fill={wishlisted ? 'currentColor' : 'none'} />
                                         </button>
                                         <button
                                             onClick={() => navigator.share?.({ title: product.title, url: window.location.href })}
-                                            className="w-10 h-10 rounded-2xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-[#EB3461] shadow-lg transition-colors"
+                                            className="w-10 h-10 rounded-2xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-gray-400 hover:text-[#1a3a2a] shadow-lg transition-colors"
                                         >
                                             <Share2 size={15} />
                                         </button>
@@ -336,7 +336,7 @@ const ProductDetail = () => {
 
                         {/* Category + Rating */}
                         <div className="flex items-center justify-between flex-wrap gap-3">
-                            <span className="text-[10px] font-black text-[#EB3461] uppercase tracking-[0.3em] bg-pink-50 px-4 py-1.5 rounded-full">
+                            <span className="text-[10px] font-black text-[#1a3a2a] uppercase tracking-[0.3em] bg-[#1a3a2a]/5 px-4 py-1.5 rounded-full">
                                 {product.category}
                             </span>
                             <div className="flex items-center gap-2">
@@ -425,7 +425,7 @@ const ProductDetail = () => {
                                                 onClick={() => setSelectedColor(color)}
                                                 title={color}
                                                 className={`relative w-9 h-9 rounded-full transition-all flex items-center justify-center ${
-                                                    selected ? 'ring-2 ring-offset-2 ring-[#EB3461]' : 'ring-1 ring-gray-200'
+                                                    selected ? 'ring-2 ring-offset-2 ring-[#1a3a2a]' : 'ring-1 ring-gray-200'
                                                 }`}
                                                 style={{ backgroundColor: bg }}
                                             >
@@ -450,7 +450,7 @@ const ProductDetail = () => {
                                     >
                                         Size {sizeError && <span className="text-red-500 normal-case tracking-normal font-bold text-xs ml-1">— Please select a size</span>}
                                     </motion.span>
-                                    <button className="text-[10px] font-black uppercase tracking-widest text-[#EB3461] hover:underline">
+                                    <button className="text-[10px] font-black uppercase tracking-widest text-[#1a3a2a] hover:underline">
                                         Size Guide
                                     </button>
                                 </div>
@@ -469,8 +469,8 @@ const ProductDetail = () => {
                                                 onClick={() => { setSelectedSize(size); setSizeError(false); }}
                                                 className={`min-w-[52px] h-11 px-4 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all border-2 ${
                                                     sel
-                                                        ? 'bg-[#EB3461] text-white border-[#EB3461] shadow-lg shadow-pink-200'
-                                                        : 'bg-white text-gray-700 border-gray-200 hover:border-[#EB3461] hover:text-[#EB3461]'
+                                                        ? 'bg-[#1a3a2a] text-white border-[#1a3a2a] shadow-lg shadow-[#1a3a2a]/20'
+                                                        : 'bg-white text-gray-700 border-gray-200 hover:border-[#1a3a2a] hover:text-[#1a3a2a]'
                                                 }`}
                                             >
                                                 {size}
@@ -517,7 +517,7 @@ const ProductDetail = () => {
                                 className={`w-full py-5 rounded-[20px] font-black uppercase text-sm tracking-widest flex items-center justify-center gap-3 transition-all relative overflow-hidden ${
                                     outOfStock
                                         ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                                        : 'bg-[#EB3461] text-white hover:bg-black shadow-2xl shadow-pink-200/50'
+                                        : 'bg-[#1a3a2a] text-white hover:bg-black shadow-2xl shadow-[#1a3a2a]/20/50'
                                 }`}
                             >
                                 <AnimatePresence mode="wait">
@@ -543,8 +543,8 @@ const ProductDetail = () => {
                                 onClick={() => setWishlisted(w => !w)}
                                 className={`w-full py-4 rounded-[20px] font-black uppercase text-[11px] tracking-widest flex items-center justify-center gap-2 border-2 transition-all ${
                                     wishlisted
-                                        ? 'border-[#EB3461] text-[#EB3461] bg-pink-50'
-                                        : 'border-gray-200 text-gray-500 hover:border-[#EB3461] hover:text-[#EB3461]'
+                                        ? 'border-[#1a3a2a] text-[#1a3a2a] bg-[#1a3a2a]/5'
+                                        : 'border-gray-200 text-gray-500 hover:border-[#1a3a2a] hover:text-[#1a3a2a]'
                                 }`}
                             >
                                 <Heart size={16} fill={wishlisted ? 'currentColor' : 'none'} />
@@ -560,7 +560,7 @@ const ProductDetail = () => {
                                 { icon: RotateCcw,   title: '7-Day Returns', sub: 'Easy & hassle-free' },
                             ].map(({ icon: Icon, title, sub }) => (
                                 <div key={title} className="flex flex-col items-center text-center gap-2 bg-gray-50 rounded-2xl p-4">
-                                    <Icon size={20} className="text-[#EB3461]" />
+                                    <Icon size={20} className="text-[#1a3a2a]" />
                                     <div>
                                         <p className="text-[9px] font-black uppercase tracking-widest text-gray-700">{title}</p>
                                         <p className="text-[9px] text-gray-400 font-medium mt-0.5">{sub}</p>
@@ -574,7 +574,7 @@ const ProductDetail = () => {
                             <Accordion label="Product Description">
                                 {product.description
                                     ? <p>{product.description}</p>
-                                    : <p>Premium quality {product.category} from Classyfitters. Crafted for style and comfort, designed for Pakistan's fashion-forward generation.</p>
+                                    : <p>Premium {product.category} from Bolqa House — Chakdara, Dir Lower. Crafted for elegance and comfort, designed for Pakistan's modern women.</p>
                                 }
                             </Accordion>
                             <Accordion label="Size & Fit Guide">
@@ -595,9 +595,9 @@ const ProductDetail = () => {
                             </Accordion>
                             <Accordion label="Shipping & Returns">
                                 <ul className="space-y-2">
-                                    <li className="flex items-start gap-2"><Package size={14} className="text-[#EB3461] mt-0.5 flex-shrink-0" /> Free delivery on all orders across Pakistan</li>
-                                    <li className="flex items-start gap-2"><Truck size={14} className="text-[#EB3461] mt-0.5 flex-shrink-0" /> Delivered within 3–5 business days</li>
-                                    <li className="flex items-start gap-2"><RotateCcw size={14} className="text-[#EB3461] mt-0.5 flex-shrink-0" /> Easy 7-day returns — contact us on WhatsApp</li>
+                                    <li className="flex items-start gap-2"><Package size={14} className="text-[#1a3a2a] mt-0.5 flex-shrink-0" /> Free delivery on all orders across Pakistan</li>
+                                    <li className="flex items-start gap-2"><Truck size={14} className="text-[#1a3a2a] mt-0.5 flex-shrink-0" /> Delivered within 3–5 business days</li>
+                                    <li className="flex items-start gap-2"><RotateCcw size={14} className="text-[#1a3a2a] mt-0.5 flex-shrink-0" /> Easy 7-day returns — contact us on WhatsApp</li>
                                 </ul>
                             </Accordion>
                         </div>
@@ -616,14 +616,14 @@ const ProductDetail = () => {
                     >
                         <div className="flex items-end justify-between mb-10">
                             <div>
-                                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#EB3461] mb-2">You Might Also Like</p>
+                                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-[#1a3a2a] mb-2">You Might Also Like</p>
                                 <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tighter uppercase">
-                                    Related <span className="text-[#EB3461]">Pieces</span>
+                                    Related <span className="text-[#1a3a2a]">Pieces</span>
                                 </h2>
                             </div>
                             <button
                                 onClick={() => navigate('/shop')}
-                                className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#EB3461] flex items-center gap-2 transition-colors group"
+                                className="text-[10px] font-black uppercase tracking-widest text-gray-400 hover:text-[#1a3a2a] flex items-center gap-2 transition-colors group"
                             >
                                 View All
                                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
@@ -664,3 +664,6 @@ const ProductDetail = () => {
 };
 
 export default ProductDetail;
+
+
+

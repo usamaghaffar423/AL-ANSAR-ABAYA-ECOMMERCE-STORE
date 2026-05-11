@@ -4,7 +4,9 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git push *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(Start-Process \"http://localhost:5173\" -WindowStyle Hidden)",
+      "Bash(Start-Sleep -Seconds 3)"
     ]
   }
 }

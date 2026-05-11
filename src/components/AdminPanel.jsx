@@ -30,7 +30,7 @@ const BLANK = {
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 const pad = n => String(n).padStart(2, '0');
-const inputCls = 'w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-sm font-semibold text-gray-900 outline-none focus:border-[#EB3461] focus:ring-1 focus:ring-pink-200 transition placeholder:text-gray-300';
+const inputCls = 'w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-sm font-semibold text-gray-900 outline-none focus:border-[#1a3a2a] focus:ring-1 focus:ring-pink-200 transition placeholder:text-gray-300';
 
 // ── Product Form Modal ───────────────────────────────────────────────────────
 
@@ -200,7 +200,7 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                         onDrop={handleDrop}
                         onDragOver={e => e.preventDefault()}
                         onClick={() => fileRef.current?.click()}
-                        className="relative cursor-pointer rounded-2xl border-2 border-dashed border-gray-200 hover:border-[#EB3461] transition-colors overflow-hidden bg-gray-50"
+                        className="relative cursor-pointer rounded-2xl border-2 border-dashed border-gray-200 hover:border-[#1a3a2a] transition-colors overflow-hidden bg-gray-50"
                         style={{ minHeight: 180 }}>
                         <input ref={fileRef} type="file" accept="image/*" className="hidden"
                             onChange={e => { const f = e.target.files[0]; if (f) handleUpload(f); e.target.value = ''; }} />
@@ -214,7 +214,7 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                         ) : (
                             <div className="flex flex-col items-center justify-center py-12 text-center">
                                 {uploading
-                                    ? <div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin mb-3" />
+                                    ? <div className="w-10 h-10 border-4 border-[#1a3a2a]/10 border-t-[#1a3a2a] rounded-full animate-spin mb-3" />
                                     : <Upload size={32} className="text-gray-300 mb-3" />
                                 }
                                 <p className="text-sm font-bold text-gray-400">{uploading ? 'Uploading…' : 'Click or drag & drop image here'}</p>
@@ -223,7 +223,7 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                         )}
                         {uploading && preview && (
                             <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
-                                <div className="w-8 h-8 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" />
+                                <div className="w-8 h-8 border-4 border-[#1a3a2a]/10 border-t-[#1a3a2a] rounded-full animate-spin" />
                             </div>
                         )}
                     </div>
@@ -262,10 +262,10 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                                 type="button"
                                 onClick={() => extraFileRef.current?.click()}
                                 disabled={extraUploading}
-                                className="w-20 h-20 rounded-2xl border-2 border-dashed border-gray-200 hover:border-[#EB3461] transition-colors flex flex-col items-center justify-center text-gray-300 hover:text-[#EB3461] shrink-0 disabled:opacity-50"
+                                className="w-20 h-20 rounded-2xl border-2 border-dashed border-gray-200 hover:border-[#1a3a2a] transition-colors flex flex-col items-center justify-center text-gray-300 hover:text-[#1a3a2a] shrink-0 disabled:opacity-50"
                             >
                                 {extraUploading
-                                    ? <div className="w-5 h-5 border-2 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" />
+                                    ? <div className="w-5 h-5 border-2 border-[#1a3a2a]/10 border-t-[#1a3a2a] rounded-full animate-spin" />
                                     : <><Plus size={18} /><span className="text-[9px] font-black mt-1 uppercase tracking-widest">Add</span></>
                                 }
                             </button>
@@ -290,7 +290,7 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                     {/* Name + Category */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">Product Name <span className="text-[#EB3461]">*</span></label>
+                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">Product Name <span className="text-[#1a3a2a]">*</span></label>
                             <input type="text" value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Classic White Tee" className={inputCls} />
                         </div>
                         <div>
@@ -307,7 +307,7 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                     {/* Price + Old Price */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">Selling Price (Rs.) <span className="text-[#EB3461]">*</span></label>
+                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">Selling Price (Rs.) <span className="text-[#1a3a2a]">*</span></label>
                             <input type="number" min="0" value={form.price} onChange={e => set('price', e.target.value)} placeholder="1200" className={inputCls} />
                         </div>
                         <div>
@@ -331,7 +331,7 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                                 <button key={s} type="button" onClick={() => toggleSize(s)}
                                     className={`px-4 py-2 rounded-xl text-xs font-black uppercase tracking-widest border-2 transition-all ${
                                         hasSize(s)
-                                            ? 'bg-[#EB3461] border-[#EB3461] text-white'
+                                            ? 'bg-[#1a3a2a] border-[#1a3a2a] text-white'
                                             : 'bg-gray-50 border-gray-200 text-gray-500 hover:border-gray-400'
                                     }`}>
                                     {s}
@@ -363,13 +363,13 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                         ].map(({ key, label, desc, icon: Icon }) => (
                             <button key={key} type="button" onClick={() => set(key, !form[key])}
                                 className={`flex-1 flex items-center gap-3 px-5 py-4 rounded-2xl border-2 transition-all ${
-                                    form[key] ? 'border-[#EB3461] bg-pink-50' : 'border-gray-200 bg-gray-50'
+                                    form[key] ? 'border-[#1a3a2a] bg-[#1a3a2a]/5' : 'border-gray-200 bg-gray-50'
                                 }`}>
-                                <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${form[key] ? 'bg-[#EB3461] text-white' : 'bg-gray-200 text-gray-400'}`}>
+                                <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 ${form[key] ? 'bg-[#1a3a2a] text-white' : 'bg-gray-200 text-gray-400'}`}>
                                     <Icon size={14} />
                                 </div>
                                 <div className="text-left">
-                                    <p className={`text-[11px] font-black uppercase tracking-widest ${form[key] ? 'text-[#EB3461]' : 'text-gray-500'}`}>{label}</p>
+                                    <p className={`text-[11px] font-black uppercase tracking-widest ${form[key] ? 'text-[#1a3a2a]' : 'text-gray-500'}`}>{label}</p>
                                     <p className="text-[10px] text-gray-400">{desc}</p>
                                 </div>
                             </button>
@@ -381,8 +381,8 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                 <div className="flex items-center justify-end gap-3 px-8 py-6 border-t border-gray-100">
                     <button onClick={onClose} className="px-6 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest text-gray-500 bg-gray-100 hover:bg-gray-200 transition">Cancel</button>
                     <button onClick={handleSave} disabled={saving}
-                        className="flex items-center gap-2 px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest bg-[#EB3461] text-white hover:bg-[#d42d57] transition shadow-lg shadow-pink-200 disabled:opacity-60">
-                        {saving && <div className="w-4 h-4 border-2 border-pink-200 border-t-white rounded-full animate-spin" />}
+                        className="flex items-center gap-2 px-8 py-3.5 rounded-2xl text-[11px] font-black uppercase tracking-widest bg-[#1a3a2a] text-white hover:bg-[#a07840] transition shadow-lg shadow-[#1a3a2a]/20 disabled:opacity-60">
+                        {saving && <div className="w-4 h-4 border-2 border-[#1a3a2a]/20 border-t-white rounded-full animate-spin" />}
                         {saving ? 'Saving…' : product ? 'Save Changes' : 'Add Product'}
                     </button>
                 </div>
@@ -552,19 +552,19 @@ const AdminPanel = () => {
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div>
                         <h1 className="text-xl font-black text-gray-900 uppercase tracking-tight">
-                            Classyfitters <span className="text-[#EB3461]">Admin</span>
+                            Bolqa House <span className="text-[#1a3a2a]">Admin</span>
                         </h1>
                         <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Store Management</p>
                     </div>
                     <div className="flex items-center gap-3">
                         {hasNew && (
-                            <span className="bg-[#EB3461] text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest animate-pulse">
+                            <span className="bg-[#1a3a2a] text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-widest animate-pulse">
                                 New Order!
                             </span>
                         )}
                         <button onClick={() => { setHasNew(false); fetchOrders(); }}
-                            className="flex items-center gap-2 border border-gray-200 text-gray-500 text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-2xl hover:text-[#EB3461] transition">
-                            <RefreshCw size={13} className={hasNew ? 'animate-spin text-[#EB3461]' : ''} />
+                            className="flex items-center gap-2 border border-gray-200 text-gray-500 text-[10px] font-black uppercase tracking-widest px-4 py-2.5 rounded-2xl hover:text-[#1a3a2a] transition">
+                            <RefreshCw size={13} className={hasNew ? 'animate-spin text-[#1a3a2a]' : ''} />
                             Refresh
                         </button>
                         <button onClick={logout}
@@ -581,7 +581,7 @@ const AdminPanel = () => {
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                     {[
                         { label: 'Revenue',  value: `Rs. ${orderStats.revenue.toLocaleString()}`,        icon: TrendingUp,  color: 'text-green-500',   bg: 'bg-green-50'  },
-                        { label: 'Orders',   value: orderStats.totalOrders,                              icon: ShoppingCart,color: 'text-[#EB3461]',   bg: 'bg-pink-50'   },
+                        { label: 'Orders',   value: orderStats.totalOrders,                              icon: ShoppingCart,color: 'text-[#1a3a2a]',   bg: 'bg-[#1a3a2a]/5'   },
                         { label: 'Avg Order',value: `Rs. ${Number(orderStats.avgValue).toLocaleString()}`,icon: TrendingUp,  color: 'text-blue-500',    bg: 'bg-blue-50'   },
                         { label: 'Products', value: products.length,                                     icon: Package,     color: 'text-purple-500',  bg: 'bg-purple-50' },
                     ].map((s, i) => (
@@ -601,7 +601,7 @@ const AdminPanel = () => {
                     {[['products', `Products (${products.length})`], ['orders', `Orders (${orders.length})`]].map(([key, label]) => (
                         <button key={key} onClick={() => setTab(key)}
                             className={`px-5 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all ${
-                                tab === key ? 'bg-[#EB3461] text-white shadow-lg shadow-pink-200' : 'bg-white text-gray-400 border border-gray-100 hover:text-gray-700'
+                                tab === key ? 'bg-[#1a3a2a] text-white shadow-lg shadow-[#1a3a2a]/20' : 'bg-white text-gray-400 border border-gray-100 hover:text-gray-700'
                             }`}>
                             {label}
                         </button>
@@ -616,17 +616,17 @@ const AdminPanel = () => {
                             <div className="relative flex-1">
                                 <Search size={15} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" />
                                 <input type="text" value={search} onChange={e => setSearch(e.target.value)} placeholder="Search products…"
-                                    className="w-full bg-white border border-gray-100 rounded-2xl pl-10 pr-4 py-3 text-sm font-semibold text-gray-900 shadow-lg shadow-gray-100/50 outline-none focus:border-[#EB3461] placeholder:text-gray-300" />
+                                    className="w-full bg-white border border-gray-100 rounded-2xl pl-10 pr-4 py-3 text-sm font-semibold text-gray-900 shadow-lg shadow-gray-100/50 outline-none focus:border-[#1a3a2a] placeholder:text-gray-300" />
                             </div>
                             {categories.length > 0 && (
                                 <select value={filterCat} onChange={e => setFilterCat(e.target.value)}
-                                    className="bg-white border border-gray-100 rounded-2xl px-4 py-3 text-sm font-semibold text-gray-700 shadow-lg shadow-gray-100/50 outline-none focus:border-[#EB3461]">
+                                    className="bg-white border border-gray-100 rounded-2xl px-4 py-3 text-sm font-semibold text-gray-700 shadow-lg shadow-gray-100/50 outline-none focus:border-[#1a3a2a]">
                                     <option value="">All Categories</option>
                                     {categories.map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                             )}
                             <button onClick={() => { setEditing(null); setShowModal(true); }}
-                                className="flex items-center gap-2 bg-[#EB3461] text-white px-6 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-[#d42d57] transition shadow-lg shadow-pink-200 whitespace-nowrap">
+                                className="flex items-center gap-2 bg-[#1a3a2a] text-white px-6 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest hover:bg-[#a07840] transition shadow-lg shadow-[#1a3a2a]/20 whitespace-nowrap">
                                 <Plus size={16} /> Add Product
                             </button>
                         </div>
@@ -646,13 +646,13 @@ const AdminPanel = () => {
                             </div>
                         ) : products.length === 0 ? (
                             <div className="bg-white rounded-[32px] border border-gray-100 p-20 text-center">
-                                <div className="w-20 h-20 bg-pink-50 rounded-[24px] flex items-center justify-center mx-auto mb-6">
-                                    <Package size={36} className="text-[#EB3461]" />
+                                <div className="w-20 h-20 bg-[#1a3a2a]/5 rounded-[24px] flex items-center justify-center mx-auto mb-6">
+                                    <Package size={36} className="text-[#1a3a2a]" />
                                 </div>
                                 <h3 className="text-2xl font-black text-gray-900 uppercase tracking-tight mb-2">No Products Yet</h3>
                                 <p className="text-gray-400 text-sm mb-8">Start adding your products — it only takes a minute!</p>
                                 <button onClick={() => { setEditing(null); setShowModal(true); }}
-                                    className="bg-[#EB3461] text-white font-black uppercase tracking-widest text-xs py-4 px-8 rounded-2xl hover:bg-[#d42d57] transition shadow-lg shadow-pink-200">
+                                    className="bg-[#1a3a2a] text-white font-black uppercase tracking-widest text-xs py-4 px-8 rounded-2xl hover:bg-[#a07840] transition shadow-lg shadow-[#1a3a2a]/20">
                                     + Add Your First Product
                                 </button>
                             </div>
@@ -693,7 +693,7 @@ const AdminPanel = () => {
                                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-0.5 line-clamp-1">{p.category}</p>
                                             <p className="text-sm font-black text-gray-900 uppercase tracking-tight line-clamp-1">{p.name}</p>
                                             <div className="flex items-center gap-2 mt-1.5">
-                                                <span className="text-sm font-black text-[#EB3461]">Rs. {parseFloat(p.price).toLocaleString()}</span>
+                                                <span className="text-sm font-black text-[#1a3a2a]">Rs. {parseFloat(p.price).toLocaleString()}</span>
                                                 {p.old_price && parseFloat(p.old_price) > parseFloat(p.price) && (
                                                     <span className="text-xs text-gray-400 line-through">Rs. {parseFloat(p.old_price).toLocaleString()}</span>
                                                 )}
@@ -720,12 +720,12 @@ const AdminPanel = () => {
                         </div>
                         {ordersLoading ? (
                             <div className="p-20 flex justify-center">
-                                <div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" />
+                                <div className="w-10 h-10 border-4 border-[#1a3a2a]/10 border-t-[#1a3a2a] rounded-full animate-spin" />
                             </div>
                         ) : ordersError ? (
                             <div className="p-12 text-center">
                                 <p className="text-red-400 font-bold">{ordersError}</p>
-                                <button onClick={() => fetchOrders()} className="mt-4 bg-[#EB3461] text-white text-xs font-black uppercase tracking-widest px-6 py-3 rounded-2xl">Retry</button>
+                                <button onClick={() => fetchOrders()} className="mt-4 bg-[#1a3a2a] text-white text-xs font-black uppercase tracking-widest px-6 py-3 rounded-2xl">Retry</button>
                             </div>
                         ) : orders.length === 0 ? (
                             <div className="p-20 text-center">
@@ -765,7 +765,7 @@ const AdminPanel = () => {
                                                     title="Delete order">
                                                     <Trash2 size={14} className="text-red-400" />
                                                 </button>
-                                                <div className="text-gray-300 group-hover:text-[#EB3461] transition">
+                                                <div className="text-gray-300 group-hover:text-[#1a3a2a] transition">
                                                     {expanded === order.id ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                                                 </div>
                                             </div>
@@ -776,14 +776,14 @@ const AdminPanel = () => {
                                                     className="overflow-hidden bg-gray-50/40 border-t border-gray-50">
                                                     <div className="px-8 py-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
                                                         <div>
-                                                            <p className="text-[10px] font-black text-[#EB3461] uppercase tracking-widest mb-3">Customer Details</p>
+                                                            <p className="text-[10px] font-black text-[#1a3a2a] uppercase tracking-widest mb-3">Customer Details</p>
                                                             <div className="space-y-3 text-sm">
                                                                 <p className="flex items-center gap-2 text-gray-600"><Mail size={14} className="text-gray-300" /> {order.email}</p>
                                                                 <p className="flex items-center gap-2 text-gray-600"><MapPin size={14} className="text-gray-300" /> {order.address}, {order.city} {order.postal_code}</p>
                                                             </div>
                                                         </div>
                                                         <div>
-                                                            <p className="text-[10px] font-black text-[#EB3461] uppercase tracking-widest mb-3">Items Ordered</p>
+                                                            <p className="text-[10px] font-black text-[#1a3a2a] uppercase tracking-widest mb-3">Items Ordered</p>
                                                             <div className="bg-white rounded-2xl border border-gray-100 p-4 space-y-3">
                                                                 {order.items?.map((item, i) => (
                                                                     <div key={i} className="flex justify-between text-sm">
@@ -795,19 +795,19 @@ const AdminPanel = () => {
                                                                     </div>
                                                                 ))}
                                                                 <div className="border-t border-gray-100 pt-3 flex justify-between">
-                                                                    <span className="text-[10px] font-black uppercase text-[#EB3461] tracking-widest">Total</span>
+                                                                    <span className="text-[10px] font-black uppercase text-[#1a3a2a] tracking-widest">Total</span>
                                                                     <span className="font-black text-gray-900">Rs. {parseFloat(order.total).toLocaleString()}</span>
                                                                 </div>
                                                             </div>
                                                             <div className="mt-4">
-                                                                <p className="text-[10px] font-black text-[#EB3461] uppercase tracking-widest mb-2">Update Status</p>
+                                                                <p className="text-[10px] font-black text-[#1a3a2a] uppercase tracking-widest mb-2">Update Status</p>
                                                                 <div className="flex gap-3 items-center">
                                                                     <select value={order.status || 'Pending'} onChange={e => handleStatus(order.id, e.target.value)}
                                                                         disabled={updatingStatus === order.id}
-                                                                        className="flex-1 bg-white border border-gray-200 text-gray-900 text-xs font-bold uppercase tracking-widest rounded-2xl px-4 py-3 outline-none focus:border-[#EB3461] disabled:opacity-50">
+                                                                        className="flex-1 bg-white border border-gray-200 text-gray-900 text-xs font-bold uppercase tracking-widest rounded-2xl px-4 py-3 outline-none focus:border-[#1a3a2a] disabled:opacity-50">
                                                                         {['Pending','Processing','Shipped','Delivered','Cancelled'].map(s => <option key={s} value={s}>{s}</option>)}
                                                                     </select>
-                                                                    {updatingStatus === order.id && <div className="w-5 h-5 border-2 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" />}
+                                                                    {updatingStatus === order.id && <div className="w-5 h-5 border-2 border-[#1a3a2a]/10 border-t-[#1a3a2a] rounded-full animate-spin" />}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -878,3 +878,7 @@ const AdminPanel = () => {
 };
 
 export default AdminPanel;
+
+
+
+

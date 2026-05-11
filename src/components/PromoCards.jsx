@@ -3,135 +3,124 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
-const MasonryCard = ({ title, itemCount, image, accentColor, link, rowSpan, delay }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, margin: '-50px' }}
-    transition={{ duration: 0.5, delay, ease: 'easeOut' }}
-    className={`group relative overflow-hidden rounded-2xl cursor-pointer ${
-      rowSpan === 'tall' ? 'row-span-2' : 'row-span-1'
-    } h-full`}
-  >
-    {/* Background Image */}
-    <img
-      src={image}
-      alt={`${title} collection - Premium fashion from KPK`}
-      loading="lazy"
-      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-    />
+const PremiumCard = ({ title, subtitle, link, delay, icon, isLarge }) => {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
+      className={`group relative overflow-hidden cursor-pointer rounded-[32px] border border-[#c9a96e]/20 hover:border-[#c9a96e]/60 transition-all duration-500 flex flex-col justify-between p-8 ${
+        isLarge
+          ? 'bg-gradient-to-br from-[#1a3a2a]/5 to-[#c9a96e]/10 md:col-span-2 md:row-span-2 min-h-[280px] md:min-h-[400px]'
+          : 'bg-white hover:bg-gradient-to-br hover:from-white hover:to-[#f5efe6] min-h-[220px] md:min-h-[240px] shadow-sm hover:shadow-xl hover:shadow-[#c9a96e]/20'
+      }`}
+      role="link"
+      tabIndex="0"
+      aria-label={`${title}, ${subtitle}`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          window.location.href = link;
+        }
+      }}
+    >
+      {/* Background Accent */}
+      <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#c9a96e]/5 rounded-full blur-3xl group-hover:bg-[#c9a96e]/10 transition-all duration-500 pointer-events-none" />
 
-    {/* Overlay Gradient */}
-    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-    {/* Content Container */}
-    <div className="absolute inset-0 flex flex-col justify-between p-3 md:p-5 lg:p-6">
-      {/* Top: Accent Badge */}
-      <div className="flex justify-start items-center gap-2">
-        <motion.div
-          initial={{ scale: 0 }}
-          whileInView={{ scale: 1 }}
-          transition={{ delay: delay + 0.15, duration: 0.4 }}
-          style={{ backgroundColor: accentColor }}
-          className="w-3.5 h-3.5 rounded-full"
-        />
-        <motion.span
-          initial={{ opacity: 0, x: -10 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ delay: delay + 0.2, duration: 0.4 }}
-          style={{ color: accentColor }}
-          className="text-[9px] font-black uppercase tracking-widest"
-        >
-          Featured
-        </motion.span>
+      {/* Icon */}
+      <div className={`relative z-10 mb-6 ${isLarge ? 'text-6xl md:text-7xl' : 'text-5xl'} transform group-hover:scale-110 transition-transform duration-300`}>
+        {icon}
       </div>
 
-      {/* Bottom: Title + CTA */}
-      <div>
-        <motion.h3
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: delay + 0.25, duration: 0.4 }}
-          className="text-sm md:text-xl lg:text-3xl font-black text-white mb-1 md:mb-2 leading-tight"
-        >
-          {title}
-        </motion.h3>
+      {/* Content */}
+      <div className="relative z-10 flex-1 flex flex-col justify-between">
+        <div>
+          <h3 className={`font-black text-gray-900 uppercase tracking-tight mb-2 group-hover:text-[#1a3a2a] transition-colors ${
+            isLarge ? 'text-2xl md:text-4xl leading-tight' : 'text-lg md:text-xl'
+          }`}>
+            {title}
+          </h3>
+          <p className="text-[10px] md:text-[11px] text-[#c9a96e] font-bold uppercase tracking-widest mb-4">
+            {subtitle}
+          </p>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: delay + 0.3, duration: 0.4 }}
-          className="text-[9px] md:text-[11px] text-white/60 mb-2 md:mb-4 font-bold uppercase tracking-wide"
-        >
-          {itemCount}+ Items
-        </motion.p>
-
-        {/* Explore Button - Slides up on hover */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        {/* Animated Bottom Border */}
+        <div className="flex items-center justify-between pt-4 border-t border-[#c9a96e]/20 group-hover:border-[#c9a96e]/40 transition-colors">
+          <div />
           <Link
             to={link}
-            style={{ backgroundColor: accentColor }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-white text-[10px] font-black uppercase tracking-widest transition-all duration-300 hover:gap-3 shadow-lg"
+            className="inline-flex items-center gap-2 text-[#1a3a2a] text-[9px] md:text-[10px] font-black uppercase tracking-widest hover:text-[#c9a96e] transition-colors group-hover:gap-3"
           >
-            Explore
-            <ArrowRight size={14} />
+            Shop Now
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
-        </motion.div>
+        </div>
       </div>
-    </div>
-  </motion.div>
-);
+    </motion.article>
+  );
+};
 
 const PromoCards = () => {
   const categories = [
     {
-      title: 'Wrist Watches',
-      itemCount: 120,
-      image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=700&q=80',
-      accentColor: '#EB3461',
-      link: '/shop?category=watches',
-      rowSpan: 'tall',
+      title: 'Premium Abayas',
+      subtitle: '150+ Items',
+      icon: '👑',
+      link: '/shop?category=premium-abayas',
     },
     {
-      title: 'Premium Perfumes',
-      itemCount: 85,
-      image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?w=700&q=80',
-      accentColor: '#FCB92F',
-      link: '/shop?category=perfumes',
-      rowSpan: 'short',
+      title: 'Embroidered Abayas',
+      subtitle: '120+ Items',
+      icon: '✨',
+      link: '/shop?category=embroidered-abayas',
     },
     {
-      title: 'Ladies Handbags',
-      itemCount: 150,
-      image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=700&q=80',
-      accentColor: '#5680BC',
-      link: '/shop?category=handbags',
-      rowSpan: 'tall',
+      title: 'Plain Abayas',
+      subtitle: '180+ Items',
+      icon: '🎀',
+      link: '/shop?category=plain-abayas',
     },
     {
-      title: 'Edenrobe Fashion',
-      itemCount: 200,
-      image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=700&q=80',
-      accentColor: '#111111',
-      link: '/shop?category=edenrobe',
-      rowSpan: 'tall',
+      title: 'Casual Abayas',
+      subtitle: '200+ Items',
+      icon: '👗',
+      link: '/shop?category=casual-abayas',
     },
     {
-      title: 'Gold Jewellery',
-      itemCount: 95,
-      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=700&q=80',
-      accentColor: '#D97706',
-      link: '/shop?category=jewellery',
-      rowSpan: 'short',
+      title: 'Formal Abayas',
+      subtitle: '95+ Items',
+      icon: '💎',
+      link: '/shop?category=formal-abayas',
+    },
+    {
+      title: 'Designer Abayas',
+      subtitle: '85+ Items',
+      icon: '👸',
+      link: '/shop?category=designer-abayas',
+    },
+    {
+      title: 'Wedding Abayas',
+      subtitle: '75+ Items',
+      icon: '💍',
+      link: '/shop?category=wedding-abayas',
+    },
+    {
+      title: 'Niqabs',
+      subtitle: '110+ Items',
+      icon: '🧕',
+      link: '/shop?category=niqabs',
+    },
+    {
+      title: 'Hijabs & Scarves',
+      subtitle: '140+ Items',
+      icon: '🧣',
+      link: '/shop?category=hijabs-scarves',
     },
   ];
 
   return (
-    <section className="py-16 md:py-24 px-4 md:px-12 lg:px-16 bg-white overflow-hidden">
+    <section className="py-16 md:py-24 px-4 md:px-8 lg:px-16 bg-[#f5efe6] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <motion.div
@@ -139,60 +128,53 @@ const PromoCards = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12 md:mb-16 text-center"
+          className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-center md:justify-between"
         >
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="text-[11px] md:text-[13px] font-black uppercase tracking-[0.3em] text-[#EB3461] mb-3 md:mb-4"
-          >
-            Browse
-          </motion.p>
-          <h2 className="text-3xl md:text-6xl lg:text-8xl font-black text-gray-900 uppercase tracking-tighter mb-4 md:mb-6 leading-tight">
-            Our Categories
-          </h2>
-          <motion.p
+          <div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="text-[11px] md:text-xs font-black uppercase tracking-widest text-[#1a3a2a] mb-2 md:mb-3 border-l-4 border-[#c9a96e] pl-3"
+            >
+              Curated Collections
+            </motion.p>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 uppercase tracking-tight leading-tight">
+              Shop By Category
+            </h2>
+          </div>
+
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="text-gray-600 text-sm md:text-lg lg:text-xl max-w-2xl mx-auto"
           >
-            From KPK's finest selection — discover something new for every style
-          </motion.p>
+            <Link
+              to="/shop"
+              className="inline-flex items-center gap-2 text-[#c9a96e] font-black text-sm uppercase tracking-widest hover:text-[#1a3a2a] transition-colors mt-4 md:mt-0"
+            >
+              Browse All
+              <ArrowRight size={16} />
+            </Link>
+          </motion.div>
         </motion.div>
 
-        {/* Masonry Grid - 3 columns desktop, 2 columns mobile */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 auto-rows-[220px] md:auto-rows-[280px] lg:auto-rows-[360px] gap-4 md:gap-6">
+        {/* Premium Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6" role="region" aria-label="Abaya product categories">
           {categories.map((category, idx) => (
-            <MasonryCard
+            <PremiumCard
               key={idx}
               {...category}
               delay={idx * 0.08}
+              isLarge={idx === 0}
             />
           ))}
         </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-12 md:mt-20 text-center"
-        >
-          <Link
-            to="/shop"
-            className="inline-flex items-center gap-2 md:gap-3 px-8 md:px-12 py-4 md:py-6 bg-[#EB3461] text-white font-black uppercase text-[10px] md:text-sm tracking-widest rounded-full hover:bg-black transition-all duration-300 shadow-2xl hover:shadow-3xl hover:-translate-y-1"
-          >
-            Browse All Categories
-            <ArrowRight size={16} className="md:block hidden" />
-            <ArrowRight size={14} className="md:hidden block" />
-          </Link>
-        </motion.div>
       </div>
     </section>
   );
 };
 
 export default PromoCards;
+
+
