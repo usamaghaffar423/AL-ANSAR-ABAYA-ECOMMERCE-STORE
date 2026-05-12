@@ -70,7 +70,7 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-3xl lg:text-4xl font-black text-white mb-6 md:mb-8 leading-tight"
           >
-            Authentic Premium Abayas, Direct from Chakdara
+            🎉 Auto-Deployed! Authentic Premium Abayas, Direct from Chakdara
           </motion.p>
 
           {/* Key Benefits */}
