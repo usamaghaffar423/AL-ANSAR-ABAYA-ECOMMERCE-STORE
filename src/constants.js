@@ -1,3 +1,4 @@
+// Al Ansar Abaya Store Constants - Last updated via auto-deployment
 import icon from './assets/icon.jpeg';
 import image105 from './assets/image-105.webp';
 import image110 from './assets/image-110.webp';
