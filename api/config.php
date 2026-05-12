@@ -31,6 +31,8 @@ $allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost',
+    'https://alansarabayah.com',
+    'https://www.alansarabayah.com',
     'https://classyfitters.shop',
     'https://www.classyfitters.shop',
 ];

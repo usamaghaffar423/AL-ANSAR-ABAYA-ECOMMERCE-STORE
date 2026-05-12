@@ -105,7 +105,7 @@ const Testimonials = () => {
             Join thousands of satisfied customers across KPK
           </p>
           <a
-            href="https://instagram.com/bolqahouse"
+            href="https://instagram.com/alansarabaya"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 px-8 md:px-12 py-3 md:py-4 border-2 border-[#1a3a2a] text-[#1a3a2a] font-black uppercase text-xs md:text-sm tracking-widest rounded-full hover:bg-[#1a3a2a] hover:text-white transition-all duration-300"

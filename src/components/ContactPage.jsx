@@ -16,9 +16,9 @@ const CONTACT_INFO = [
     {
         icon: Mail,
         label: 'Email Us',
-        primary: 'support@bolqahouse.pk',
+        primary: 'support@alansarabayah.com',
         secondary: 'We reply within 24 hours',
-        href: 'mailto:support@bolqahouse.pk',
+        href: 'mailto:support@alansarabayah.com',
         bg: 'bg-[#1a3a2a]/5',
         iconColor: 'text-[#1a3a2a]',
         iconBg: 'bg-[#1a3a2a]/10 group-hover:bg-[#1a3a2a]',

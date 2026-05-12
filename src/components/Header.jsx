@@ -124,8 +124,8 @@ const Header = () => {
                             <a href="tel:+923481099433" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
                                 <Phone size={14} /> +92 348 1099433
                             </a>
-                            <a href="mailto:support@bolqahouse.pk" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
-                                <Mail size={14} /> support@bolqahouse.pk
+                            <a href="mailto:support@alansarabayah.com" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
+                                <Mail size={14} /> support@alansarabayah.com
                             </a>
                         </div>
                         <div className="flex items-center gap-4">
