@@ -1,4 +1,4 @@
-// Al Ansar Abaya Store - Auto-deployed via GitHub Actions ✓ Deployment Test 2
+// Al Ansar Abaya Store - Auto-deployed via GitHub Actions ✓ SFTP Test 3
 import { IMAGES } from '../constants';
 import { ChevronUp, Facebook, Instagram, Youtube } from 'lucide-react';
 
