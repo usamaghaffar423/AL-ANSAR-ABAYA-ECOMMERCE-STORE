@@ -1,3 +1,4 @@
+// Al Ansar Abaya Store - Auto-deployed via GitHub Actions
 import { IMAGES } from '../constants';
 import { ChevronUp, Facebook, Instagram, Youtube } from 'lucide-react';
 
