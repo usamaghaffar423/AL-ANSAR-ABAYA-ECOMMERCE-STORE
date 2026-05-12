@@ -1,7 +1,7 @@
 <?php
 /**
  * GET Collections API
- * Returns all collections from classyfitters_db.
+ * Returns all collections from the database.
  */
 
 require_once 'config.php';

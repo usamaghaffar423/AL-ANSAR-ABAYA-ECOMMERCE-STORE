@@ -1,4 +1,4 @@
-// Classyfitters - Premium Pakistani Fashion E-Commerce Store
+// Al Ansar Abaya Store - Premium Abayas & Islamic Wear
 import React from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'

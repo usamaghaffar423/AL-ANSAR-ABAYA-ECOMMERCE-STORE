@@ -1,4 +1,4 @@
-# Classyfitters Database Migration Guide
+# Database Migration Guide
 
 ## Run Order (against `ecommerce_d` database)
 
@@ -47,7 +47,7 @@ Open phpMyAdmin → select `ecommerce_d` → Import each file **in order**:
 ## Image Folder
 All images are at:
 ```
-classyfitters-product-images/products/<filename>
+products/images/<filename>
 ```
 PHP resolves relative paths to full URLs automatically. No hardcoded URLs needed.
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Schema Inspector
- * Opens in browser to dump all table/column info from classyfitters_db.
+ * Opens in browser to dump all table/column info from the database.
  * Used to verify exact column names before writing the main API files.
  */
 

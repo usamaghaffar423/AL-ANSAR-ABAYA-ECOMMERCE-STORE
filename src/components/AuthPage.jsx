@@ -287,7 +287,7 @@ const AuthPage = ({ defaultTab = 'login' }) => {
                                         exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.2 }}>
                                         <div className="mb-6">
                                             <h2 className="text-2xl font-black text-gray-900 uppercase tracking-tight">Create Account</h2>
-                                            <p className="text-gray-400 text-sm font-medium mt-1">Join Classyfitters today — it's free</p>
+                                            <p className="text-gray-400 text-sm font-medium mt-1">Join Al Ansar Abaya today — it's free</p>
                                         </div>
                                         <RegisterForm onSwitch={switchToLogin} />
                                     </motion.div>

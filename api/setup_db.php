@@ -1,6 +1,6 @@
 <?php
 /**
- * Classyfitters — One-Click Database Setup
+ * Al Ansar Abaya Store — One-Click Database Setup
  *
  * Run this ONCE after uploading to Hostinger:
  *   https://yourdomain.com/api/setup_db.php
@@ -41,7 +41,7 @@ try {
     if (!$exists) {
         $hash = password_hash('admin123', PASSWORD_DEFAULT);
         $pdo->prepare("INSERT INTO users (username, email, password, role) VALUES (?,?,?,?)")
-            ->execute(['admin', 'admin@classyfitters.com', $hash, 'admin']);
+            ->execute(['admin', 'admin@alansarabayah.com', $hash, 'admin']);
         ok('Admin user created → username: <strong>admin</strong> / password: <strong>admin123</strong>');
     } else {
         info('Admin user already exists — skipped');
@@ -148,7 +148,7 @@ try {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Classyfitters — DB Setup</title>
+<title>Al Ansar Abaya Store — DB Setup</title>
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:'Segoe UI',sans-serif;background:#f7f7f9;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -168,7 +168,7 @@ try {
 </head>
 <body>
 <div class="card">
-  <h1>Classyfitters</h1>
+  <h1>Al Ansar Abaya Store</h1>
   <div class="sub">Database Setup</div>
 
   <?php if ($error): ?>

@@ -33,8 +33,6 @@ $allowedOrigins = [
     'http://localhost',
     'https://alansarabayah.com',
     'https://www.alansarabayah.com',
-    'https://classyfitters.shop',
-    'https://www.classyfitters.shop',
 ];
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';

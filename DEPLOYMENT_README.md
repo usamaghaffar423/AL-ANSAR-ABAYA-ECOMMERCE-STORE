@@ -12,7 +12,7 @@
 2. Replace the placeholder values with your actual Hostinger database credentials:
    - `DB_USER`: Your database username (e.g., u123456789_user)
    - `DB_PASS`: Your database password
-   - `DB_NAME`: Your database name (e.g., u123456789_classyfitters_db)
+   - `DB_NAME`: Your database name (e.g., u123456789_abaya_store_db)
 
 ## Step 2: Build the Frontend
 

@@ -12,13 +12,13 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(() => {
-        const savedCart = localStorage.getItem('classyfitters_cart');
+        const savedCart = localStorage.getItem('alansarabayah_cart');
         return savedCart ? JSON.parse(savedCart) : [];
     });
     const [isCartOpen, setIsCartOpen] = useState(false);
 
     useEffect(() => {
-        localStorage.setItem('classyfitters_cart', JSON.stringify(cartItems));
+        localStorage.setItem('alansarabayah_cart', JSON.stringify(cartItems));
     }, [cartItems]);
 
     const addToCart = (product) => {

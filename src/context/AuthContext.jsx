@@ -3,7 +3,7 @@ import { API_BASE_URL } from '../config';
 
 const AuthContext = createContext();
 
-const STORAGE_KEY = 'classyfitters_auth';
+const STORAGE_KEY = 'alansarabayah_auth';
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser]     = useState(null);

@@ -1,4 +1,4 @@
-# Classyfitters E-Commerce Store — Complete Technical Documentation
+# Al Ansar Abaya Store — Complete Technical Documentation
 
 > For building a similar Abaya e-commerce store
 
@@ -436,7 +436,7 @@ const {
 } = useAuth()
 ```
 
-**Storage Key**: `classyfitters_auth` (localStorage)
+**Storage Key**: `alansarabayah_auth` (localStorage)
 
 #### CartContext (`src/context/CartContext.jsx`)
 ```javascript
@@ -453,7 +453,7 @@ const {
 } = useCart()
 ```
 
-**Storage Key**: `classyfitters_cart` (localStorage)
+**Storage Key**: `alansarabayah_cart` (localStorage)
 
 ### Routing
 
@@ -578,7 +578,7 @@ All routes use **React Router DOM v7** with layout detection in `App.jsx`:
 
 ### CORS
 - Whitelist origin check
-- Allowed: localhost (dev), classyfitters.shop (prod)
+- Allowed: localhost (dev), alansarabayah.com (prod)
 - Credentials allowed for auth
 
 ### Rate Limiting
@@ -809,5 +809,5 @@ curl -X POST http://localhost/T-SHIRT-ECOMMERCE-STORE/api/admin_products.php \
 ---
 
 **Last Updated**: 2025-05-11
-**Project**: Classyfitters E-Commerce Store
+**Project**: Al Ansar Abaya Store
 **Purpose**: Reference for building similar e-commerce stores (Abaya, other fashion)

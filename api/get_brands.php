@@ -1,7 +1,7 @@
 <?php
 /**
  * GET Brands API
- * Returns all brands from classyfitters_db.
+ * Returns all brands from the database.
  */
 
 require_once 'config.php';
