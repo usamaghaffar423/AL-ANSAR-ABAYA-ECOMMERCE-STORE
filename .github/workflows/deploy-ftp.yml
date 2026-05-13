@@ -35,6 +35,13 @@ jobs:
           cp .htaccess deploy-package/
           ls -la deploy-package/
 
+      - name: Verify Secrets
+        run: |
+          if [ -z "${{ secrets.FTP_HOST }}" ]; then echo "❌ FTP_HOST secret not found"; exit 1; fi
+          if [ -z "${{ secrets.FTP_USER }}" ]; then echo "❌ FTP_USER secret not found"; exit 1; fi
+          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then echo "❌ FTP_PASSWORD secret not found"; exit 1; fi
+          echo "✅ All secrets verified"
+
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
