@@ -1,6 +1,6 @@
 // Al Ansar Abaya Store - Premium Abayas & Islamic Wear
-// Auto-deployed to alansarabayah.com via GitHub Actions + SFTP ✓
-// Production-ready: Every push to main branch triggers automatic deployment
+// Auto-deployed via GitHub Webhook + Git Pull ✓
+// Production-ready: Every push to main branch triggers automatic deployment to Hostinger
 import React from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
