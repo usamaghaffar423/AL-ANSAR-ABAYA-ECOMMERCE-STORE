@@ -1,7 +1,7 @@
 # Enable mod_rewrite
 RewriteEngine On
 
-# Pass Authorization header through to PHP (Apache/XAMPP strips it by default)
+# Pass Authorization header through to PHP
 RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
 # Set MIME types for media files
@@ -9,19 +9,18 @@ RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
     Header set Content-Type "video/mp4"
 </FilesMatch>
 
-# Handle client-side routing
 RewriteBase /
+
+# Don't rewrite index.html itself
 RewriteRule ^index\.html$ - [L]
 
-# PRIORITY: Don't rewrite API requests - check this FIRST
-RewriteRule ^api/ - [L]
+# Don't rewrite real files (has extension like .php, .js, .css, .txt, etc)
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
 
-# Don't rewrite static assets
-RewriteRule ^(videos|images|dist)/ - [L]
+# Don't rewrite real directories
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
 
-# Don't rewrite real files or directories
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# Rewrite everything else to index.html for SPA routing
-RewriteRule . /index.html [L]
+# Rewrite SPA routes to index.html (only paths without dots)
+RewriteRule ^[^.]*$ /index.html [L]
