@@ -14,8 +14,8 @@ $secret = getenv('GITHUB_WEBHOOK_SECRET') ?: 'abaya9911';
 
 $data = json_decode($payload, true);
 if ($data['ref'] === 'refs/heads/main') {
-    chdir('/home/u463999436/domains/alansarabayah.com/public_html');
-    shell_exec('git pull origin main 2>&1');
-    echo 'Deployed successfully';
+    chdir('/home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html');
+    $output = shell_exec('cd /home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html && git pull origin main 2>&1');
+    echo 'Deployed successfully at ' . date('Y-m-d H:i:s') . "\n" . $output;
 }
 ?>
