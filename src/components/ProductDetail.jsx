@@ -115,38 +115,74 @@ const ProductDetail = () => {
             setSelectedColor('');
             setQuantity(1);
             try {
+                // Fetch product by ID
                 const res  = await fetch(`${API_BASE_URL}/get_products.php?id=${id}`);
+                if (!res.ok) throw new Error(`API returned ${res.status}`);
+
                 const data = await res.json();
                 const p    = Array.isArray(data) ? data[0] : data;
-                if (!p || p.error) { navigate('/shop'); return; }
-                setProduct(p);
 
-                // Fetch gallery images; fall back to single product image
-                try {
-                    const imgRes  = await fetch(`${API_BASE_URL}/get_product_images.php?product_id=${id}`);
-                    const imgData = await imgRes.json();
-                    if (Array.isArray(imgData) && imgData.length > 0) {
-                        setImages(imgData.map(img => ({ url: img.image_url, alt: img.alt_text || p.title })));
-                    } else {
-                        setImages([{ url: p.image_url || FALLBACK, alt: p.title }]);
-                    }
-                } catch {
-                    setImages([{ url: p.image_url || FALLBACK, alt: p.title }]);
+                if (!p || p.error) {
+                    console.error('Product not found or error:', p);
+                    navigate('/shop');
+                    return;
                 }
 
-                // Default first color
+                setProduct(p);
+
+                // Use product image from main table; attempt gallery images as enhancement
+                const imageList = [{ url: p.image_url || FALLBACK, alt: p.title }];
+
+                try {
+                    const imgRes  = await fetch(`${API_BASE_URL}/get_product_images.php?product_id=${id}`);
+                    if (imgRes.ok) {
+                        const imgData = await imgRes.json();
+                        if (Array.isArray(imgData) && imgData.length > 0) {
+                            // Prepend any gallery images to the list
+                            const galleryImages = imgData.map(img => ({
+                                url: img.image_url || FALLBACK,
+                                alt: img.alt_text || p.title
+                            }));
+                            imageList.unshift(...galleryImages);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Could not load gallery images:', e);
+                }
+
+                // Remove duplicates and set images
+                const uniqueImages = [];
+                const seen = new Set();
+                for (const img of imageList) {
+                    if (!seen.has(img.url)) {
+                        seen.add(img.url);
+                        uniqueImages.push(img);
+                    }
+                }
+                setImages(uniqueImages.length > 0 ? uniqueImages : [{ url: FALLBACK, alt: p.title }]);
+
+                // Set default color if only one available
                 if (p.colors) {
                     const cols = p.colors.split(',').map(c => c.trim()).filter(Boolean);
                     if (cols.length === 1) setSelectedColor(cols[0]);
                 }
 
-                // Related
+                // Load related products from same category
                 if (p.category) {
-                    const rRes  = await fetch(`${API_BASE_URL}/get_products.php?category=${encodeURIComponent(p.category)}&limit=8`);
-                    const rData = await rRes.json();
-                    setRelated(Array.isArray(rData) ? rData.filter(r => r.id !== p.id).slice(0, 4) : []);
+                    try {
+                        const rRes  = await fetch(`${API_BASE_URL}/get_products.php?category=${encodeURIComponent(p.category)}&limit=8`);
+                        if (rRes.ok) {
+                            const rData = await rRes.json();
+                            setRelated(Array.isArray(rData) ? rData.filter(r => r.id !== p.id).slice(0, 4) : []);
+                        }
+                    } catch (e) {
+                        console.warn('Could not load related products:', e);
+                    }
                 }
-            } catch (e) { console.error(e); }
+            } catch (e) {
+                console.error('ProductDetail fetch error:', e);
+                navigate('/shop');
+            }
             finally { setLoading(false); }
         };
         load();
