@@ -13,6 +13,8 @@ try {
 
     $response = [
         'status' => 'success',
+        'message' => '✅ Hostinger Database Connection Working!',
+        'timestamp' => date('Y-m-d H:i:s'),
         'environment' => $isProduction ? 'PRODUCTION (Hostinger)' : 'LOCAL',
         'database' => DB_NAME,
         'host' => DB_HOST,
