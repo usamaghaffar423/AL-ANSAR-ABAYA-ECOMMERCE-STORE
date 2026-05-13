@@ -45,13 +45,21 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USER }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
+          echo "Connecting to FTP: $FTP_HOST"
           lftp -e "
           set ftp:ssl-allow no
           set ssl:verify-certificate no
+          set ftp:passive-mode on
           open -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
           mirror -R --delete deploy-package/ /public_html/
           quit
-          " || echo "FTP deployment completed"
+          "
+          if [ $? -eq 0 ]; then
+            echo "✅ FTP deployment successful"
+          else
+            echo "❌ FTP deployment failed"
+            exit 1
+          fi
 
       - name: Deployment Success
         run: |
