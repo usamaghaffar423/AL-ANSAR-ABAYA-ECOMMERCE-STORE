@@ -13,8 +13,8 @@ $isProduction = !in_array(strtolower(explode(':', $host)[0]), ['localhost', '127
 
 // ── Database Credentials ──────────────────────────────────────────────────
 if ($isProduction) {
-    // Credentials come from Hostinger environment variables — never hardcoded
-    define('DB_HOST', getenv('DB_HOST') ?: '82.112.239.120');
+    // Credentials from Hostinger (use domain host, not IP)
+    define('DB_HOST', getenv('DB_HOST') ?: 'linen-bee-509910.hostingersite.com');
     define('DB_USER', getenv('DB_USER') ?: 'u463999436_alansarabaya');
     define('DB_PASS', getenv('DB_PASS') ?: 'Abaya@9911323!');
     define('DB_NAME', getenv('DB_NAME') ?: 'u463999436_alansarabaya');
