@@ -30,35 +30,28 @@ jobs:
         run: npm run build
 
       # ── 5. Deploy built frontend (dist/) → public_html/ ───────────────
-      - name: Deploy frontend to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy frontend to Hostinger via SFTP
+        uses: appleboy/scp-action@master
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          local-dir: ./dist/
-          server-dir: /public_html/
-          exclude: |
-            **/.git*
-            **/.git*/**
+          port: 22
+          source: "dist/"
+          target: "/public_html/"
+          rm: false
 
       # ── 6. Deploy PHP backend (api/) → public_html/api/ ───────────────
-      - name: Deploy API to Hostinger
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy API to Hostinger via SFTP
+        uses: appleboy/scp-action@master
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          host: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 21
-          protocol: ftps
-          local-dir: ./api/
-          server-dir: /public_html/api/
-          exclude: |
-            **/.git*
-            **/migrations/**
-            **/config_local.php
+          port: 22
+          source: "api/"
+          target: "/public_html/"
+          rm: false
 
       # ── 7. Deployment success notification ─────────────────────────────
       - name: Deployment success
