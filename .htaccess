@@ -13,16 +13,15 @@ RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 RewriteBase /
 RewriteRule ^index\.html$ - [L]
 
+# PRIORITY: Don't rewrite API requests - check this FIRST
+RewriteRule ^api/ - [L]
+
+# Don't rewrite static assets
+RewriteRule ^(videos|images|dist)/ - [L]
+
 # Don't rewrite real files or directories
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# Don't rewrite api requests
-RewriteCond %{REQUEST_URI} !^/api/
-
-# Don't rewrite static assets (videos, images, etc.)
-RewriteCond %{REQUEST_URI} !^/videos/
-RewriteCond %{REQUEST_URI} !^/images/
 
 # Rewrite everything else to index.html for SPA routing
 RewriteRule . /index.html [L]
