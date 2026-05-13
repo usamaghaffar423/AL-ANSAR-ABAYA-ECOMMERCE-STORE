@@ -14,16 +14,16 @@ $isProduction = !in_array(strtolower(explode(':', $host)[0]), ['localhost', '127
 // ── Database Credentials ──────────────────────────────────────────────────
 if ($isProduction) {
     // Credentials come from Hostinger environment variables — never hardcoded
-    define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-    define('DB_USER', getenv('DB_USER') ?: '');
-    define('DB_PASS', getenv('DB_PASS') ?: '');
-    define('DB_NAME', getenv('DB_NAME') ?: '');
+    define('DB_HOST', getenv('DB_HOST') ?: '82.112.239.120');
+    define('DB_USER', getenv('DB_USER') ?: 'u463999436_alansarabaya');
+    define('DB_PASS', getenv('DB_PASS') ?: 'Abaya@9911323!');
+    define('DB_NAME', getenv('DB_NAME') ?: 'u463999436_alansarabaya');
 } else {
-    // LOCAL (XAMPP)
+    // Local development — XAMPP default credentials
     define('DB_HOST', 'localhost');
     define('DB_USER', 'root');
     define('DB_PASS', '');
-    define('DB_NAME', 'classifitter_db');
+    define('DB_NAME', 'u463999436_alansarabaya');
 }
 
 // ── CORS ──────────────────────────────────────────────────────────────────
