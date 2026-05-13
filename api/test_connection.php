@@ -16,7 +16,7 @@ echo "Host: " . $host . "\n\n";
 // Test connection with detailed error reporting
 try {
     if ($isProduction) {
-        $db_host = getenv('DB_HOST') ?: '193.203.184.155';
+        $db_host = getenv('DB_HOST') ?: 'localhost';
         $db_user = getenv('DB_USER') ?: 'u463999436_alansarabaya';
         $db_pass = getenv('DB_PASS') ?: 'Abaya@9911323!';
         $db_name = getenv('DB_NAME') ?: 'u463999436_alansarabaya';
