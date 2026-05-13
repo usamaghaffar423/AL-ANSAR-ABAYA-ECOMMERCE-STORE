@@ -1,23 +1,18 @@
 <?php
 /**
- * Setup Admin - Direct database setup
+ * Setup Admin - Use api/config.php for database connection
  * Visit: https://domain.com/setup_admin.php?key=setup123
  */
 
-// Check for security key
 if (($_GET['key'] ?? '') !== 'setup123') {
     die('Unauthorized');
 }
 
-// Database credentials
-$host = 'srv1667.hstgr.io';
-$db = 'u463999436_alansarabaya';
-$user = 'u463999436_alansarabaya';
-$pass = 'Abaya@9911323!';
+require_once 'api/config.php';
+header('Content-Type: application/json');
 
 try {
-    // Connect to database
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
+    $pdo = getDbConnection();
 
     // Create users table
     $pdo->exec("CREATE TABLE IF NOT EXISTS users (
@@ -40,9 +35,10 @@ try {
 
     echo json_encode([
         'success' => true,
-        'message' => 'Admin created successfully',
+        'message' => '✅ Admin created successfully',
         'username' => 'admin',
-        'password' => 'Admin@12345'
+        'password' => 'Admin@12345',
+        'login_url' => 'https://linen-bee-509910.hostingersite.com/login'
     ], JSON_PRETTY_PRINT);
 
 } catch (Exception $e) {
