@@ -12,11 +12,8 @@ $ftp_pass = 'Abaya@9911323!'; // Change this!
 $ftp_port = 21;
 $remote_dir = '/public_html';
 
-// Local directories to deploy
+// Local directories to deploy (API is excluded - managed separately on Hostinger)
 $deploy_dirs = [
-    'src' => '/src',
-    'public' => '/public',
-    'api' => '/api',
     'dist' => '/dist'
 ];
 
