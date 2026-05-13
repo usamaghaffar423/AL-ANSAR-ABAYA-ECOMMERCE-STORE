@@ -11,16 +11,18 @@ RewriteRule ^ - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
 RewriteBase /
 
-# Don't rewrite index.html itself
+# Explicitly don't rewrite these extensions
+RewriteRule \.(php|js|css|jpg|jpeg|png|gif|txt|svg|woff|woff2|ttf|eot)$ - [L]
+
+# Don't rewrite api folder
+RewriteRule ^api/ - [L]
+
+# Don't rewrite index.html
 RewriteRule ^index\.html$ - [L]
 
-# Don't rewrite real files (has extension like .php, .js, .css, .txt, etc)
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^ - [L]
+# Don't rewrite real files or directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
-# Don't rewrite real directories
-RewriteCond %{REQUEST_FILENAME} -d
-RewriteRule ^ - [L]
-
-# Rewrite SPA routes to index.html (only paths without dots)
-RewriteRule ^[^.]*$ /index.html [L]
+# Rewrite everything else to index.html
+RewriteRule ^ /index.html [L]
