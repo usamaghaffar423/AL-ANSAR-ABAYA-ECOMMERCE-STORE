@@ -8,7 +8,7 @@
 // ── FTP Configuration ─────────────────────────────────────────────
 $ftp_host = '82.112.239.120';
 $ftp_user = 'u463999436_linen-bee-50990.hostingsite.com';
-$ftp_pass = 'your_ftp_password_here'; // Change this!
+$ftp_pass = 'Abaya@9911323!'; // Change this!
 $ftp_port = 21;
 $remote_dir = '/public_html';
 
