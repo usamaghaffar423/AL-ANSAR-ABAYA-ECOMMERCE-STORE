@@ -31,7 +31,7 @@ try {
 
     // ── Default Admin Credentials ──────────────────────────────────────
     $admin_username = 'admin';
-    $admin_email = 'admin@alansarabayah.com';
+    $admin_email = 'ossamaghaffar888@gmail.com';
     $admin_password = 'Admin@12345';  // Change this after first login!
     $admin_role = 'admin';
 
