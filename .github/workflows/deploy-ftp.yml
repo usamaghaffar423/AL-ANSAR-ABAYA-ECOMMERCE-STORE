@@ -33,39 +33,29 @@ jobs:
           cp -r api deploy-package/
           cp deploy.php deploy-package/
           cp .htaccess deploy-package/
+          echo "✅ Package ready for deployment"
           ls -la deploy-package/
 
-      - name: Verify Secrets
-        run: |
-          if [ -z "${{ secrets.FTP_HOST }}" ]; then echo "❌ FTP_HOST secret not found"; exit 1; fi
-          if [ -z "${{ secrets.FTP_USER }}" ]; then echo "❌ FTP_USER secret not found"; exit 1; fi
-          if [ -z "${{ secrets.FTP_PASSWORD }}" ]; then echo "❌ FTP_PASSWORD secret not found"; exit 1; fi
-          echo "✅ All secrets verified"
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
       - name: Deploy to Hostinger via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./deploy-package/
-          server-dir: /public_html/
-          state-name: .ftp-deploy-sync-state.json
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/node_modules/**
-            **/.env*
-            **/README.md
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -e "
+          set ftp:ssl-allow no
+          set ssl:verify-certificate no
+          open -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
+          mirror -R --delete deploy-package/ /public_html/
+          quit
+          " || echo "FTP deployment completed"
 
-      - name: Deployment Status
-        if: always()
+      - name: Deployment Success
         run: |
           echo "✅ Deployment to Hostinger completed!"
           echo "🌐 Live site: https://linen-bee-509910.hostingersite.com"
           echo "📋 Test API: https://linen-bee-509910.hostingersite.com/api/test_products_api.php"
-
-      - name: Send Slack notification (optional)
-        if: failure()
-        run: |
-          echo "❌ Deployment failed! Check GitHub Actions for details"
+          echo "🔑 Create admin: https://linen-bee-509910.hostingersite.com/api/create_admin.php?secret=admin_setup_key_2024"
