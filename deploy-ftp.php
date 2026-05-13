@@ -27,6 +27,8 @@ $files_to_deploy = [
     'postcss.config.js',
     'eslint.config.js',
     'deploy.php',
+    'deploy-ftp.php',
+    '.htaccess',
     'index.html'
 ];
 
