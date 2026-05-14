@@ -33,12 +33,27 @@ try {
         updated_at  TIMESTAMP      DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
+    // Auto-create categories table (should exist from get_categories.php)
+    $pdo->exec("CREATE TABLE IF NOT EXISTS categories (
+        id          INT AUTO_INCREMENT PRIMARY KEY,
+        name        VARCHAR(255)   NOT NULL,
+        slug        VARCHAR(255)   UNIQUE NOT NULL,
+        parent_id   INT            DEFAULT NULL,
+        level       INT            DEFAULT 0,
+        sort_order  INT            NOT NULL DEFAULT 0,
+        active      TINYINT(1)     NOT NULL DEFAULT 1,
+        created_at  TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
+        updated_at  TIMESTAMP      DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        FOREIGN KEY (parent_id) REFERENCES categories(id) ON DELETE SET NULL
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+
     // Auto-create product_categories junction table
     $pdo->exec("CREATE TABLE IF NOT EXISTS product_categories (
-        product_id INT NOT NULL,
-        category_id INT NOT NULL,
+        product_id   INT NOT NULL,
+        category_id  INT NOT NULL,
         PRIMARY KEY (product_id, category_id),
-        FOREIGN KEY (product_id) REFERENCES cf_products(id) ON DELETE CASCADE
+        FOREIGN KEY (product_id) REFERENCES cf_products(id) ON DELETE CASCADE,
+        FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
     // Auto-create product_images table
@@ -51,25 +66,62 @@ try {
         FOREIGN KEY (product_id) REFERENCES cf_products(id) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
-    // Seed sample products if empty or if table was just created
+    // Seed sample products if empty or if categories missing
     try {
+        // First ensure categories exist
+        $catCount = (int)$pdo->query("SELECT COUNT(*) FROM categories")->fetchColumn();
+        if ($catCount == 0) {
+            // Seed Al Ansar Abaya categories
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Simple Abayas', 'simple-abayas', null, 0, 1]);
+            $simple_id = (int)$pdo->lastInsertId();
+
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Open Abayas', 'open-abayas', $simple_id, 1, 1]);
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Maxi Simple Galla', 'maxi-simple-galla', $simple_id, 1, 2]);
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Maxi Cut Galla', 'maxi-cut-galla', $simple_id, 1, 3]);
+
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Embroidered/Party Abayas', 'embroidered-party-abayas', null, 0, 2]);
+            $party_id = (int)$pdo->lastInsertId();
+
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Straight open abayas', 'straight-open-abayas', $party_id, 1, 1]);
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Zoom fabric abayas', 'zoom-fabric-abayas', $party_id, 1, 2]);
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Nida Fabrics Abayas', 'nida-fabrics-abayas', $party_id, 1, 3]);
+
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Handmade', 'handmade', null, 0, 3]);
+
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Butterfly', 'butterfly', null, 0, 4]);
+
+            $pdo->prepare("INSERT INTO categories (name, slug, parent_id, level, sort_order) VALUES (?, ?, ?, ?, ?)")
+                ->execute(['Double Shirt Abayas', 'double-shirt-abayas', null, 0, 5]);
+        }
+
+        // Now check product count
         $stmt = $pdo->prepare("SELECT COUNT(*) as cnt FROM cf_products");
         $stmt->execute();
         $result = $stmt->fetch();
         $count = (int)($result['cnt'] ?? 0);
 
         // Seed if empty OR if product_categories is also empty (fresh start)
-        $catCount = 0;
+        $prodCatCount = 0;
         try {
-            $catStmt = $pdo->prepare("SELECT COUNT(*) as cnt FROM product_categories");
-            $catStmt->execute();
-            $catResult = $catStmt->fetch();
-            $catCount = (int)($catResult['cnt'] ?? 0);
+            $prodCatStmt = $pdo->prepare("SELECT COUNT(*) as cnt FROM product_categories");
+            $prodCatStmt->execute();
+            $prodCatResult = $prodCatStmt->fetch();
+            $prodCatCount = (int)($prodCatResult['cnt'] ?? 0);
         } catch (\Throwable $e) {}
 
-        if ($count == 0 || $catCount == 0) {
+        if ($count == 0 || $prodCatCount == 0) {
             // Fresh start - clear and reseed
-            if ($count > 0 || $catCount > 0) {
+            if ($count > 0 || $prodCatCount > 0) {
                 $pdo->exec("TRUNCATE TABLE product_categories");
                 $pdo->exec("TRUNCATE TABLE cf_products");
             }
