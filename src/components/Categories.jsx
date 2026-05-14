@@ -239,7 +239,7 @@ const Categories = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 className="text-white/50 text-[10px] font-black uppercase tracking-[0.4em] block mb-3"
                             >
-                                Bolqa House — Collection
+                                Al Ansar Abaya — Collection
                             </motion.span>
                             <motion.h1
                                 initial={{ opacity: 0, y: 16 }}

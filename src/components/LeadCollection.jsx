@@ -5,7 +5,7 @@ import { ArrowRight, Zap } from 'lucide-react';
 
 // ── Marquee text strip ────────────────────────────────────────────────────────
 const MARQUEE_ITEMS = [
-    'BOLQA HOUSE',  '✦',  'KPK KA STYLE',  '✦',
+    'AL ANSAR ABAYA',  '✦',  'KPK KA STYLE',  '✦',
     'PREMIUM ABAYAS',  '✦',  'APNI GAME UP KAR',  '✦',
     'NEW ARRIVALS',   '✦',  'DESI DRIP',     '✦',
     'FRESH FITS ONLY','✦',  'DIR TO PESHAWAR', '✦',
