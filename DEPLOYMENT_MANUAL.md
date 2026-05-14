@@ -77,9 +77,9 @@ Delete everything currently in `public_html/` then upload:
 
 After uploading:
 
-1. **Test API:** https://your-domain.com/api/check_db.php
-2. **Check Categories:** https://your-domain.com/api/get_categories.php
-3. **Test Home Page:** https://your-domain.com/
+1. **Test API:** https://alansarabayah.com/api/check_db.php
+2. **Check Categories:** https://alansarabayah.com/api/get_categories.php
+3. **Test Home Page:** https://alansarabayah.com/
 
 ---
 

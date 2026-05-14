@@ -52,7 +52,7 @@ jobs:
             --exclude='*.xlsx' \
             --exclude='Untitled*' \
             --exclude='vite.svg' \
-            ./ u463999436@82.112.239.120:/home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html/ \
+            ./ u463999436@82.112.239.120:/home/u463999436/domains/alansarabayah.com/public_html/ \
             --include='dist/***' \
             --include='api/***' \
             --include='.htaccess' \
@@ -61,7 +61,7 @@ jobs:
 
           # Create index.html redirect if needed (dist/index.html handles SPA routing)
           ssh -i ~/.ssh/id_ed25519 -p 65002 u463999436@82.112.239.120 << 'DEPLOY'
-          cd /home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html
+          cd /home/u463999436/domains/alansarabayah.com/public_html
 
           # Cleanup old development files if they exist
           rm -f test_*.php setup_*.php *.xlsx Untitled* *.config.js LOCAL_SETUP.md TECHNICAL_DOCUMENTATION.md 2>/dev/null || true
@@ -81,5 +81,5 @@ jobs:
       - name: Deployment Success
         run: |
           echo "✅ SSH Deployment to Hostinger completed!"
-          echo "🌐 Live site: https://linen-bee-509910.hostingersite.com"
-          echo "📋 Test API: https://linen-bee-509910.hostingersite.com/api/test_products_api.php"
+          echo "🌐 Live site: https://alansarabayah.com"
+          echo "📋 Test API: https://alansarabayah.com/api/test_products_api.php"
