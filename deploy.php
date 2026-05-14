@@ -1,6 +1,6 @@
 <?php
 // Webhook receiver for GitHub auto-deployment
-// Testing SSH deployment with appleboy/ssh-action
+// Testing with ed25519 SSH key
 $secret = getenv('GITHUB_WEBHOOK_SECRET') ?: 'abaya9911';
 
 // Verify GitHub signature (disabled for testing)
