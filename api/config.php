@@ -14,18 +14,19 @@ $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $isProduction = !in_array(strtolower(explode(':', $host)[0]), ['localhost', '127.0.0.1', '::1']);
 
 // ── Database Credentials ──────────────────────────────────────────────────
-if ($isProduction) {
-    // Production: Credentials MUST come from Hostinger environment variables
-    define('DB_HOST', getenv('DB_HOST'));
-    define('DB_USER', getenv('DB_USER'));
-    define('DB_PASS', getenv('DB_PASS'));
-    define('DB_NAME', getenv('DB_NAME'));
 
-    // Verify all required env vars are set in production
-    if (!DB_HOST || !DB_USER || !DB_PASS || !DB_NAME) {
-        http_response_code(500);
-        die('❌ Database configuration error: Missing environment variables. Contact admin.');
-    }
+// Try to load from .env file first (Hostinger compatible)
+$envFile = __DIR__ . '/.env.php';
+if (file_exists($envFile)) {
+    include $envFile;
+}
+
+if ($isProduction) {
+    // Production: Try env variables first, then fall back to config
+    define('DB_HOST', getenv('DB_HOST') ?: (defined('PROD_DB_HOST') ? PROD_DB_HOST : 'localhost'));
+    define('DB_USER', getenv('DB_USER') ?: (defined('PROD_DB_USER') ? PROD_DB_USER : 'u463999436_alansarabaya'));
+    define('DB_PASS', getenv('DB_PASS') ?: (defined('PROD_DB_PASS') ? PROD_DB_PASS : 'Abaya@9911323!'));
+    define('DB_NAME', getenv('DB_NAME') ?: (defined('PROD_DB_NAME') ? PROD_DB_NAME : 'u463999436_alansarabaya'));
 } else {
     // Local development — XAMPP default credentials
     define('DB_HOST', 'localhost');

@@ -30,6 +30,11 @@ deploy_stage/
 # Local DB dump — never commit credentials
 *.sql
 
+# Environment files with credentials
+api/.env.php
+.env
+.env.local
+
 # Uploaded product images — live on server, not in git
 images/products/*
 !images/products/.gitkeep
