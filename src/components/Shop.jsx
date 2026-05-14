@@ -9,13 +9,13 @@ import { Link, useSearchParams } from 'react-router-dom';
 const Shop = () => {
     const { addToCart } = useCart();
     const [searchParams, setSearchParams] = useSearchParams();
-    const urlCategory = searchParams.get('category');
+    const urlCategoryId = searchParams.get('category_id');
 
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [categories, setCategories] = useState(['All']);
-    const [selectedCategory, setSelectedCategory] = useState(urlCategory || 'All');
+    const [categories, setCategories] = useState([]);
+    const [selectedCategoryId, setSelectedCategoryId] = useState(urlCategoryId ? parseInt(urlCategoryId) : null);
     const [displayCount, setDisplayCount] = useState(12);
 
     // Fetch categories from API
@@ -26,8 +26,7 @@ const Shop = () => {
                 if (!response.ok) throw new Error('Failed to fetch categories');
                 const data = await response.json();
                 if (Array.isArray(data)) {
-                    const catNames = data.map(c => c.name);
-                    setCategories(['All', ...catNames]);
+                    setCategories(data);
                 }
             } catch (err) {
                 console.error('Error fetching categories:', err);
@@ -36,24 +35,24 @@ const Shop = () => {
         fetchCategories();
     }, []);
 
-    // Sync selectedCategory with URL param
+    // Sync selectedCategoryId with URL param
     useEffect(() => {
-        if (urlCategory) {
-            setSelectedCategory(urlCategory);
+        if (urlCategoryId) {
+            setSelectedCategoryId(parseInt(urlCategoryId));
         } else {
-            setSelectedCategory('All');
+            setSelectedCategoryId(null);
         }
         setDisplayCount(12);
-    }, [urlCategory]);
+    }, [urlCategoryId]);
 
-    // Fetch products based on selectedCategory
+    // Fetch products based on selectedCategoryId
     useEffect(() => {
         const fetchProducts = async () => {
             setLoading(true);
             try {
-                const url = selectedCategory === 'All'
+                const url = selectedCategoryId === null
                     ? `${API_BASE_URL}/get_products.php`
-                    : `${API_BASE_URL}/get_products.php?category=${encodeURIComponent(selectedCategory)}`;
+                    : `${API_BASE_URL}/get_products.php?category_id=${selectedCategoryId}`;
 
                 const response = await fetch(url);
                 if (!response.ok) throw new Error('Failed to fetch products');
@@ -69,7 +68,7 @@ const Shop = () => {
         };
 
         fetchProducts();
-    }, [selectedCategory]);
+    }, [selectedCategoryId]);
 
     return (
         <div className="min-h-screen bg-[#f5efe6]">
@@ -116,20 +115,33 @@ const Shop = () => {
                     {/* Categories */}
                     <div className="w-full md:w-auto overflow-x-auto scrollbar-hide">
                         <div className="flex items-center space-x-1 min-w-max pb-1 md:pb-0">
+                            <button
+                                onClick={() => {
+                                    setSelectedCategoryId(null);
+                                    setSearchParams({});
+                                    setDisplayCount(12);
+                                }}
+                                className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${selectedCategoryId === null
+                                    ? 'bg-[#1a3a2a] text-white shadow-lg shadow-[#1a3a2a]/20'
+                                    : 'text-gray-600 hover:text-[#1a3a2a] hover:bg-white border border-transparent hover:border-[#1a3a2a]/20'
+                                    }`}
+                            >
+                                All
+                            </button>
                             {categories.map((cat) => (
                                 <button
-                                    key={cat}
+                                    key={cat.id}
                                     onClick={() => {
-                                        setSelectedCategory(cat);
-                                        setSearchParams({ category: cat });
+                                        setSelectedCategoryId(cat.id);
+                                        setSearchParams({ category_id: cat.id.toString() });
                                         setDisplayCount(12);
                                     }}
-                                    className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${selectedCategory === cat
+                                    className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${selectedCategoryId === cat.id
                                         ? 'bg-[#1a3a2a] text-white shadow-lg shadow-[#1a3a2a]/20'
                                         : 'text-gray-600 hover:text-[#1a3a2a] hover:bg-white border border-transparent hover:border-[#1a3a2a]/20'
                                         }`}
                                 >
-                                    {cat}
+                                    {cat.name}
                                 </button>
                             ))}
                         </div>

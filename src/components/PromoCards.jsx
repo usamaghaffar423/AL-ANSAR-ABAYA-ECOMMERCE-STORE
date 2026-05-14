@@ -62,73 +62,19 @@ const PremiumCard = ({ title, subtitle, link, delay, icon, isLarge }) => {
 };
 
 const PromoCards = () => {
+  // These will be mapped from the API, but for now we use IDs based on the seeded order
   const categories = [
-    {
-      title: 'Simple Abayas',
-      subtitle: 'Elegant & Timeless',
-      icon: '👗',
-      link: '/shop?category=simple-abayas',
-    },
-    {
-      title: 'Open Abayas',
-      subtitle: 'Modern Cuts',
-      icon: '✨',
-      link: '/shop?category=open-abayas',
-    },
-    {
-      title: 'Maxi Simple Galla',
-      subtitle: 'Long & Flowing',
-      icon: '🎀',
-      link: '/shop?category=maxi-simple-galla',
-    },
-    {
-      title: 'Maxi Cut Galla',
-      subtitle: 'Premium Tailoring',
-      icon: '👑',
-      link: '/shop?category=maxi-cut-galla',
-    },
-    {
-      title: 'Embroidered Abayas',
-      subtitle: 'Party & Special',
-      icon: '💎',
-      link: '/shop?category=embroidered-party-abayas',
-    },
-    {
-      title: 'Straight Open Abayas',
-      subtitle: 'Exquisite Details',
-      icon: '✨',
-      link: '/shop?category=straight-open-abayas',
-    },
-    {
-      title: 'Zoom Fabric Abayas',
-      subtitle: 'Premium Quality',
-      icon: '🌟',
-      link: '/shop?category=zoom-fabric-abayas',
-    },
-    {
-      title: 'Nida Fabrics Abayas',
-      subtitle: 'Sophisticated Style',
-      icon: '👸',
-      link: '/shop?category=nida-fabrics-abayas',
-    },
-    {
-      title: 'Handmade',
-      subtitle: 'Artisan Crafted',
-      icon: '🎨',
-      link: '/shop?category=handmade',
-    },
-    {
-      title: 'Butterfly',
-      subtitle: 'Unique Designs',
-      icon: '🦋',
-      link: '/shop?category=butterfly',
-    },
-    {
-      title: 'Double Shirt Abayas',
-      subtitle: 'Double Layer Style',
-      icon: '👔',
-      link: '/shop?category=double-shirt-abayas',
-    },
+    { title: 'Simple Abayas', subtitle: 'Elegant & Timeless', icon: '👗', id: 1 },
+    { title: 'Open Abayas', subtitle: 'Modern Cuts', icon: '✨', id: 2 },
+    { title: 'Maxi Simple Galla', subtitle: 'Long & Flowing', icon: '🎀', id: 3 },
+    { title: 'Maxi Cut Galla', subtitle: 'Premium Tailoring', icon: '👑', id: 4 },
+    { title: 'Embroidered Abayas', subtitle: 'Party & Special', icon: '💎', id: 5 },
+    { title: 'Straight Open Abayas', subtitle: 'Exquisite Details', icon: '✨', id: 6 },
+    { title: 'Zoom Fabric Abayas', subtitle: 'Premium Quality', icon: '🌟', id: 7 },
+    { title: 'Nida Fabrics Abayas', subtitle: 'Sophisticated Style', icon: '👸', id: 8 },
+    { title: 'Handmade', subtitle: 'Artisan Crafted', icon: '🎨', id: 9 },
+    { title: 'Butterfly', subtitle: 'Unique Designs', icon: '🦋', id: 10 },
+    { title: 'Double Shirt Abayas', subtitle: 'Double Layer Style', icon: '👔', id: 11 },
   ];
 
   return (
@@ -175,8 +121,11 @@ const PromoCards = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6" role="region" aria-label="Abaya product categories">
           {categories.map((category, idx) => (
             <PremiumCard
-              key={idx}
-              {...category}
+              key={category.id}
+              title={category.title}
+              subtitle={category.subtitle}
+              icon={category.icon}
+              link={`/shop?category_id=${category.id}`}
               delay={idx * 0.08}
               isLarge={idx === 0}
             />
