@@ -43,6 +43,7 @@ $allowedOrigins = [
     'https://linen-bee-509910.hostingersite.com',
     'https://alansarabayah.com',
     'https://www.alansarabayah.com',
+    'https://al-ansar-abaya-ecommerce-store.vercel.app',
 ];
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
