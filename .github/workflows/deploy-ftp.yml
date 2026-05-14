@@ -35,24 +35,42 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p 65002 82.112.239.120 >> ~/.ssh/known_hosts 2>/dev/null || true
 
-          # First, sync the built files
-          echo "📤 Uploading built files..."
+          # Sync built files to production
+          echo "📤 Uploading production files..."
           rsync -avz -e "ssh -i ~/.ssh/id_ed25519 -p 65002" \
-            --exclude=node_modules \
-            --exclude=.git \
-            dist/ api/ .htaccess deploy.php index.html \
+            --delete-after \
+            --exclude='node_modules' \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='src' \
+            --exclude='migrations' \
+            --exclude='test_*.php' \
+            --exclude='setup_*.php' \
+            --exclude='*.config.js' \
+            --exclude='package*.json' \
+            --exclude='*.md' \
+            --exclude='*.xlsx' \
+            --exclude='Untitled*' \
+            dist/ api/ assets/ robots.txt .htaccess \
             u463999436@82.112.239.120:/home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html/
 
-          # Then verify deployment
+          # Create index.html redirect if needed (dist/index.html handles SPA routing)
           ssh -i ~/.ssh/id_ed25519 -p 65002 u463999436@82.112.239.120 << 'DEPLOY'
           cd /home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html
+
+          # Cleanup old development files if they exist
+          rm -f test_*.php setup_*.php *.xlsx Untitled* *.config.js LOCAL_SETUP.md TECHNICAL_DOCUMENTATION.md 2>/dev/null || true
+
           echo "✅ Deployment complete!"
           echo ""
-          echo "=== Deployed files ==="
-          ls -la | head -15
+          echo "=== Production files ==="
+          ls -la | grep -v '^d' | head -10
           echo ""
-          echo "=== dist folder ==="
-          ls -la dist/ | head -10
+          echo "=== API files ==="
+          ls -la api/ | head -10
+          echo ""
+          echo "=== React dist folder ==="
+          ls -la dist/ 2>/dev/null | head -8
           DEPLOY
 
       - name: Deployment Success

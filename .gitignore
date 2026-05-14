@@ -33,3 +33,20 @@ deploy_stage/
 # Uploaded product images — live on server, not in git
 images/products/*
 !images/products/.gitkeep
+
+# Development & test files — never deploy to production
+test_*.php
+setup_*.php
+LOCAL_SETUP.md
+TECHNICAL_DOCUMENTATION.md
+*.xlsx
+Untitled*
+
+# Build config files — only needed locally
+tailwind.config.js
+postcss.config.js
+*.config.js
+
+# Development folders
+src/
+migrations/
