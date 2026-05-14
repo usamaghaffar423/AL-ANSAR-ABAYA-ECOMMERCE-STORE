@@ -51,8 +51,13 @@ jobs:
             --exclude='*.md' \
             --exclude='*.xlsx' \
             --exclude='Untitled*' \
-            dist/ api/ assets/ robots.txt .htaccess \
-            u463999436@82.112.239.120:/home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html/
+            --exclude='vite.svg' \
+            ./ u463999436@82.112.239.120:/home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html/ \
+            --include='dist/***' \
+            --include='api/***' \
+            --include='.htaccess' \
+            --include='robots.txt' \
+            --exclude='*'
 
           # Create index.html redirect if needed (dist/index.html handles SPA routing)
           ssh -i ~/.ssh/id_ed25519 -p 65002 u463999436@82.112.239.120 << 'DEPLOY'
