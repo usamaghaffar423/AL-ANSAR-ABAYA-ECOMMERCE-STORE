@@ -37,8 +37,18 @@ jobs:
 
           ssh -i ~/.ssh/id_ed25519 -p 65002 u463999436@82.112.239.120 << 'DEPLOY'
           cd /home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html
-          echo "🔄 Pulling latest code from GitHub..."
-          git pull origin main
+
+          if [ ! -d .git ]; then
+            echo "📦 First deployment - cloning repository..."
+            cd ..
+            rm -rf public_html
+            git clone https://github.com/usamaghaffar423/AL-ANSAR-ABAYA-ECOMMERCE-STORE.git public_html
+            cd public_html
+          else
+            echo "🔄 Pulling latest code from GitHub..."
+            git pull origin main
+          fi
+
           echo "✅ Deployment complete!"
           pwd
           git log -1 --oneline
