@@ -50,3 +50,6 @@ postcss.config.js
 # Development folders
 migrations/
 # src/ needed for Vercel builds
+
+# Archived/unused files — kept for reference but not deployed
+_archived/

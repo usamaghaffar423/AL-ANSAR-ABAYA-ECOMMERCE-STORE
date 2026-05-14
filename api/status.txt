@@ -1,1 +1,0 @@
-API is working - .htaccess fix applied
