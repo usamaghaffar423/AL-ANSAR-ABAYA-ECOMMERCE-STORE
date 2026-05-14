@@ -46,18 +46,27 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           echo "Connecting to FTP: $FTP_HOST"
-          lftp -e "
+          timeout 600 lftp -e "
           set ftp:ssl-allow no
           set ssl:verify-certificate no
           set ftp:passive-mode on
+          set net:timeout 30
+          set net:max-retries 2
+          set ftp:list-options -lah
           open -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
-          mirror -R --delete deploy-package/ /public_html/
+          pwd
+          echo 'Starting mirror...'
+          mirror -R --delete --verbose deploy-package/ /public_html/
           quit
           "
-          if [ $? -eq 0 ]; then
+          EXIT_CODE=$?
+          if [ $EXIT_CODE -eq 0 ]; then
             echo "✅ FTP deployment successful"
+          elif [ $EXIT_CODE -eq 124 ]; then
+            echo "❌ FTP deployment timed out (exceeded 10 minutes)"
+            exit 1
           else
-            echo "❌ FTP deployment failed"
+            echo "❌ FTP deployment failed with exit code: $EXIT_CODE"
             exit 1
           fi
 
