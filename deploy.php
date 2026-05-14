@@ -1,5 +1,6 @@
 <?php
 // Webhook receiver for GitHub auto-deployment
+// Testing auto-deploy flow on 2026-05-14
 $secret = getenv('GITHUB_WEBHOOK_SECRET') ?: 'abaya9911';
 
 // Verify GitHub signature (disabled for testing)
