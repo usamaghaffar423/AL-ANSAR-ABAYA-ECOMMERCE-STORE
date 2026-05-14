@@ -150,7 +150,7 @@ const LoginPage = () => {
                 </div>
 
                 <div className="mt-8 flex items-center justify-between px-8">
-                    <p className="text-[9px] font-bold text-gray-300 uppercase tracking-[0.3em]">© 2026 Bolqa House</p>
+                    <p className="text-[9px] font-bold text-gray-300 uppercase tracking-[0.3em]">© 2026 Al Ansar Abaya</p>
                     <div className="flex space-x-4">
                         <span className="text-[9px] font-bold text-gray-300 uppercase tracking-widest cursor-pointer hover:text-[#1a3a2a] transition-colors">Privacy</span>
                         <span className="text-[9px] font-bold text-gray-300 uppercase tracking-widest cursor-pointer hover:text-[#1a3a2a] transition-colors">Support</span>

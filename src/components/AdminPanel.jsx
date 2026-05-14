@@ -552,7 +552,7 @@ const AdminPanel = () => {
                 <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
                     <div>
                         <h1 className="text-xl font-black text-gray-900 uppercase tracking-tight">
-                            Bolqa House <span className="text-[#1a3a2a]">Admin</span>
+                            Al Ansar Abaya <span className="text-[#1a3a2a]">Admin</span>
                         </h1>
                         <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Store Management</p>
                     </div>
