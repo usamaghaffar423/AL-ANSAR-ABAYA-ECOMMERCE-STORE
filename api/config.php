@@ -5,6 +5,8 @@
  * Auto-detects local vs production environment.
  * Local  → XAMPP (localhost, root, no password)
  * Production → credentials loaded from env variables set in Hostinger
+ *
+ * Version: 1.0.0 - Production stable
  */
 
 // ── Environment Detection ─────────────────────────────────────────────────
