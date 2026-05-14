@@ -55,20 +55,20 @@ switch ($method) {
     // ── LIST ─────────────────────────────────────────────────────────────
     case 'GET':
         $search = trim($_GET['search'] ?? '');
-        $cat    = trim($_GET['category'] ?? '');
+        $cat_id = isset($_GET['category_id']) ? (int)$_GET['category_id'] : null;
 
-        $sql    = "SELECT * FROM cf_products WHERE 1=1";
+        $sql    = "SELECT DISTINCT p.* FROM cf_products p LEFT JOIN product_categories pc ON p.id = pc.product_id WHERE 1=1";
         $params = [];
 
         if ($search) {
-            $sql .= " AND (name LIKE ? OR description LIKE ? OR category LIKE ?)";
-            $params = array_merge($params, ["%$search%", "%$search%", "%$search%"]);
+            $sql .= " AND (p.name LIKE ? OR p.description LIKE ?)";
+            $params = array_merge($params, ["%$search%", "%$search%"]);
         }
-        if ($cat) {
-            $sql .= " AND category = ?";
-            $params[] = $cat;
+        if ($cat_id) {
+            $sql .= " AND pc.category_id = ?";
+            $params[] = $cat_id;
         }
-        $sql .= " ORDER BY sort_order ASC, created_at DESC LIMIT 500";
+        $sql .= " ORDER BY p.sort_order ASC, p.created_at DESC LIMIT 500";
 
         $stmt = $pdo->prepare($sql);
         $stmt->execute($params);
@@ -83,6 +83,12 @@ switch ($method) {
             $r['active']    = (bool)$r['active'];
             $r['sort_order']= (int)$r['sort_order'];
             $r['image']     = imgUrl($r['image']);
+
+            // Get categories for this product
+            $cat_stmt = $pdo->prepare("SELECT category_id FROM product_categories WHERE product_id = ? ORDER BY category_id");
+            $cat_stmt->execute([$r['id']]);
+            $r['category_ids'] = array_column($cat_stmt->fetchAll(), 'category_id');
+            $r['category_ids'] = array_map('intval', $r['category_ids']);
         }
         unset($r);
         echo json_encode($rows);
@@ -98,6 +104,12 @@ switch ($method) {
             exit;
         }
 
+        if (empty($d['category_ids']) || !is_array($d['category_ids'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'At least one category is required (category_ids array).']);
+            exit;
+        }
+
         $stmt = $pdo->prepare("
             INSERT INTO cf_products
                 (name, category, price, old_price, description, image, sizes, colors, stock, featured, active, sort_order)
@@ -105,7 +117,7 @@ switch ($method) {
         ");
         $stmt->execute([
             trim($d['name']),
-            trim($d['category']    ?? 'General'),
+            'General',
             (float)$d['price'],
             !empty($d['old_price']) ? (float)$d['old_price'] : null,
             trim($d['description'] ?? ''),
@@ -117,7 +129,16 @@ switch ($method) {
             (int)(bool)($d['active']   ?? true),
             (int)($d['sort_order'] ?? 0),
         ]);
-        echo json_encode(['success' => true, 'id' => (int)$pdo->lastInsertId()]);
+
+        $product_id = (int)$pdo->lastInsertId();
+
+        // Insert category links
+        $cat_stmt = $pdo->prepare("INSERT INTO product_categories (product_id, category_id) VALUES (?, ?)");
+        foreach ((array)$d['category_ids'] as $cat_id) {
+            $cat_stmt->execute([$product_id, (int)$cat_id]);
+        }
+
+        echo json_encode(['success' => true, 'id' => $product_id]);
         break;
 
     // ── UPDATE ────────────────────────────────────────────────────────────
@@ -132,6 +153,12 @@ switch ($method) {
             exit;
         }
 
+        if (empty($d['category_ids']) || !is_array($d['category_ids'])) {
+            http_response_code(400);
+            echo json_encode(['error' => 'At least one category is required (category_ids array).']);
+            exit;
+        }
+
         $stmt = $pdo->prepare("
             UPDATE cf_products SET
                 name        = ?, category    = ?, price    = ?, old_price = ?,
@@ -141,7 +168,7 @@ switch ($method) {
         ");
         $stmt->execute([
             trim($d['name']),
-            trim($d['category']    ?? 'General'),
+            'General',
             (float)$d['price'],
             !empty($d['old_price']) ? (float)$d['old_price'] : null,
             trim($d['description'] ?? ''),
@@ -154,6 +181,14 @@ switch ($method) {
             (int)($d['sort_order'] ?? 0),
             $id,
         ]);
+
+        // Remove old category links and insert new ones
+        $pdo->prepare("DELETE FROM product_categories WHERE product_id = ?")->execute([$id]);
+        $cat_stmt = $pdo->prepare("INSERT INTO product_categories (product_id, category_id) VALUES (?, ?)");
+        foreach ((array)$d['category_ids'] as $cat_id) {
+            $cat_stmt->execute([$id, (int)$cat_id]);
+        }
+
         echo json_encode(['success' => true]);
         break;
 

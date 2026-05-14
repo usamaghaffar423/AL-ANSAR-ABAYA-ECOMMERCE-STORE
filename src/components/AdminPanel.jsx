@@ -10,19 +10,10 @@ import { useAuth } from '../context/AuthContext';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
-const SUGGESTED_CATEGORIES = [
-    // Edenrobe
-    'Edenrobe Printed Lawn', 'Premium & Festive Collection',
-    // Fragrance
-    'Edenrobe Fragrance', 'Imported Fragrance',
-    // Other
-    'Imported Bags', 'Watches',
-];
-
 const SIZE_OPTIONS = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', 'Free Size'];
 
 const BLANK = {
-    name: '', category: '', price: '', old_price: '',
+    name: '', category_ids: [], price: '', old_price: '',
     description: '', image: '', sizes: '', colors: '',
     stock: 0, featured: false, active: true, sort_order: 0,
 };
@@ -127,6 +118,7 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
     const handleSave = async () => {
         if (!form.name.trim())   { setError('Product name is required.');     return; }
         if (!form.price || isNaN(+form.price)) { setError('Valid price required.'); return; }
+        if (!form.category_ids || form.category_ids.length === 0) { setError('At least one category is required.'); return; }
         setSaving(true); setError('');
         try {
             const url    = product ? `${API_BASE_URL}/admin_products.php?id=${product.id}` : `${API_BASE_URL}/admin_products.php`;
@@ -287,21 +279,60 @@ const ProductModal = ({ product, categories, token, onSave, onClose }) => {
                         </div>
                     </div>
 
-                    {/* Name + Category */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">Product Name <span className="text-[#1a3a2a]">*</span></label>
-                            <input type="text" value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Classic White Tee" className={inputCls} />
+                    {/* Name */}
+                    <div>
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">Product Name <span className="text-[#1a3a2a]">*</span></label>
+                        <input type="text" value={form.name} onChange={e => set('name', e.target.value)} placeholder="e.g. Classic White Abaya" className={inputCls} />
+                    </div>
+
+                    {/* Categories — Hierarchical Multi-Select */}
+                    <div>
+                        <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-3">Categories <span className="text-[#1a3a2a]">*</span> <span className="text-gray-300 normal-case font-medium">— select one or more</span></label>
+                        <div className="space-y-4">
+                            {categories.map(mainCat => (
+                                <div key={mainCat.id} className="border border-gray-200 rounded-2xl p-4">
+                                    <label className="flex items-center gap-3 cursor-pointer mb-3">
+                                        <input
+                                            type="checkbox"
+                                            checked={form.category_ids.includes(mainCat.id)}
+                                            onChange={e => {
+                                                if (e.target.checked) {
+                                                    set('category_ids', [...form.category_ids, mainCat.id]);
+                                                } else {
+                                                    set('category_ids', form.category_ids.filter(id => id !== mainCat.id && !mainCat.children?.some(c => c.id === id)));
+                                                }
+                                            }}
+                                            className="w-5 h-5 cursor-pointer accent-[#1a3a2a]"
+                                        />
+                                        <span className="font-black text-sm text-gray-900 uppercase tracking-tight">{mainCat.name}</span>
+                                    </label>
+                                    {mainCat.children && mainCat.children.length > 0 && (
+                                        <div className="ml-8 space-y-2 border-l-2 border-gray-200 pl-4">
+                                            {mainCat.children.map(subCat => (
+                                                <label key={subCat.id} className="flex items-center gap-3 cursor-pointer">
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={form.category_ids.includes(subCat.id)}
+                                                        onChange={e => {
+                                                            if (e.target.checked) {
+                                                                set('category_ids', [...form.category_ids, subCat.id]);
+                                                            } else {
+                                                                set('category_ids', form.category_ids.filter(id => id !== subCat.id));
+                                                            }
+                                                        }}
+                                                        className="w-5 h-5 cursor-pointer accent-[#1a3a2a]"
+                                                    />
+                                                    <span className="text-sm text-gray-700">{subCat.name}</span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
-                        <div>
-                            <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-1.5">Category</label>
-                            <input type="text" list="cat-list" value={form.category} onChange={e => set('category', e.target.value)} placeholder="e.g. T-Shirts" className={inputCls} />
-                            <datalist id="cat-list">
-                                {[...SUGGESTED_CATEGORIES, ...categories.filter(c => !SUGGESTED_CATEGORIES.includes(c))].map(c => (
-                                    <option key={c} value={c} />
-                                ))}
-                            </datalist>
-                        </div>
+                        {form.category_ids.length === 0 && (
+                            <p className="text-red-500 text-[11px] font-semibold mt-2">✕ At least one category is required</p>
+                        )}
                     </div>
 
                     {/* Price + Old Price */}
@@ -487,19 +518,35 @@ const AdminPanel = () => {
         finally { setODing(false); setDO(null); }
     };
 
+    // ── Fetch Categories (hierarchical) ────────────────────────────────────────
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/get_categories.php`);
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    setCategories(data);
+                } else {
+                    console.error('Invalid categories data:', data);
+                }
+            } catch (e) {
+                console.error('Failed to fetch categories:', e);
+            }
+        };
+        fetchCategories();
+    }, []);
+
     // ── Products fetch ────────────────────────────────────────────────────────
     const fetchProducts = useCallback(async () => {
         setPL(true);
         try {
             const params = new URLSearchParams();
             if (search)    params.set('search', search);
-            if (filterCat) params.set('category', filterCat);
+            if (filterCat) params.set('category_id', filterCat);
             const res  = await authFetch(`${API_BASE_URL}/admin_products.php?${params}`);
             const data = await res.json();
             if (Array.isArray(data)) {
                 setProducts(data);
-                const cats = [...new Set(data.map(p => p.category).filter(Boolean))].sort();
-                setCategories(cats);
             } else {
                 console.error('Invalid products data:', data);
             }
@@ -622,7 +669,13 @@ const AdminPanel = () => {
                                 <select value={filterCat} onChange={e => setFilterCat(e.target.value)}
                                     className="bg-white border border-gray-100 rounded-2xl px-4 py-3 text-sm font-semibold text-gray-700 shadow-lg shadow-gray-100/50 outline-none focus:border-[#1a3a2a]">
                                     <option value="">All Categories</option>
-                                    {categories.map(c => <option key={c} value={c}>{c}</option>)}
+                                    {categories.map(mainCat => (
+                                        <optgroup key={mainCat.id} label={mainCat.name}>
+                                            {mainCat.children && mainCat.children.map(subCat => (
+                                                <option key={subCat.id} value={subCat.id}>{subCat.name}</option>
+                                            ))}
+                                        </optgroup>
+                                    ))}
                                 </select>
                             )}
                             <button onClick={() => { setEditing(null); setShowModal(true); }}

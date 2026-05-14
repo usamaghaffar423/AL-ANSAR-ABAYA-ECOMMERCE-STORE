@@ -40,34 +40,34 @@ try {
     $imageBase = $protocol . '://' . $host . $root . '/';
 
     // ── Params ───────────────────────────────────────────────────────────
-    $id       = isset($_GET['id'])       ? (int)$_GET['id']              : null;
-    $category = isset($_GET['category']) && $_GET['category'] !== 'All'
-                    ? trim($_GET['category']) : null;
-    $search   = isset($_GET['search'])   ? trim($_GET['search'])          : null;
-    $trending = isset($_GET['trending']) && $_GET['trending'] === '1';
-    $limit    = isset($_GET['limit'])    ? min((int)$_GET['limit'], 500)  : 100;
+    $id          = isset($_GET['id'])           ? (int)$_GET['id']              : null;
+    $category_id = isset($_GET['category_id']) && $_GET['category_id'] !== 'All'
+                       ? (int)$_GET['category_id'] : null;
+    $search      = isset($_GET['search'])       ? trim($_GET['search'])          : null;
+    $trending    = isset($_GET['trending'])     && $_GET['trending'] === '1';
+    $limit       = isset($_GET['limit'])        ? min((int)$_GET['limit'], 500)  : 100;
 
     // ── Query ────────────────────────────────────────────────────────────
-    $sql    = "SELECT * FROM cf_products WHERE active = 1";
+    $sql    = "SELECT DISTINCT p.* FROM cf_products p LEFT JOIN product_categories pc ON p.id = pc.product_id WHERE p.active = 1";
     $params = [];
 
     if ($id) {
-        $sql .= " AND id = ?";
+        $sql .= " AND p.id = ?";
         $params[] = $id;
     }
-    if ($category) {
-        $sql .= " AND category = ?";
-        $params[] = $category;
+    if ($category_id) {
+        $sql .= " AND pc.category_id = ?";
+        $params[] = $category_id;
     }
     if ($search) {
-        $sql .= " AND (name LIKE ? OR description LIKE ? OR category LIKE ?)";
-        $params = array_merge($params, ["%$search%", "%$search%", "%$search%"]);
+        $sql .= " AND (p.name LIKE ? OR p.description LIKE ?)";
+        $params = array_merge($params, ["%$search%", "%$search%"]);
     }
     if ($trending) {
-        $sql .= " AND featured = 1";
+        $sql .= " AND p.featured = 1";
     }
 
-    $sql .= " ORDER BY sort_order ASC, featured DESC, created_at DESC";
+    $sql .= " ORDER BY p.sort_order ASC, p.featured DESC, p.created_at DESC";
 
     if (!$id) {
         $sql .= " LIMIT ?";
@@ -91,6 +91,11 @@ try {
             $img = $imageBase . ltrim($img, '/');
         }
 
+        // Get category IDs for this product
+        $cat_stmt = $pdo->prepare("SELECT category_id FROM product_categories WHERE product_id = ? ORDER BY category_id");
+        $cat_stmt->execute([(int)$r['id']]);
+        $category_ids = array_map('intval', array_column($cat_stmt->fetchAll(), 'category_id'));
+
         $products[] = [
             'id'                => (int)$r['id'],
             'title'             => $r['name'],
@@ -99,6 +104,7 @@ try {
             'discount_pct'      => $discount,
             'image_url'         => $img,
             'category'          => $r['category'],
+            'category_ids'      => $category_ids,
             'is_trending'       => (bool)$r['featured'],
             'stock_status'      => ((int)$r['stock'] > 0) ? 'in_stock' : 'out_of_stock',
             'stock_quantity'    => (int)$r['stock'],

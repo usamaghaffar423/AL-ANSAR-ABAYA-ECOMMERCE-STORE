@@ -6,7 +6,10 @@
       "Bash(git push *)",
       "Bash(npm run *)",
       "Bash(Start-Process \"http://localhost:5173\" -WindowStyle Hidden)",
-      "Bash(Start-Sleep -Seconds 3)"
+      "Bash(Start-Sleep -Seconds 3)",
+      "Bash(mkdir -p ~/.ssh)",
+      "Bash(ssh-keygen -t rsa -b 4096 -f ~/.ssh/github_hostinger -N \"\" -C \"github-actions-hostinger\")",
+      "Read(//c/Users/USER/.ssh/**)"
     ]
   }
 }
