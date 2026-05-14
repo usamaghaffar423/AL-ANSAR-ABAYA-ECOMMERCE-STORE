@@ -1,6 +1,6 @@
 <?php
 // Webhook receiver for GitHub auto-deployment
-// Testing with ed25519 SSH key
+// Testing with ssh-agent
 $secret = getenv('GITHUB_WEBHOOK_SECRET') ?: 'abaya9911';
 
 // Verify GitHub signature (disabled for testing)
