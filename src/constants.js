@@ -7,13 +7,14 @@ import image116 from './assets/image-116.webp';
 import image119 from './assets/image-119.webp';
 import image123 from './assets/image-123.webp';
 import image99 from './assets/image-99.webp';
+import logo from './assets/logo.png';
 
 export const IMAGES = {
     hero: image105,
     hero_secondary: image110,
     hero_tertiary: image115,
-    logo: '/images/logo-abaya.png',
-    logo_dark: '/images/logo-abaya.png',
+    logo: logo,
+    logo_dark: logo,
     brand_icon: icon,
     category_red: image110,
     category_blue: image123,
