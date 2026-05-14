@@ -51,26 +51,40 @@ try {
         FOREIGN KEY (product_id) REFERENCES cf_products(id) ON DELETE CASCADE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
-    // Seed sample products if empty
+    // Seed sample products if empty or if table was just created
     try {
         $stmt = $pdo->prepare("SELECT COUNT(*) as cnt FROM cf_products");
         $stmt->execute();
         $result = $stmt->fetch();
         $count = (int)($result['cnt'] ?? 0);
 
-        if ($count == 0) {
+        // Seed if empty OR if product_categories is also empty (fresh start)
+        $catCount = 0;
+        try {
+            $catStmt = $pdo->prepare("SELECT COUNT(*) as cnt FROM product_categories");
+            $catStmt->execute();
+            $catResult = $catStmt->fetch();
+            $catCount = (int)($catResult['cnt'] ?? 0);
+        } catch (\Throwable $e) {}
+
+        if ($count == 0 || $catCount == 0) {
+            // Fresh start - clear and reseed
+            if ($count > 0 || $catCount > 0) {
+                $pdo->exec("TRUNCATE TABLE product_categories");
+                $pdo->exec("TRUNCATE TABLE cf_products");
+            }
             $products = [
-                ['Black Abaya', 'Elegant black abaya with delicate embroidery', 45.99, 65.00, 'images/products/black-abaya.jpg', 1, 25],
-                ['Navy Blue Abaya', 'Navy blue premium quality abaya', 52.99, 75.00, 'images/products/navy-abaya.jpg', 1, 30],
-                ['Burgundy Abaya', 'Rich burgundy abaya with gold detailing', 55.99, 80.00, 'images/products/burgundy-abaya.jpg', 2, 20],
-                ['Green Abaya', 'Forest green traditional abaya', 48.99, 70.00, 'images/products/green-abaya.jpg', 3, 15],
-                ['Embroidered Black Abaya', 'Black abaya with intricate gold embroidery', 65.99, 95.00, 'images/products/embroidered-black.jpg', 1, 12],
-                ['Silk Black Abaya', 'Premium silk black abaya', 72.99, 105.00, 'images/products/silk-black.jpg', 4, 8],
-                ['Modern Black Abaya', 'Contemporary style black abaya', 42.99, 60.00, 'images/products/modern-black.jpg', 5, 40],
-                ['Casual Black Abaya', 'Everyday wear black abaya', 38.99, 55.00, 'images/products/casual-black.jpg', 6, 50],
+                ['Black Abaya', 'Elegant black abaya with delicate embroidery', 45.99, 65.00, 'images/products/black-abaya.jpg', 1, 25, 'Abayas'],
+                ['Navy Blue Abaya', 'Navy blue premium quality abaya', 52.99, 75.00, 'images/products/navy-abaya.jpg', 1, 30, 'Abayas'],
+                ['Burgundy Abaya', 'Rich burgundy abaya with gold detailing', 55.99, 80.00, 'images/products/burgundy-abaya.jpg', 1, 20, 'Abayas'],
+                ['Green Abaya', 'Forest green traditional abaya', 48.99, 70.00, 'images/products/green-abaya.jpg', 1, 15, 'Abayas'],
+                ['Embroidered Black Abaya', 'Black abaya with intricate gold embroidery', 65.99, 95.00, 'images/products/embroidered-black.jpg', 1, 12, 'Abayas'],
+                ['Silk Black Abaya', 'Premium silk black abaya', 72.99, 105.00, 'images/products/silk-black.jpg', 1, 8, 'Abayas'],
+                ['Modern Black Abaya', 'Contemporary style black abaya', 42.99, 60.00, 'images/products/modern-black.jpg', 1, 40, 'Abayas'],
+                ['Casual Black Abaya', 'Everyday wear black abaya', 38.99, 55.00, 'images/products/casual-black.jpg', 1, 50, 'Abayas'],
             ];
 
-            $insert = $pdo->prepare("INSERT INTO cf_products (name, description, price, old_price, image, featured, stock, category) VALUES (?, ?, ?, ?, ?, 1, ?, 'Abayas')");
+            $insert = $pdo->prepare("INSERT INTO cf_products (name, description, price, old_price, image, featured, stock, category) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             $productIds = [];
             foreach ($products as $p) {
                 $insert->execute($p);
