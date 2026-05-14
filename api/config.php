@@ -13,11 +13,17 @@ $isProduction = !in_array(strtolower(explode(':', $host)[0]), ['localhost', '127
 
 // ── Database Credentials ──────────────────────────────────────────────────
 if ($isProduction) {
-    // Credentials from Hostinger Remote MySQL
-    define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
-    define('DB_USER', getenv('DB_USER') ?: 'u463999436_alansarabaya');
-    define('DB_PASS', getenv('DB_PASS') ?: 'Abaya@9911323!');
-    define('DB_NAME', getenv('DB_NAME') ?: 'u463999436_alansarabaya');
+    // Production: Credentials MUST come from Hostinger environment variables
+    define('DB_HOST', getenv('DB_HOST'));
+    define('DB_USER', getenv('DB_USER'));
+    define('DB_PASS', getenv('DB_PASS'));
+    define('DB_NAME', getenv('DB_NAME'));
+
+    // Verify all required env vars are set in production
+    if (!DB_HOST || !DB_USER || !DB_PASS || !DB_NAME) {
+        http_response_code(500);
+        die('❌ Database configuration error: Missing environment variables. Contact admin.');
+    }
 } else {
     // Local development — XAMPP default credentials
     define('DB_HOST', 'localhost');
