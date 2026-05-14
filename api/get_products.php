@@ -52,41 +52,50 @@ try {
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 
     // Seed sample products if empty
-    $stmt = $pdo->prepare("SELECT COUNT(*) as cnt FROM cf_products");
-    $stmt->execute();
-    $result = $stmt->fetch();
-    if ($result['cnt'] == 0) {
-        $products = [
-            ['Black Abaya', 'Elegant black abaya with delicate embroidery', 45.99, 65.00, 'images/products/black-abaya.jpg', 1, 25],
-            ['Navy Blue Abaya', 'Navy blue premium quality abaya', 52.99, 75.00, 'images/products/navy-abaya.jpg', 1, 30],
-            ['Burgundy Abaya', 'Rich burgundy abaya with gold detailing', 55.99, 80.00, 'images/products/burgundy-abaya.jpg', 2, 20],
-            ['Green Abaya', 'Forest green traditional abaya', 48.99, 70.00, 'images/products/green-abaya.jpg', 3, 15],
-            ['Embroidered Black Abaya', 'Black abaya with intricate gold embroidery', 65.99, 95.00, 'images/products/embroidered-black.jpg', 1, 12],
-            ['Silk Black Abaya', 'Premium silk black abaya', 72.99, 105.00, 'images/products/silk-black.jpg', 4, 8],
-            ['Modern Black Abaya', 'Contemporary style black abaya', 42.99, 60.00, 'images/products/modern-black.jpg', 5, 40],
-            ['Casual Black Abaya', 'Everyday wear black abaya', 38.99, 55.00, 'images/products/casual-black.jpg', 6, 50],
-        ];
+    try {
+        $stmt = $pdo->prepare("SELECT COUNT(*) as cnt FROM cf_products");
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $count = (int)($result['cnt'] ?? 0);
 
-        $insert = $pdo->prepare("INSERT INTO cf_products (name, description, price, old_price, image, featured, stock, category) VALUES (?, ?, ?, ?, ?, 1, ?, 'Abayas')");
-        foreach ($products as $p) {
-            $insert->execute($p);
-        }
+        if ($count == 0) {
+            $products = [
+                ['Black Abaya', 'Elegant black abaya with delicate embroidery', 45.99, 65.00, 'images/products/black-abaya.jpg', 1, 25],
+                ['Navy Blue Abaya', 'Navy blue premium quality abaya', 52.99, 75.00, 'images/products/navy-abaya.jpg', 1, 30],
+                ['Burgundy Abaya', 'Rich burgundy abaya with gold detailing', 55.99, 80.00, 'images/products/burgundy-abaya.jpg', 2, 20],
+                ['Green Abaya', 'Forest green traditional abaya', 48.99, 70.00, 'images/products/green-abaya.jpg', 3, 15],
+                ['Embroidered Black Abaya', 'Black abaya with intricate gold embroidery', 65.99, 95.00, 'images/products/embroidered-black.jpg', 1, 12],
+                ['Silk Black Abaya', 'Premium silk black abaya', 72.99, 105.00, 'images/products/silk-black.jpg', 4, 8],
+                ['Modern Black Abaya', 'Contemporary style black abaya', 42.99, 60.00, 'images/products/modern-black.jpg', 5, 40],
+                ['Casual Black Abaya', 'Everyday wear black abaya', 38.99, 55.00, 'images/products/casual-black.jpg', 6, 50],
+            ];
 
-        // Link products to categories
-        $linkStmt = $pdo->prepare("INSERT INTO product_categories (product_id, category_id) VALUES (?, ?)");
-        $categoryLinks = [
-            [1, 1], [1, 4],
-            [2, 1], [2, 5],
-            [3, 2],
-            [4, 3],
-            [5, 1], [5, 6],
-            [6, 4], [6, 7],
-            [7, 5], [7, 8],
-            [8, 6], [8, 9],
-        ];
-        foreach ($categoryLinks as $link) {
-            $linkStmt->execute($link);
+            $insert = $pdo->prepare("INSERT INTO cf_products (name, description, price, old_price, image, featured, stock, category) VALUES (?, ?, ?, ?, ?, 1, ?, 'Abayas')");
+            $productIds = [];
+            foreach ($products as $p) {
+                $insert->execute($p);
+                $productIds[] = $pdo->lastInsertId();
+            }
+
+            // Link products to categories
+            $linkStmt = $pdo->prepare("INSERT INTO product_categories (product_id, category_id) VALUES (?, ?)");
+            $categoryLinks = [
+                [1, 1], [1, 4],
+                [2, 1], [2, 5],
+                [3, 2],
+                [4, 3],
+                [5, 1], [5, 6],
+                [6, 4], [6, 7],
+                [7, 5], [7, 8],
+                [8, 6], [8, 9],
+            ];
+            foreach ($categoryLinks as $link) {
+                $linkStmt->execute($link);
+            }
+            error_log('Seeded ' . count($productIds) . ' sample products');
         }
+    } catch (\Throwable $seedError) {
+        error_log('Seed error: ' . $seedError->getMessage());
     }
 
     // ── Image base URL ───────────────────────────────────────────────────
