@@ -34,61 +34,20 @@ const Header = () => {
     const navigate  = useNavigate();
     const location  = useLocation();
 
-    // Dummy abaya categories
-    const dummyCategories = [
-        {
-            id: 1,
-            name: 'Premium Abayas',
-            slug: 'premium-abayas',
-            children: [
-                { id: 11, name: 'Embroidered Abayas', slug: 'embroidered-abayas' },
-                { id: 12, name: 'Designer Abayas', slug: 'designer-abayas' },
-                { id: 13, name: 'Luxury Collection', slug: 'luxury-abayas' }
-            ]
-        },
-        {
-            id: 2,
-            name: 'Casual Abayas',
-            slug: 'casual-abayas',
-            children: [
-                { id: 21, name: 'Plain Abayas', slug: 'plain-abayas' },
-                { id: 22, name: 'Printed Abayas', slug: 'printed-abayas' },
-                { id: 23, name: 'Everyday Wear', slug: 'everyday-abayas' }
-            ]
-        },
-        {
-            id: 3,
-            name: 'Formal Abayas',
-            slug: 'formal-abayas',
-            children: [
-                { id: 31, name: 'Party Wear', slug: 'party-abayas' },
-                { id: 32, name: 'Wedding Collection', slug: 'wedding-abayas' },
-                { id: 33, name: 'Special Occasions', slug: 'special-occasion-abayas' }
-            ]
-        },
-        {
-            id: 4,
-            name: 'Kids Abayas',
-            slug: 'kids-abayas',
-            children: [
-                { id: 41, name: 'Girls Abayas', slug: 'girls-abayas' },
-                { id: 42, name: 'Boys Abayas', slug: 'boys-abayas' }
-            ]
-        },
-        {
-            id: 5,
-            name: 'Accessories',
-            slug: 'abaya-accessories',
-            children: [
-                { id: 51, name: 'Hijabs & Scarves', slug: 'hijabs-scarves' },
-                { id: 52, name: 'Niqabs', slug: 'niqabs' },
-                { id: 53, name: 'Belts & Embellishments', slug: 'belts-embellishments' }
-            ]
-        }
-    ];
-
     useEffect(() => {
-        setCategories(dummyCategories);
+        const fetchCategories = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/get_categories.php`);
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    setCategories(data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch categories:', error);
+                setCategories([]);
+            }
+        };
+        fetchCategories();
     }, []);
 
     useEffect(() => {

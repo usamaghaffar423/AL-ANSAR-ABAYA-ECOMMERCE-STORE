@@ -11,39 +11,75 @@ import { useCart } from '../context/CartContext';
 const CATEGORY_META = {
     'all': {
         id: 'all', slug: 'all', label: 'All Products',
-        description: 'Explore our full premium collection — abayas, bolqas, scarves, niqabs, and more.',
+        description: 'Explore our premium Al Ansar Abaya collection — finest quality abayas for KPK.',
         image: IMAGES.hero_secondary, accent: '#1a3a2a',
         bg: 'from-emerald-900 to-black', icon: '✦',
     },
-    'bolqa-abaya': {
-        id: 'bolqa-abaya', slug: 'bolqa-abaya', label: 'Bolqa & Abaya',
-        description: 'Full-length premium abayas and bolqas — plain and embroidered collections.',
+    'simple-abayas': {
+        id: 'simple-abayas', slug: 'simple-abayas', label: 'Simple Abayas',
+        description: 'Elegant and timeless simple abayas — plain cuts with premium fabrics.',
         image: IMAGES.category_black, accent: '#1a3a2a',
         bg: 'from-emerald-900 to-black', icon: '👗',
     },
-    'scarves-hijab': {
-        id: 'scarves-hijab', slug: 'scarves-hijab', label: 'Scarves & Hijab',
-        description: 'Chiffon, cotton, and printed scarves for hijab — premium quality fabrics.',
+    'open-abayas': {
+        id: 'open-abayas', slug: 'open-abayas', label: 'Open Abayas',
+        description: 'Flowing open abayas with modern cuts — perfect for everyday wear.',
+        image: IMAGES.category_black, accent: '#1a3a2a',
+        bg: 'from-emerald-900 to-black', icon: '👗',
+    },
+    'maxi-simple-galla': {
+        id: 'maxi-simple-galla', slug: 'maxi-simple-galla', label: 'Maxi Simple Galla',
+        description: 'Long maxi galla abayas with simple elegant design.',
+        image: IMAGES.hero_secondary, accent: '#1a3a2a',
+        bg: 'from-emerald-900 to-black', icon: '👗',
+    },
+    'maxi-cut-galla': {
+        id: 'maxi-cut-galla', slug: 'maxi-cut-galla', label: 'Maxi Cut Galla',
+        description: 'Premium maxi cut galla abayas with modern tailoring.',
+        image: IMAGES.category_black, accent: '#1a3a2a',
+        bg: 'from-emerald-900 to-black', icon: '👗',
+    },
+    'embroidered-party-abayas': {
+        id: 'embroidered-party-abayas', slug: 'embroidered-party-abayas', label: 'Embroidered/Party Abayas',
+        description: 'Luxury embroidered abayas for special occasions and parties.',
         image: IMAGES.hero_tertiary, accent: '#c9a96e',
-        bg: 'from-amber-800 to-black', icon: '🧣',
+        bg: 'from-amber-800 to-black', icon: '💎',
     },
-    'niqab-face-cover': {
-        id: 'niqab-face-cover', slug: 'niqab-face-cover', label: 'Niqab & Face Cover',
-        description: 'Premium niqab and face cover sets — comfortable and elegant designs.',
-        image: IMAGES.category_red, accent: '#1a3a2a',
-        bg: 'from-emerald-800 to-black', icon: '👤',
+    'straight-open-abayas': {
+        id: 'straight-open-abayas', slug: 'straight-open-abayas', label: 'Straight Open Abayas',
+        description: 'Straight cut open abayas with embroidered details.',
+        image: IMAGES.hero_tertiary, accent: '#c9a96e',
+        bg: 'from-amber-800 to-black', icon: '💎',
     },
-    'kids-abaya': {
-        id: 'kids-abaya', slug: 'kids-abaya', label: 'Kids Abaya',
-        description: 'Comfortable abayas for kids age 5-12 — quality and style for young girls.',
+    'zoom-fabric-abayas': {
+        id: 'zoom-fabric-abayas', slug: 'zoom-fabric-abayas', label: 'Zoom Fabric Abayas',
+        description: 'Premium zoom fabric abayas with exquisite embroidery.',
+        image: IMAGES.hero_tertiary, accent: '#c9a96e',
+        bg: 'from-amber-800 to-black', icon: '💎',
+    },
+    'nida-fabrics-abayas': {
+        id: 'nida-fabrics-abayas', slug: 'nida-fabrics-abayas', label: 'Nida Fabrics Abayas',
+        description: 'Elegant Nida fabric abayas for sophisticated style.',
+        image: IMAGES.hero_tertiary, accent: '#c9a96e',
+        bg: 'from-amber-800 to-black', icon: '💎',
+    },
+    'handmade': {
+        id: 'handmade', slug: 'handmade', label: 'Handmade',
+        description: 'Artisan handmade abayas crafted with care and precision.',
         image: IMAGES.category_yellow, accent: '#c9a96e',
-        bg: 'from-amber-800 to-black', icon: '👧',
+        bg: 'from-amber-800 to-black', icon: '🎨',
     },
-    'premium-embroidered': {
-        id: 'premium-embroidered', slug: 'premium-embroidered', label: 'Premium Embroidered',
-        description: 'Luxury embroidered bolqas and abayas — exquisite designs and craftsmanship.',
-        image: IMAGES.hero_secondary, accent: '#c9a96e',
-        bg: 'from-amber-900 to-black', icon: '💎',
+    'butterfly': {
+        id: 'butterfly', slug: 'butterfly', label: 'Butterfly',
+        description: 'Butterfly style abayas with unique flowing designs.',
+        image: IMAGES.category_red, accent: '#1a3a2a',
+        bg: 'from-red-900 to-black', icon: '🦋',
+    },
+    'double-shirt-abayas': {
+        id: 'double-shirt-abayas', slug: 'double-shirt-abayas', label: 'Double Shirt Abayas',
+        description: 'Double layer shirt abayas with premium tailoring.',
+        image: IMAGES.category_black, accent: '#1a3a2a',
+        bg: 'from-emerald-900 to-black', icon: '👔',
     },
 };
 
