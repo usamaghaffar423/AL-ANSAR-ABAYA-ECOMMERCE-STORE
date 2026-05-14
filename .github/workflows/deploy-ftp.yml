@@ -1,4 +1,4 @@
-name: Build & Deploy to Hostinger via FTP
+name: Build & Deploy to Hostinger via SSH
 
 on:
   push:
@@ -26,53 +26,30 @@ jobs:
       - name: Build frontend
         run: npm run build
 
-      - name: Create deployment package
-        run: |
-          mkdir -p deploy-package
-          cp -r dist/* deploy-package/
-          cp -r api deploy-package/
-          cp deploy.php deploy-package/
-          cp .htaccess deploy-package/
-          echo "✅ Package ready for deployment"
-          ls -la deploy-package/
-
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Deploy to Hostinger via FTP
+      - name: Deploy via SSH
         env:
-          FTP_HOST: ${{ secrets.FTP_HOST }}
-          FTP_USER: ${{ secrets.FTP_USER }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          SSH_HOST: 82.112.239.120
+          SSH_PORT: 65002
+          SSH_USER: u463999436
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
-          echo "Connecting to FTP: $FTP_HOST"
-          timeout 600 lftp -e "
-          set ftp:ssl-allow no
-          set ssl:verify-certificate no
-          set ftp:passive-mode on
-          set net:timeout 30
-          set net:max-retries 2
-          set ftp:list-options -lah
-          open -u $FTP_USER,$FTP_PASSWORD $FTP_HOST
-          pwd
-          echo 'Starting mirror...'
-          mirror -R --delete --verbose deploy-package/ /public_html/
-          quit
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts 2>/dev/null || true
+
+          echo "📡 Deploying via SSH..."
+          ssh -i ~/.ssh/deploy_key -p $SSH_PORT $SSH_USER@$SSH_HOST "
+            cd /home/$SSH_USER/domains/linen-bee-509910.hostingersite.com/public_html &&
+            echo '🔄 Pulling latest code from GitHub...' &&
+            git pull origin main &&
+            echo '✅ Deployment complete!' &&
+            pwd &&
+            git log -1 --oneline
           "
-          EXIT_CODE=$?
-          if [ $EXIT_CODE -eq 0 ]; then
-            echo "✅ FTP deployment successful"
-          elif [ $EXIT_CODE -eq 124 ]; then
-            echo "❌ FTP deployment timed out (exceeded 10 minutes)"
-            exit 1
-          else
-            echo "❌ FTP deployment failed with exit code: $EXIT_CODE"
-            exit 1
-          fi
 
       - name: Deployment Success
         run: |
-          echo "✅ Deployment to Hostinger completed!"
+          echo "✅ SSH Deployment to Hostinger completed!"
           echo "🌐 Live site: https://linen-bee-509910.hostingersite.com"
           echo "📋 Test API: https://linen-bee-509910.hostingersite.com/api/test_products_api.php"
-          echo "🔑 Create admin: https://linen-bee-509910.hostingersite.com/api/create_admin.php?secret=admin_setup_key_2024"
