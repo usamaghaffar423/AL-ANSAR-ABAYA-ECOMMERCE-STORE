@@ -1,6 +1,6 @@
 <?php
 // Webhook receiver for GitHub auto-deployment
-// Auto-clone on first deployment
+// Debug: checking deployed files
 $secret = getenv('GITHUB_WEBHOOK_SECRET') ?: 'abaya9911';
 
 // Verify GitHub signature (disabled for testing)
