@@ -27,19 +27,22 @@ jobs:
         run: npm run build
 
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@master
-        with:
-          host: 82.112.239.120
-          port: 65002
-          username: u463999436
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html
-            echo "🔄 Pulling latest code from GitHub..."
-            git pull origin main
-            echo "✅ Deployment complete!"
-            pwd
-            git log -1 --oneline
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p 65002 82.112.239.120 >> ~/.ssh/known_hosts 2>/dev/null || true
+
+          ssh -i ~/.ssh/id_ed25519 -p 65002 u463999436@82.112.239.120 << 'DEPLOY'
+          cd /home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html
+          echo "🔄 Pulling latest code from GitHub..."
+          git pull origin main
+          echo "✅ Deployment complete!"
+          pwd
+          git log -1 --oneline
+          DEPLOY
 
       - name: Deployment Success
         run: |
