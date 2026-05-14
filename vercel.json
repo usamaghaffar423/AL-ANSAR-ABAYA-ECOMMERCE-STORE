@@ -3,29 +3,6 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "installCommand": "npm ci",
-  "env": {
-    "VITE_API_BASE_URL": "https://linen-bee-509910.hostingersite.com/api"
-  },
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache"
-        }
-      ]
-    },
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, immutable"
-        }
-      ]
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",

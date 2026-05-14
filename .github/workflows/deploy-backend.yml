@@ -1,0 +1,44 @@
+name: Deploy Backend to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/**'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy-backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p 65002 82.112.239.120 >> ~/.ssh/known_hosts 2>/dev/null || true
+
+      - name: Deploy API to Hostinger
+        run: |
+          echo "📤 Syncing API to Hostinger..."
+          rsync -avz -e "ssh -i ~/.ssh/id_ed25519 -p 65002" \
+            --delete-after \
+            --exclude='test_*.php' \
+            --exclude='setup_*.php' \
+            --exclude='db_test.php' \
+            --exclude='config_local.php' \
+            api/ u463999436@82.112.239.120:/home/u463999436/domains/linen-bee-509910.hostingersite.com/public_html/api/
+
+      - name: Verify Deployment
+        run: |
+          echo "✅ Backend API deployed successfully!"
+          echo "🌐 API Endpoint: https://linen-bee-509910.hostingersite.com/api"
+          echo "📝 Check status: curl -s https://linen-bee-509910.hostingersite.com/api/check_db.php"
