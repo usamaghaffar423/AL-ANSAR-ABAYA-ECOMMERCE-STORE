@@ -43,7 +43,7 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                         onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                     />
                     {hasDiscount && (
-                        <div className="absolute top-4 left-4 bg-[#1a3a2a] text-white px-2.5 py-1 rounded-full text-[8px] font-black uppercase tracking-widest">
+                        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-[#1a3a2a] text-white px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[6px] sm:text-[8px] font-black uppercase tracking-widest">
                             -{discount.toFixed(0)}%
                         </div>
                     )}
@@ -102,21 +102,21 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                 />
 
                 {/* Badges */}
-                <div className="absolute top-4 left-4 flex flex-col gap-1.5 z-10">
+                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex flex-col gap-1 sm:gap-1.5 z-10">
                     {product.is_trending && (
-                        <div className="bg-black text-white px-3 py-1.5 rounded-full flex items-center gap-1.5 text-[8px] font-black uppercase tracking-[0.2em]">
-                            <Flame size={10} className="text-[#1a3a2a]" />
+                        <div className="bg-black text-white px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full flex items-center gap-0.5 sm:gap-1.5 text-[6px] sm:text-[8px] font-black uppercase tracking-widest">
+                            <Flame size={7} className="text-[#1a3a2a]" />
                             Trending
                         </div>
                     )}
                     {hasDiscount && (
-                        <div className="bg-[#1a3a2a] text-white px-3 py-1.5 rounded-full flex items-center gap-1 text-[8px] font-black uppercase tracking-[0.2em]">
-                            <Tag size={9} />
+                        <div className="bg-[#1a3a2a] text-white px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full flex items-center gap-0.5 sm:gap-1 text-[6px] sm:text-[8px] font-black uppercase tracking-widest">
+                            <Tag size={6} />
                             -{discount.toFixed(0)}% OFF
                         </div>
                     )}
                     {isOutOfStock && (
-                        <div className="bg-gray-800 text-white px-3 py-1.5 rounded-full text-[8px] font-black uppercase tracking-[0.2em]">
+                        <div className="bg-gray-800 text-white px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full text-[6px] sm:text-[8px] font-black uppercase tracking-widest">
                             Sold Out
                         </div>
                     )}
