@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     ShoppingBag, Star, ShieldCheck, Truck,
     Heart, Plus, Minus, Flame, Share2, RotateCcw, ChevronDown,
-    ZoomIn, Check, Package
+    ZoomIn, Check, Package, ArrowRight
 } from 'lucide-react';
 import { API_BASE_URL } from '../config';
 import { MOCK_PRODUCTS, MOCK_FEATURED_PRODUCTS } from '../data/mockProducts';
