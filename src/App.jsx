@@ -111,7 +111,7 @@ function App() {
       <AnnouncementBar />
       <Header />
       <CartSidebar />
-      <main id="main-content" className="pt-[64px] md:pt-[74px]">
+      <main id="main-content" className="pt-[50px] md:pt-[54px]">
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/"           element={<HomePage />} />
