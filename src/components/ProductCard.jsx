@@ -43,8 +43,8 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                         onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                     />
                     {hasDiscount && (
-                        <div className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-[#1a3a2a] text-white px-1.5 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-[6px] sm:text-[8px] font-black uppercase tracking-widest">
-                            -{discount.toFixed(0)}%
+                        <div className="absolute left-1 top-4 bg-[#1a3a2a] text-white px-1.5 py-1 rounded-full text-[6px] font-black uppercase tracking-widest whitespace-nowrap">
+                            {discount.toFixed(0)}%
                         </div>
                     )}
                     <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
@@ -101,23 +101,24 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                     onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                 />
 
-                {/* Badges */}
-                <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex flex-col gap-1 sm:gap-1.5 z-10">
+                {/* Badges - Vertical flow on left edge */}
+                <div className="absolute left-1 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10 max-w-[70px]">
                     {product.is_trending && (
-                        <div className="bg-black text-white px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full flex items-center gap-0.5 sm:gap-1.5 text-[6px] sm:text-[8px] font-black uppercase tracking-widest">
-                            <Flame size={7} className="text-[#1a3a2a]" />
-                            Trending
+                        <div className="bg-black text-white px-1.5 py-1 rounded-full flex items-center justify-center gap-0.5 text-[6px] font-black uppercase tracking-widest whitespace-nowrap">
+                            <Flame size={6} className="text-[#1a3a2a] flex-shrink-0" />
+                            <span className="hidden sm:inline">Trending</span>
                         </div>
                     )}
                     {hasDiscount && (
-                        <div className="bg-[#1a3a2a] text-white px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full flex items-center gap-0.5 sm:gap-1 text-[6px] sm:text-[8px] font-black uppercase tracking-widest">
-                            <Tag size={6} />
-                            -{discount.toFixed(0)}% OFF
+                        <div className="bg-[#1a3a2a] text-white px-1.5 py-1 rounded-full flex items-center justify-center gap-0.5 text-[6px] font-black uppercase tracking-widest whitespace-nowrap">
+                            <Tag size={6} className="flex-shrink-0" />
+                            <span className="hidden sm:inline">-{discount.toFixed(0)}%</span>
+                            <span className="sm:hidden">{discount.toFixed(0)}%</span>
                         </div>
                     )}
                     {isOutOfStock && (
-                        <div className="bg-gray-800 text-white px-1.5 sm:px-3 py-0.5 sm:py-1.5 rounded-full text-[6px] sm:text-[8px] font-black uppercase tracking-widest">
-                            Sold Out
+                        <div className="bg-gray-800 text-white px-1.5 py-1 rounded-full text-[6px] font-black uppercase tracking-widest whitespace-nowrap flex items-center justify-center">
+                            Out
                         </div>
                     )}
                 </div>
