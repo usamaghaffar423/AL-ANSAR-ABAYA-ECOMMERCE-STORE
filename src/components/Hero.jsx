@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight, ShoppingBag } from "lucide-react";
 
+// Reduce animations on mobile/low-performance devices
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = window.innerWidth < 768;
+
 const Hero = () => {
   return (
     <section id="main-content" className="relative w-full h-screen min-h-[600px] md:min-h-[700px] overflow-hidden bg-black">
@@ -34,9 +38,9 @@ const Hero = () => {
         <div className="max-w-5xl w-full text-center">
           {/* Premium Badge */}
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: isMobile ? 0.5 : 0.7, delay: 0.1 }}
             className="inline-block mb-6 md:mb-8"
           >
             <div className="px-6 md:px-8 py-2.5 md:py-3.5 rounded-full bg-[#c9a96e]/20 backdrop-blur-md border border-[#c9a96e]/40 text-[#c9a96e] text-[11px] md:text-sm font-black uppercase tracking-widest">
@@ -46,9 +50,9 @@ const Hero = () => {
 
           {/* Main Heading - Extra Large */}
           <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: isMobile ? 0.6 : 0.9, delay: isMobile ? 0 : 0.2 }}
             className="text-6xl md:text-8xl lg:text-9xl font-black text-white uppercase tracking-tighter leading-none mb-4 md:mb-6"
           >
             Al Ansar<br />

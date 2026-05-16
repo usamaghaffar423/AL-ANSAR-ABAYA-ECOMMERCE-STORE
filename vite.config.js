@@ -8,14 +8,23 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'framer-motion': ['framer-motion'],
-          'react-router': ['react-router-dom'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules/framer-motion')) {
+            return 'framer-motion';
+          }
+          if (id.includes('node_modules/react-router-dom')) {
+            return 'react-router';
+          }
+          if (id.includes('node_modules/lucide-react')) {
+            return 'lucide-react';
+          }
         }
       }
     },
     minify: 'esbuild',
     sourcemap: false,
     cssCodeSplit: true,
+    chunkSizeWarningLimit: 500,
+    target: 'esnext',
   }
 })
