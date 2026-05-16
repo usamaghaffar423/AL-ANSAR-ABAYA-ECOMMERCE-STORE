@@ -76,28 +76,6 @@ const Header = () => {
         <>
             <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out`}>
 
-                {/* ── Top Info Bar ──────────────────────────────────── */}
-                <div className="hidden md:block bg-[#1a3a2a] text-white px-4 md:px-12 lg:px-16 py-2.5">
-                    <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] font-bold uppercase tracking-wide">
-                        <div className="flex items-center gap-6">
-                            <a href="tel:+923481099433" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
-                                <Phone size={14} /> +92 348 1099433
-                            </a>
-                            <a href="mailto:support@alansarabayah.com" className="flex items-center gap-2 hover:text-gray-100 transition-colors">
-                                <Mail size={14} /> support@alansarabayah.com
-                            </a>
-                        </div>
-                        <div className="flex items-center gap-4">
-                            <button className="hover:text-gray-100 transition-colors">English ▼</button>
-                            {!user && (
-                                <Link to="/login" className="hover:text-gray-100 transition-colors">
-                                    Login / Register
-                                </Link>
-                            )}
-                        </div>
-                    </div>
-                </div>
-
                 {/* ── Main Header ──────────────────────────────────── */}
                 <div className={`transition-all duration-700 ease-in-out px-4 md:px-12 lg:px-16 bg-white border-b border-gray-200 ${isScrolled ? 'py-2.5 md:py-3 shadow-lg' : 'py-3 md:py-4'}`}>
                     <div className="max-w-7xl mx-auto flex items-center justify-between gap-6 md:gap-8">
@@ -113,8 +91,8 @@ const Header = () => {
                         <Link to="/" className="flex items-center group flex-shrink-0 hover:opacity-80 transition-opacity">
                             <img
                                 src={IMAGES.logo}
-                                alt="Bolqa House"
-                                className="h-14 md:h-18 lg:h-20 w-auto object-contain drop-shadow-lg"
+                                alt="Al Ansar Abaya"
+                                className="w-48 md:w-64 h-auto object-contain drop-shadow-lg"
                             />
                         </Link>
 
