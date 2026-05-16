@@ -7,7 +7,7 @@ import image116 from './assets/image-116.webp';
 import image119 from './assets/image-119.webp';
 import image123 from './assets/image-123.webp';
 import image99 from './assets/image-99.webp';
-import logo from './assets/horizental-logo.svg';
+import logo from './assets/logo-abaya.png';
 
 export const IMAGES = {
     hero: image105,
