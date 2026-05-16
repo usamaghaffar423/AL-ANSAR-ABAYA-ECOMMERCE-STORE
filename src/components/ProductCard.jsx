@@ -102,7 +102,7 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                 />
 
                 {/* Badges - Vertical flow on left edge */}
-                <div className="absolute left-1 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-10 max-w-[70px]">
+                <div className="absolute left-1 top-2 flex flex-col gap-2 z-10 max-w-[70px]">
                     {product.is_trending && (
                         <div className="bg-black text-white px-1.5 py-1 rounded-full flex items-center justify-center gap-0.5 text-[6px] font-black uppercase tracking-widest whitespace-nowrap">
                             <Flame size={6} className="text-[#1a3a2a] flex-shrink-0" />
