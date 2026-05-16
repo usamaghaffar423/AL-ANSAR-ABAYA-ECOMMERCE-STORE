@@ -97,7 +97,6 @@ const Header = () => {
                                 src={IMAGES.logo}
                                 alt="Al Ansar Abaya - Premium Abayas"
                                 width={128}
-                                height={auto}
                                 className="w-28 md:w-32 h-auto object-contain drop-shadow-lg"
                                 loading="eager"
                             />
