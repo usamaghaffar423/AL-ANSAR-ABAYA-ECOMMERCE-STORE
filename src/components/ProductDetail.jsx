@@ -7,6 +7,7 @@ import {
     ZoomIn, Check, Package
 } from 'lucide-react';
 import { API_BASE_URL } from '../config';
+import { MOCK_PRODUCTS, MOCK_FEATURED_PRODUCTS } from '../data/mockProducts';
 import { useCart } from '../context/CartContext';
 import ProductCard from './ProductCard';
 
@@ -114,18 +115,27 @@ const ProductDetail = () => {
             setSelectedSize('');
             setSelectedColor('');
             setQuantity(1);
+            let p = null;
+
             try {
-                // Fetch product by ID
-                const res  = await fetch(`${API_BASE_URL}/get_products.php?id=${id}`);
-                if (!res.ok) throw new Error(`API returned ${res.status}`);
+                // Try to fetch product by ID from API
+                const res = await fetch(`${API_BASE_URL}/get_products.php?id=${id}`);
+                if (res.ok) {
+                    const data = await res.json();
+                    p = Array.isArray(data) ? data[0] : data;
+                }
 
-                const data = await res.json();
-                const p    = Array.isArray(data) ? data[0] : data;
-
+                // Fallback to mock products if API fails or returns empty
                 if (!p || p.error) {
-                    console.error('Product not found or error:', p);
-                    navigate('/shop');
-                    return;
+                    console.warn('Product not found in API, using mock fallback');
+                    const allMocks = [...MOCK_PRODUCTS, ...MOCK_FEATURED_PRODUCTS];
+                    p = allMocks.find(prod => prod.id === parseInt(id));
+
+                    if (!p) {
+                        console.error('Product not found anywhere');
+                        navigate('/shop');
+                        return;
+                    }
                 }
 
                 setProduct(p);
@@ -170,13 +180,31 @@ const ProductDetail = () => {
                 // Load related products from same category
                 if (p.category) {
                     try {
-                        const rRes  = await fetch(`${API_BASE_URL}/get_products.php?category=${encodeURIComponent(p.category)}&limit=8`);
+                        const rRes = await fetch(`${API_BASE_URL}/get_products.php?category=${encodeURIComponent(p.category)}&limit=8`);
+                        let relatedProducts = [];
+
                         if (rRes.ok) {
                             const rData = await rRes.json();
-                            setRelated(Array.isArray(rData) ? rData.filter(r => r.id !== p.id).slice(0, 4) : []);
+                            relatedProducts = Array.isArray(rData) ? rData.filter(r => r.id !== p.id).slice(0, 4) : [];
                         }
+
+                        // Fallback to mock products if API returns empty
+                        if (relatedProducts.length === 0) {
+                            const allMocks = [...MOCK_PRODUCTS, ...MOCK_FEATURED_PRODUCTS];
+                            relatedProducts = allMocks
+                                .filter(prod => prod.category === p.category && prod.id !== p.id)
+                                .slice(0, 4);
+                        }
+
+                        setRelated(relatedProducts);
                     } catch (e) {
-                        console.warn('Could not load related products:', e);
+                        console.warn('Could not load related products, using mock fallback:', e);
+                        // Fallback to mock products on error
+                        const allMocks = [...MOCK_PRODUCTS, ...MOCK_FEATURED_PRODUCTS];
+                        const relatedProducts = allMocks
+                            .filter(prod => prod.category === p.category && prod.id !== p.id)
+                            .slice(0, 4);
+                        setRelated(relatedProducts);
                     }
                 }
             } catch (e) {
