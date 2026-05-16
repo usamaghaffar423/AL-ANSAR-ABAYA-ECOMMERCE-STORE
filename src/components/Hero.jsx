@@ -21,6 +21,7 @@ const Hero = () => {
         aria-label="Premium abayas hero background video"
         className="absolute inset-0 w-full h-full object-cover"
       >
+        <source src="/videos/background-video.webm" type="video/webm" />
         <source src="/videos/background-video.mp4" type="video/mp4" />
       </video>
 
