@@ -92,7 +92,7 @@ const Header = () => {
                             <img
                                 src={IMAGES.logo}
                                 alt="Al Ansar Abaya"
-                                className="w-48 md:w-64 h-auto object-contain drop-shadow-lg"
+                                className="w-32 md:w-40 h-auto object-contain drop-shadow-lg"
                             />
                         </Link>
 
