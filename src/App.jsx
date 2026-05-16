@@ -1,7 +1,7 @@
 // Al Ansar Abaya Store - Premium Abayas & Islamic Wear
 // Auto-deployed via GitHub Actions + FTP ✓
 // Production-ready: Every push to main branch automatically builds & deploys to Hostinger via FTP
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from './context/AuthContext'
@@ -10,20 +10,22 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import PromoCards from './components/PromoCards'
 import BestSellers from './components/BestSellers'
-import SaleBanner from './components/SaleBanner'
-import FeaturedCollection from './components/FeaturedCollection'
-import LeadCollection from './components/LeadCollection'
-import Testimonials from './components/Testimonials'
-import Footer from './components/Footer'
-import Shop from './components/Shop'
-import Categories from './components/Categories'
-import Checkout from './components/Checkout'
-import AdminPanel from './components/AdminPanel'
-import ProductDetail from './components/ProductDetail'
 import CartSidebar from './components/CartSidebar'
-import AuthPage from './components/AuthPage'
-import UserProfile from './components/UserProfile'
-import ContactPage from './components/ContactPage'
+
+// Lazy load below-the-fold components
+const SaleBanner = lazy(() => import('./components/SaleBanner'))
+const FeaturedCollection = lazy(() => import('./components/FeaturedCollection'))
+const LeadCollection = lazy(() => import('./components/LeadCollection'))
+const Testimonials = lazy(() => import('./components/Testimonials'))
+const Footer = lazy(() => import('./components/Footer'))
+const Shop = lazy(() => import('./components/Shop'))
+const Categories = lazy(() => import('./components/Categories'))
+const Checkout = lazy(() => import('./components/Checkout'))
+const AdminPanel = lazy(() => import('./components/AdminPanel'))
+const ProductDetail = lazy(() => import('./components/ProductDetail'))
+const AuthPage = lazy(() => import('./components/AuthPage'))
+const UserProfile = lazy(() => import('./components/UserProfile'))
+const ContactPage = lazy(() => import('./components/ContactPage'))
 
 const Section = ({ children, ariaLabel }) => (
   <motion.section
@@ -42,10 +44,12 @@ const HomePage = () => (
     <Hero />
     <Section><PromoCards /></Section>
     <Section><BestSellers /></Section>
-    <Section><SaleBanner /></Section>
-    <Section><FeaturedCollection /></Section>
-    <Section><LeadCollection /></Section>
-    <Section><Testimonials /></Section>
+    <Suspense fallback={null}>
+      <Section><SaleBanner /></Section>
+      <Section><FeaturedCollection /></Section>
+      <Section><LeadCollection /></Section>
+      <Section><Testimonials /></Section>
+    </Suspense>
   </>
 )
 
@@ -90,7 +94,7 @@ function App() {
     return (
       <Routes>
         <Route path="/admin" element={
-          <ProtectedAdminRoute><AdminPanel /></ProtectedAdminRoute>
+          <ProtectedAdminRoute><Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><AdminPanel /></Suspense></ProtectedAdminRoute>
         } />
       </Routes>
     )
@@ -99,8 +103,8 @@ function App() {
   if (isAuthRoute) {
     return (
       <Routes>
-        <Route path="/login"    element={<AuthRoute tab="login" />} />
-        <Route path="/register" element={<AuthRoute tab="register" />} />
+        <Route path="/login"    element={<Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><AuthRoute tab="login" /></Suspense>} />
+        <Route path="/register" element={<Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><AuthRoute tab="register" /></Suspense>} />
       </Routes>
     )
   }
@@ -115,16 +119,18 @@ function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             <Route path="/"           element={<HomePage />} />
-            <Route path="/shop"       element={<Shop />} />
-            <Route path="/category"   element={<Categories />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/checkout"   element={<Checkout />} />
-            <Route path="/profile"    element={<UserProfile />} />
-            <Route path="/contact"    element={<ContactPage />} />
+            <Route path="/shop"       element={<Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><Shop /></Suspense>} />
+            <Route path="/category"   element={<Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><Categories /></Suspense>} />
+            <Route path="/product/:id" element={<Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><ProductDetail /></Suspense>} />
+            <Route path="/checkout"   element={<Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><Checkout /></Suspense>} />
+            <Route path="/profile"    element={<Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><UserProfile /></Suspense>} />
+            <Route path="/contact"    element={<Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="w-10 h-10 border-4 border-pink-100 border-t-[#EB3461] rounded-full animate-spin" /></div>}><ContactPage /></Suspense>} />
           </Routes>
         </AnimatePresence>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
 
       {/* ── WhatsApp Floating Button ── */}
       <a

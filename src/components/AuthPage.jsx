@@ -199,9 +199,9 @@ const AuthPage = ({ defaultTab = 'login' }) => {
                 {/* Logo */}
                 <div className="relative z-10">
                     <h1 className="text-4xl font-black text-white uppercase tracking-tight leading-none">
-                        Bolqa<span className="opacity-70"> House</span>
+                        Al Ansar<span className="opacity-70"> Abaya</span>
                     </h1>
-                    <p className="text-white/60 text-xs font-bold uppercase tracking-[0.3em] mt-2">Premium Abayas & Bolqas</p>
+                    <p className="text-white/60 text-xs font-bold uppercase tracking-[0.3em] mt-2">Premium Abayas & Islamic Wear</p>
                 </div>
 
                 {/* Center content */}
@@ -227,7 +227,7 @@ const AuthPage = ({ defaultTab = 'login' }) => {
 
                 {/* Bottom tagline */}
                 <div className="relative z-10">
-                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em]">© 2026 Bolqa House</p>
+                    <p className="text-white/40 text-[10px] font-bold uppercase tracking-[0.3em]">© 2026 Al Ansar Abaya</p>
                 </div>
             </motion.div>
 
@@ -243,9 +243,9 @@ const AuthPage = ({ defaultTab = 'login' }) => {
                     {/* Mobile logo */}
                     <div className="lg:hidden text-center mb-8">
                         <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tight">
-                            Bolqa<span className="text-[#1a3a2a]"> House</span>
+                            Al Ansar<span className="text-[#1a3a2a]"> Abaya</span>
                         </h1>
-                        <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-1">Premium Abayas & Bolqas</p>
+                        <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mt-1">Premium Abayas & Islamic Wear</p>
                     </div>
 
                     {/* Card */}

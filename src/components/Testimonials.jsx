@@ -7,7 +7,7 @@ const Testimonials = () => {
     {
       name: 'Ayesha Khan',
       location: 'Peshawar, KPK',
-      review: 'Outstanding quality abayas! The craftsmanship is exceptional and delivery was super fast. Highly recommend Bolqa House for authentic, premium abayas.',
+      review: 'Outstanding quality abayas! The craftsmanship is exceptional and delivery was super fast. Highly recommend Al Ansar Abaya for authentic, premium abayas.',
       rating: 5,
     },
     {

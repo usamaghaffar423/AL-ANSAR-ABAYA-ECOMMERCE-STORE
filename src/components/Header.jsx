@@ -82,17 +82,24 @@ const Header = () => {
 
                         {/* Mobile: Hamburger */}
                         <div className="flex lg:hidden">
-                            <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-gray-900 hover:text-[#1a3a2a] transition-colors">
+                            <button
+                                onClick={() => setIsMobileMenuOpen(true)}
+                                aria-label="Open mobile menu"
+                                className="p-2 -ml-2 text-gray-900 hover:text-[#1a3a2a] transition-colors"
+                            >
                                 <Menu size={24} strokeWidth={1.5} />
                             </button>
                         </div>
 
                         {/* Brand Logo */}
-                        <Link to="/" className="flex items-center group flex-shrink-0 hover:opacity-80 transition-opacity">
+                        <Link to="/" aria-label="Al Ansar Abaya Home" className="flex items-center group flex-shrink-0 hover:opacity-80 transition-opacity">
                             <img
                                 src={IMAGES.logo}
-                                alt="Al Ansar Abaya"
+                                alt="Al Ansar Abaya - Premium Abayas"
+                                width={128}
+                                height={auto}
                                 className="w-28 md:w-32 h-auto object-contain drop-shadow-lg"
+                                loading="eager"
                             />
                         </Link>
 

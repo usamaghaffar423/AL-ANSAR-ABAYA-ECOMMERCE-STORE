@@ -12,12 +12,12 @@ const Hero = () => {
         muted
         loop
         playsInline
-        preload="metadata"
-        aria-label="Background video"
+        preload="none"
+        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080'%3E%3Crect fill='%231a1a1a'/%3E%3C/svg%3E"
+        aria-label="Premium abayas hero background video"
         className="absolute inset-0 w-full h-full object-cover"
       >
         <source src="/videos/background-video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
       </video>
 
       {/* Dark Green Base Overlay */}

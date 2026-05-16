@@ -143,7 +143,7 @@ const Checkout = () => {
                         <CheckCircle size={56} />
                     </div>
                     <h2 className="text-5xl font-black text-gray-900 mb-4 tracking-tighter uppercase leading-[0.9]">Order <br /><span className="text-[#1a3a2a]">Confirmed!</span></h2>
-                    <p className="text-gray-500 mb-10 text-lg font-medium max-w-sm mx-auto">Thank you for choosing Bolqa House. Your premium abaya is being prepared for shipment.</p>
+                    <p className="text-gray-500 mb-10 text-lg font-medium max-w-sm mx-auto">Thank you for choosing Al Ansar Abaya. Your premium abaya is being prepared for shipment.</p>
 
                     <div className="bg-gray-50 p-6 rounded-3xl mb-10 text-left border border-gray-100">
                         <div className="flex justify-between items-center mb-2">
@@ -338,7 +338,7 @@ const Checkout = () => {
                                                     </div>
                                                     <div className="flex justify-between text-xs">
                                                         <span className="text-gray-400 font-bold uppercase">Account Title</span>
-                                                        <span className="font-black text-gray-900 uppercase">Bolqa House Store</span>
+                                                        <span className="font-black text-gray-900 uppercase">Al Ansar Abaya Store</span>
                                                     </div>
                                                     <div className="flex justify-between text-xs">
                                                         <span className="text-gray-400 font-bold uppercase">Account No</span>

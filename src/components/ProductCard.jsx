@@ -37,9 +37,12 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                 <div className="relative aspect-[4/5] bg-[#F7F7F7] rounded-[30px] overflow-hidden mb-4">
                     <img
                         src={imageUrl}
+                        width={300}
+                        height={375}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        alt={product.title}
+                        alt={`${product.title} - Premium abaya`}
                         loading="lazy"
+                        decoding="async"
                         onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                     />
                     {hasDiscount && (
@@ -50,6 +53,8 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                     <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
                         <button
                             onClick={(e) => { e.stopPropagation(); setWishlisted(!wishlisted); }}
+                            aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+                            title={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
                             className={`p-2.5 rounded-full shadow-lg transition-all ${wishlisted ? 'bg-[#1a3a2a] text-white' : 'bg-white hover:bg-black hover:text-white'}`}
                         >
                             <Heart size={16} fill={wishlisted ? 'currentColor' : 'none'} />
@@ -95,9 +100,12 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
             <div className="relative aspect-[3/4] overflow-hidden bg-gray-50 rounded-[24px] m-2">
                 <img
                     src={imageUrl}
-                    alt={product.title}
+                    width={240}
+                    height={320}
+                    alt={`${product.title} - Premium abaya from Al Ansar Abaya`}
                     className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                     loading="lazy"
+                    decoding="async"
                     onError={(e) => { e.target.src = FALLBACK_IMAGE; }}
                 />
 
@@ -126,6 +134,8 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                 <div className="absolute top-4 right-4 flex flex-col gap-2 z-10 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
                     <button
                         onClick={(e) => { e.stopPropagation(); setWishlisted(!wishlisted); }}
+                        aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
+                        title={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
                         className={`p-2.5 rounded-full shadow-xl backdrop-blur-md transition-all ${wishlisted ? 'bg-[#1a3a2a] text-white' : 'bg-white/90 hover:bg-black hover:text-white'}`}
                     >
                         <Heart size={18} fill={wishlisted ? 'currentColor' : 'none'} />
@@ -133,6 +143,8 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                     {!isOutOfStock && (
                         <button
                             onClick={(e) => { e.stopPropagation(); addToCart(product); }}
+                            aria-label={`Add ${product.title} to cart`}
+                            title={`Add ${product.title} to cart`}
                             className="bg-white/90 p-2.5 rounded-full shadow-xl backdrop-blur-md hover:bg-[#1a3a2a] hover:text-white transition-all delay-75"
                         >
                             <ShoppingBag size={18} />
@@ -159,6 +171,7 @@ const ProductCard = React.memo(({ product, variant = 'default' }) => {
                 <button
                     onClick={(e) => { e.stopPropagation(); if (!isOutOfStock) addToCart(product); }}
                     disabled={isOutOfStock}
+                    aria-label={isOutOfStock ? `${product.title} is out of stock` : `Add ${product.title} to cart`}
                     className={`mt-4 w-full py-3.5 rounded-2xl text-[9px] font-black uppercase tracking-widest transition-all transform active:scale-95 shadow-lg shadow-gray-200 ${
                         isOutOfStock
                             ? 'bg-gray-100 text-gray-400 cursor-not-allowed'

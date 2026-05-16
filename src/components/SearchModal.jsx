@@ -91,7 +91,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                             {loading && (
                                 <div className="flex flex-col items-center justify-center py-20 space-y-4">
                                     <Loader2 size={32} className="text-[#1a3a2a] animate-spin" />
-                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Searching Bolqa House Collection...</p>
+                                    <p className="text-[10px] font-black uppercase tracking-[0.3em] text-gray-400">Searching Al Ansar Abaya Collection...</p>
                                 </div>
                             )}
 

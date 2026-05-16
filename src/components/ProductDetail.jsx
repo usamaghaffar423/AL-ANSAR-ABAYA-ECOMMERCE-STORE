@@ -638,7 +638,7 @@ const ProductDetail = () => {
                             <Accordion label="Product Description">
                                 {product.description
                                     ? <p>{product.description}</p>
-                                    : <p>Premium {product.category} from Bolqa House — Chakdara, Dir Lower. Crafted for elegance and comfort, designed for Pakistan's modern women.</p>
+                                    : <p>Premium {product.category} from Al Ansar Abaya — Chakdara, Dir Lower. Crafted for elegance and comfort, designed for Pakistan's modern women.</p>
                                 }
                             </Accordion>
                             <Accordion label="Size & Fit Guide">

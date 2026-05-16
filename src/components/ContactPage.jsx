@@ -132,7 +132,7 @@ const ContactPage = () => {
                             className="lg:col-span-2 rounded-[32px] overflow-hidden border border-gray-100 shadow-xl min-h-[420px]"
                         >
                             <iframe
-                                title="Bolqa House – Chakdara, Dir Lower"
+                                title="Al Ansar Abaya – Chakdara, Dir Lower"
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.0!2d72.0503!3d34.38!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38de6c3e4f9db491%3A0x5a2e2e0f3c8c2b6a!2sAmandara%2C+Khyber+Pakhtunkhwa%2C+Pakistan!5e0!3m2!1sen!2spk!4v1700000000000"
                                 width="100%" height="100%"
                                 style={{ border: 0, minHeight: '420px' }}
