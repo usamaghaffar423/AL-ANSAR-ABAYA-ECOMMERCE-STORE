@@ -1,14 +1,15 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, ChevronRight, Clock, MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import BUSINESS_LOCATION from '../constants/location';
 
 const CONTACT_INFO = [
     {
         icon: Phone,
         label: 'Call / WhatsApp',
-        primary: '+92 348 1099433',
+        primary: BUSINESS_LOCATION.phone.primary,
         secondary: 'Mon – Sat · 9 AM to 9 PM PKT',
-        href: 'tel:+923481099433',
+        href: `tel:${BUSINESS_LOCATION.phone.country}${BUSINESS_LOCATION.phone.number}`,
         bg: 'bg-[#1a3a2a]/5',
         iconColor: 'text-emerald-600',
         iconBg: 'bg-[#1a3a2a]/10 group-hover:bg-[#1a3a2a]/50',
@@ -16,9 +17,9 @@ const CONTACT_INFO = [
     {
         icon: Mail,
         label: 'Email Us',
-        primary: 'support@alansarabayah.com',
+        primary: BUSINESS_LOCATION.email,
         secondary: 'We reply within 24 hours',
-        href: 'mailto:support@alansarabayah.com',
+        href: `mailto:${BUSINESS_LOCATION.email}`,
         bg: 'bg-[#1a3a2a]/5',
         iconColor: 'text-[#1a3a2a]',
         iconBg: 'bg-[#1a3a2a]/10 group-hover:bg-[#1a3a2a]',
@@ -26,9 +27,9 @@ const CONTACT_INFO = [
     {
         icon: MapPin,
         label: 'Visit Our Shop',
-        primary: 'Main GT Road Amandara',
-        secondary: 'Near Popular CNG, KPK, Pakistan',
-        href: 'https://maps.google.com/?q=Amandara+GT+Road+KPK+Pakistan',
+        primary: `${BUSINESS_LOCATION.address.street}, ${BUSINESS_LOCATION.address.area}`,
+        secondary: `${BUSINESS_LOCATION.address.district}, ${BUSINESS_LOCATION.address.state}`,
+        href: BUSINESS_LOCATION.mapsLink,
         bg: 'bg-blue-50',
         iconColor: 'text-blue-600',
         iconBg: 'bg-blue-100 group-hover:bg-blue-500',
@@ -38,7 +39,7 @@ const CONTACT_INFO = [
         label: 'WhatsApp Chat',
         primary: 'Chat With Us Directly',
         secondary: 'Quick replies on WhatsApp',
-        href: 'https://wa.me/923481099433',
+        href: BUSINESS_LOCATION.whatsapp.link,
         bg: 'bg-green-50',
         iconColor: 'text-green-600',
         iconBg: 'bg-green-100 group-hover:bg-green-500',
@@ -132,8 +133,8 @@ const ContactPage = () => {
                             className="lg:col-span-2 rounded-[32px] overflow-hidden border border-gray-100 shadow-xl min-h-[420px]"
                         >
                             <iframe
-                                title="Al Ansar Abaya – Chakdara, Dir Lower"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.0!2d72.0503!3d34.38!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38de6c3e4f9db491%3A0x5a2e2e0f3c8c2b6a!2sAmandara%2C+Khyber+Pakhtunkhwa%2C+Pakistan!5e0!3m2!1sen!2spk!4v1700000000000"
+                                title={`${BUSINESS_LOCATION.name} – ${BUSINESS_LOCATION.address.city}, ${BUSINESS_LOCATION.address.state}`}
+                                src={BUSINESS_LOCATION.mapsEmbedUrl}
                                 width="100%" height="100%"
                                 style={{ border: 0, minHeight: '420px' }}
                                 allowFullScreen="" loading="lazy"

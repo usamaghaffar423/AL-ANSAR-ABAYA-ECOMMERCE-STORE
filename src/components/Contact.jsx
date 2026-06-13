@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import BUSINESS_LOCATION from '../constants/location';
 
 const Contact = () => {
     // Load reCAPTCHA script
@@ -41,9 +42,9 @@ const Contact = () => {
 
                         <div className="space-y-8">
                             {[
-                                { icon: <Mail className="text-[#1a3a2a]" size={24} />, title: "Email Us", detail: "info@osamaghaffar.pro" },
-                                { icon: <Phone className="text-[#1a3a2a]" size={24} />, title: "Call Us", detail: "+92 345 6789100" },
-                                { icon: <MapPin className="text-[#1a3a2a]" size={24} />, title: "Visit Us", detail: "Batkhela, Malakand, Pakistan" }
+                                { icon: <Mail className="text-[#1a3a2a]" size={24} />, title: "Email Us", detail: BUSINESS_LOCATION.email },
+                                { icon: <Phone className="text-[#1a3a2a]" size={24} />, title: "Call Us", detail: BUSINESS_LOCATION.phone.primary },
+                                { icon: <MapPin className="text-[#1a3a2a]" size={24} />, title: "Visit Us", detail: BUSINESS_LOCATION.fullAddress }
                             ].map((item, i) => (
                                 <motion.div
                                     key={i}
@@ -107,7 +108,7 @@ const Contact = () => {
                                     <input
                                         name="phone"
                                         type="tel"
-                                        placeholder="+92 345 6789100"
+                                        placeholder={BUSINESS_LOCATION.phone.primary}
                                         className="w-full bg-gray-50 border-none rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-[#c9a96e]/20 outline-none transition-all font-medium"
                                     />
                                 </div>
