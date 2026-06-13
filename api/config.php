@@ -40,8 +40,8 @@ $allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost',
-    'https://alansarabaya.pk',
-    'https://www.alansarabaya.pk',
+    'https://alansarabaya.com',
+    'https://www.alansarabaya.com',
     'https://al-ansar-abaya-ecommerce-store.vercel.app',
     'https://abaya-al-ansar.vercel.app',
 ];

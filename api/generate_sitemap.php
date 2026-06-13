@@ -19,7 +19,7 @@ try {
 
     // Start XML sitemap
     $siteUrl = $isProduction
-        ? 'https://alansarabaya.pk'
+        ? 'https://alansarabaya.com'
         : 'http://localhost/ABAYA-AL-ANSAR-ECOMMERCE-STORE/abaya-ecommerce-store';
 
     $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;

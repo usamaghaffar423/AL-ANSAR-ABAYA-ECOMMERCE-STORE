@@ -20,4 +20,4 @@ Allow: /
 Disallow: /admin
 
 # Sitemap location - Update domain if different
-Sitemap: https://alansarabaya.pk/public/sitemap.xml
+Sitemap: https://alansarabaya.com/public/sitemap.xml
