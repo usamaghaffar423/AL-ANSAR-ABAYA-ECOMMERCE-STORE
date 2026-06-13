@@ -40,10 +40,10 @@ $allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
     'http://localhost',
-    'https://linen-bee-509910.hostingersite.com',
-    'https://alansarabayah.com',
-    'https://www.alansarabayah.com',
+    'https://alansarabaya.pk',
+    'https://www.alansarabaya.pk',
     'https://al-ansar-abaya-ecommerce-store.vercel.app',
+    'https://abaya-al-ansar.vercel.app',
 ];
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';

@@ -5,6 +5,7 @@ Disallow: /admin
 Disallow: /checkout
 Disallow: /cart
 Disallow: /api/
+Disallow: /node_modules/
 Crawl-delay: 1
 
 # Specific rules for Google
@@ -18,5 +19,5 @@ User-agent: Bingbot
 Allow: /
 Disallow: /admin
 
-# Sitemap
-Sitemap: https://alansarabaya.pk/sitemap.xml
+# Sitemap location - Update domain if different
+Sitemap: https://alansarabaya.pk/public/sitemap.xml
