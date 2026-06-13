@@ -1,6 +1,7 @@
 // Al Ansar Abaya Store - Auto-deployed via GitHub Actions ✓ SFTP Test 3
 import { IMAGES } from '../constants';
 import { ChevronUp, Facebook, Instagram, Youtube } from 'lucide-react';
+import BUSINESS_LOCATION from '../constants/location';
 
 const TikTokIcon = ({ size = 16 }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -35,6 +36,7 @@ const Footer = () => {
                         {[
                             { Icon: Instagram, href: 'https://instagram.com/alansarabaya' },
                             { Icon: Facebook, href: 'https://facebook.com/alansarabaya' },
+                            { Icon: TikTokIcon, href: BUSINESS_LOCATION.social.tiktok.url },
                         ].map((social, idx) => (
                             <a
                                 key={idx}
@@ -98,19 +100,23 @@ const Footer = () => {
                     <div className="space-y-4 text-gray-400 text-sm">
                         <div className="flex items-start gap-3 group">
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">📍</span>
-                            <p className="font-medium">Chakdara, Dir Lower,<br />KPK, Pakistan</p>
+                            <p className="font-medium">{BUSINESS_LOCATION.address.city}, {BUSINESS_LOCATION.address.district},<br />{BUSINESS_LOCATION.address.state}, {BUSINESS_LOCATION.address.country}</p>
                         </div>
-                        <a href="tel:+923481099433" className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
+                        <a href={`tel:${BUSINESS_LOCATION.phone.country}${BUSINESS_LOCATION.phone.number}`} className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">📞</span>
-                            <span className="font-medium">+92 348 1099433</span>
+                            <span className="font-medium">{BUSINESS_LOCATION.phone.primary}</span>
                         </a>
-                        <a href="https://wa.me/923481099433" target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
+                        <a href={`tel:${BUSINESS_LOCATION.phone.country}${BUSINESS_LOCATION.phone.secondaryNumber}`} className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
+                            <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">📱</span>
+                            <span className="font-medium">{BUSINESS_LOCATION.phone.secondary}</span>
+                        </a>
+                        <a href={BUSINESS_LOCATION.whatsapp.business.link} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">💬</span>
-                            <span className="font-medium">WhatsApp Us</span>
+                            <span className="font-medium">WhatsApp Business</span>
                         </a>
-                        <a href="mailto:support@alansarabaya.pk" className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
+                        <a href={`mailto:${BUSINESS_LOCATION.email}`} className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">✉️</span>
-                            <span className="font-medium">support@alansarabaya.pk</span>
+                            <span className="font-medium">{BUSINESS_LOCATION.email}</span>
                         </a>
                     </div>
                 </div>

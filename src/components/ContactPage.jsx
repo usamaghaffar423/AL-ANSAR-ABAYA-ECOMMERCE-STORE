@@ -38,8 +38,8 @@ const CONTACT_INFO = [
         icon: MessageCircle,
         label: 'WhatsApp Chat',
         primary: 'Chat With Us Directly',
-        secondary: 'Quick replies on WhatsApp',
-        href: BUSINESS_LOCATION.whatsapp.link,
+        secondary: 'Quick replies on WhatsApp Business',
+        href: BUSINESS_LOCATION.whatsapp.business.link,
         bg: 'bg-green-50',
         iconColor: 'text-green-600',
         iconBg: 'bg-green-100 group-hover:bg-green-500',
@@ -167,7 +167,7 @@ const ContactPage = () => {
                             </div>
 
                             <a
-                                href="https://wa.me/923481099433"
+                                href={BUSINESS_LOCATION.whatsapp.business.link}
                                 target="_blank" rel="noreferrer"
                                 className="mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-black text-xs uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 active:scale-95"
                                 style={{ backgroundColor: '#25D366' }}
