@@ -108,7 +108,7 @@ const Footer = () => {
                         </a>
                         <a href={BUSINESS_LOCATION.whatsapp.link} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">💬</span>
-                            <span className="font-medium">WhatsApp Us</span>
+                            <span className="font-medium">WhatsApp: 0349 9300253</span>
                         </a>
                         <a href={`mailto:${BUSINESS_LOCATION.email}`} className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">✉️</span>
