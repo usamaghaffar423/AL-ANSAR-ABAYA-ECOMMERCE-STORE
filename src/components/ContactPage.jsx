@@ -7,7 +7,7 @@ const CONTACT_INFO = [
     {
         icon: Phone,
         label: 'Call / WhatsApp',
-        primary: BUSINESS_LOCATION.phone.primary,
+        primary: `${BUSINESS_LOCATION.phone.primary} / ${BUSINESS_LOCATION.phone.secondary}`,
         secondary: 'Mon – Sat · 9 AM to 9 PM PKT',
         href: `tel:${BUSINESS_LOCATION.phone.country}${BUSINESS_LOCATION.phone.number}`,
         bg: 'bg-[#1a3a2a]/5',
