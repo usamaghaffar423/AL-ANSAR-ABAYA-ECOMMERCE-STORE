@@ -106,13 +106,9 @@ const Footer = () => {
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">📞</span>
                             <span className="font-medium">{BUSINESS_LOCATION.phone.primary}</span>
                         </a>
-                        <a href={`tel:${BUSINESS_LOCATION.phone.country}${BUSINESS_LOCATION.phone.secondaryNumber}`} className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
-                            <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">📱</span>
-                            <span className="font-medium">{BUSINESS_LOCATION.phone.secondary}</span>
-                        </a>
-                        <a href={BUSINESS_LOCATION.whatsapp.business.link} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
+                        <a href={BUSINESS_LOCATION.whatsapp.link} target="_blank" rel="noreferrer" className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">💬</span>
-                            <span className="font-medium">WhatsApp Business</span>
+                            <span className="font-medium">WhatsApp Us</span>
                         </a>
                         <a href={`mailto:${BUSINESS_LOCATION.email}`} className="flex items-center gap-3 hover:text-[#c9a96e] transition-colors group">
                             <span className="text-[#c9a96e] text-lg group-hover:scale-110 transition-transform">✉️</span>

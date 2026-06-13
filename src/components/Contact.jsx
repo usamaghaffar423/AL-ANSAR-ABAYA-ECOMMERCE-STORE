@@ -43,7 +43,7 @@ const Contact = () => {
                         <div className="space-y-8">
                             {[
                                 { icon: <Mail className="text-[#1a3a2a]" size={24} />, title: "Email Us", detail: BUSINESS_LOCATION.email },
-                                { icon: <Phone className="text-[#1a3a2a]" size={24} />, title: "Call Us", detail: `${BUSINESS_LOCATION.phone.primary} / ${BUSINESS_LOCATION.phone.secondary}` },
+                                { icon: <Phone className="text-[#1a3a2a]" size={24} />, title: "Call Us", detail: BUSINESS_LOCATION.phone.primary },
                                 { icon: <MapPin className="text-[#1a3a2a]" size={24} />, title: "Visit Us", detail: BUSINESS_LOCATION.fullAddress }
                             ].map((item, i) => (
                                 <motion.div

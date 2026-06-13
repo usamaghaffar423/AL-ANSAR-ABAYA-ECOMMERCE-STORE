@@ -7,7 +7,7 @@ const CONTACT_INFO = [
     {
         icon: Phone,
         label: 'Call / WhatsApp',
-        primary: `${BUSINESS_LOCATION.phone.primary} / ${BUSINESS_LOCATION.phone.secondary}`,
+        primary: BUSINESS_LOCATION.phone.primary,
         secondary: 'Mon – Sat · 9 AM to 9 PM PKT',
         href: `tel:${BUSINESS_LOCATION.phone.country}${BUSINESS_LOCATION.phone.number}`,
         bg: 'bg-[#1a3a2a]/5',
@@ -38,8 +38,8 @@ const CONTACT_INFO = [
         icon: MessageCircle,
         label: 'WhatsApp Chat',
         primary: 'Chat With Us Directly',
-        secondary: 'Quick replies on WhatsApp Business',
-        href: BUSINESS_LOCATION.whatsapp.business.link,
+        secondary: 'Quick replies on WhatsApp',
+        href: BUSINESS_LOCATION.whatsapp.link,
         bg: 'bg-green-50',
         iconColor: 'text-green-600',
         iconBg: 'bg-green-100 group-hover:bg-green-500',
@@ -167,7 +167,7 @@ const ContactPage = () => {
                             </div>
 
                             <a
-                                href={BUSINESS_LOCATION.whatsapp.business.link}
+                                href={BUSINESS_LOCATION.whatsapp.link}
                                 target="_blank" rel="noreferrer"
                                 className="mt-8 w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-black text-xs uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 active:scale-95"
                                 style={{ backgroundColor: '#25D366' }}

@@ -29,11 +29,9 @@ export const BUSINESS_LOCATION = {
 
   // Contact Information
   phone: {
-    primary: '+92 348 1099433',
-    secondary: '+92 349 9300253',
+    primary: '+92 349 9300253',
     country: '+92',
-    number: '3481099433',
-    secondaryNumber: '3499300253'
+    number: '3499300253'
   },
 
   email: 'support@alansarabayah.com',
@@ -52,16 +50,10 @@ export const BUSINESS_LOCATION = {
     sunday: { open: '11:00 AM', close: '6:00 PM', days: 'Sunday' }
   },
 
-  // WhatsApp
+  // WhatsApp Business
   whatsapp: {
-    primary: {
-      phoneNumber: '+923481099433',
-      link: 'https://wa.me/923481099433'
-    },
-    business: {
-      phoneNumber: '+923499300253',
-      link: 'https://wa.me/923499300253'
-    }
+    phoneNumber: '+923499300253',
+    link: 'https://wa.me/923499300253'
   },
 
   // Social Media
