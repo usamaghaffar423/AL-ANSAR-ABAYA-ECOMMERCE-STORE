@@ -27,8 +27,8 @@ const CONTACT_INFO = [
     {
         icon: MapPin,
         label: 'Visit Our Shop',
-        primary: `${BUSINESS_LOCATION.address.street}, ${BUSINESS_LOCATION.address.area}`,
-        secondary: `${BUSINESS_LOCATION.address.district}, ${BUSINESS_LOCATION.address.state}`,
+        primary: BUSINESS_LOCATION.name,
+        secondary: BUSINESS_LOCATION.displayAddress,
         href: BUSINESS_LOCATION.mapsLink,
         bg: 'bg-blue-50',
         iconColor: 'text-blue-600',

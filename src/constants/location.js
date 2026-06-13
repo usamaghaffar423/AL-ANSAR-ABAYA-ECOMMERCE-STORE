@@ -16,8 +16,10 @@ export const BUSINESS_LOCATION = {
     postalCode: ''
   },
 
-  // Full address string for display
+  // Full address strings for display
   fullAddress: 'Main GT Road, Amandara, Chakdara, Dir Lower, KPK, Pakistan',
+  shortAddress: 'Main GT Road, Amandara, Dir Lower, KPK',
+  displayAddress: 'Amandara, Chakdara, Dir Lower, Khyber Pakhtunkhwa, Pakistan',
 
   // Coordinates for Google Maps
   coordinates: {
