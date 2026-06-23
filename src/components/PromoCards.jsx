@@ -38,35 +38,33 @@ const PremiumCard = ({ title, subtitle, link, delay, icon, isLarge, backgroundIm
         backgroundRepeat: 'no-repeat',
       } : {}}
     >
-      {/* Background Image Overlay (for text readability) */}
-      {backgroundImage && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent rounded-[32px]" />
-      )}
-
       {/* Background Accent - Only for non-image cards */}
       {!backgroundImage && (
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#c9a96e]/5 rounded-full blur-3xl group-hover:bg-[#c9a96e]/10 transition-all duration-500 pointer-events-none" />
       )}
 
-      {/* Icon */}
-      <div className={`relative z-10 mb-6 ${isLarge ? 'text-6xl md:text-7xl' : 'text-5xl'} transform group-hover:scale-110 transition-transform duration-300`}>
-        {icon}
-      </div>
+      {/* Icon - Only for non-image cards */}
+      {!backgroundImage && (
+        <div className={`relative z-10 mb-6 ${isLarge ? 'text-6xl md:text-7xl' : 'text-5xl'} transform group-hover:scale-110 transition-transform duration-300`}>
+          {icon}
+        </div>
+      )}
 
       {/* Content */}
-      <div className={`relative z-10 flex-1 flex flex-col justify-between ${backgroundImage ? 'p-6 md:p-8' : ''}`}>
-        <div>
-          <h3 className={`font-black uppercase tracking-tight mb-2 group-hover:text-[#1a3a2a] transition-colors ${
-            backgroundImage ? 'text-white text-lg md:text-2xl' : `text-gray-900 ${isLarge ? 'text-2xl md:text-4xl leading-tight' : 'text-lg md:text-xl'}`
-          }`}>
-            {title}
-          </h3>
-          <p className={`text-[10px] md:text-[11px] font-bold uppercase tracking-widest mb-4 ${
-            backgroundImage ? 'text-[#c9a96e]' : 'text-[#c9a96e]'
-          }`}>
-            {subtitle}
-          </p>
-        </div>
+      <div className={`relative z-10 flex-1 flex flex-col ${backgroundImage ? 'justify-end p-6 md:p-8' : 'justify-between'}`}>
+        {/* Text Content - Only for non-image cards */}
+        {!backgroundImage && (
+          <div>
+            <h3 className={`font-black uppercase tracking-tight mb-2 group-hover:text-[#1a3a2a] transition-colors text-gray-900 ${
+              isLarge ? 'text-2xl md:text-4xl leading-tight' : 'text-lg md:text-xl'
+            }`}>
+              {title}
+            </h3>
+            <p className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest mb-4 text-[#c9a96e]">
+              {subtitle}
+            </p>
+          </div>
+        )}
 
         {/* Button */}
         <div className={`flex items-center ${backgroundImage ? 'justify-start' : 'justify-between pt-4 border-t border-[#c9a96e]/20 group-hover:border-[#c9a96e]/40 transition-colors'}`}>
