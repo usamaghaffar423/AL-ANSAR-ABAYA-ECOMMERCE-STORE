@@ -10,17 +10,17 @@ import image99 from './assets/image-99.webp';
 import logo from './assets/logo-abaya.png';
 
 // Category Featured Images
-import simpleAbaya from './assets/categories/Simple Abaya.webp';
-import openAbaya from './assets/categories/Open Abaya.webp';
-import maxiSimpleGalla from './assets/categories/Maxi Simple Galla.webp';
-import maxiCutGalla from './assets/categories/Maxi Cut Galla.webp';
-import embroideredAbayas from './assets/categories/Embriodered Abayas.webp';
-import straightOpenAbayas from './assets/categories/Open Abaya.webp';
-import zoomFabricAbayas from './assets/categories/Zoom Fabrics Abaya.webp';
-import nidaFabricsAbayas from './assets/categories/Nida Fabrics Abaya.webp';
-import handmadeAbayas from './assets/categories/Handmade Abayas.webp';
-import butterflyAbayas from './assets/categories/Butterfly Abaya.webp';
-import doubleShirtAbayas from './assets/categories/Double Shirt Abaya.webp';
+import simpleAbaya from './assets/Categories/Simple Abaya.webp';
+import openAbaya from './assets/Categories/Open Abaya.webp';
+import maxiSimpleGalla from './assets/Categories/Maxi Simple Galla.webp';
+import maxiCutGalla from './assets/Categories/Maxi Cut Galla.webp';
+import embroideredAbayas from './assets/Categories/Embriodered Abayas.webp';
+import straightOpenAbayas from './assets/Categories/Open Abaya.webp';
+import zoomFabricAbayas from './assets/Categories/Zoom Fabrics Abaya.webp';
+import nidaFabricsAbayas from './assets/Categories/Nida Fabrics Abaya.webp';
+import handmadeAbayas from './assets/Categories/Handmade Abayas.webp';
+import butterflyAbayas from './assets/Categories/Butterfly Abaya.webp';
+import doubleShirtAbayas from './assets/Categories/Double Shirt Abaya.webp';
 
 export const IMAGES = {
     hero: image105,
