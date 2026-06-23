@@ -38,6 +38,13 @@ const PremiumCard = ({ title, subtitle, link, delay, icon, isLarge, backgroundIm
         backgroundRepeat: 'no-repeat',
       } : {}}
     >
+      {/* Category Badge - Top of card */}
+      {backgroundImage && (
+        <div className="absolute top-4 left-4 z-20 bg-[#c9a96e] text-gray-900 px-4 py-2 rounded-full text-[8px] md:text-[9px] font-black uppercase tracking-widest">
+          {title}
+        </div>
+      )}
+
       {/* Background Accent - Only for non-image cards */}
       {!backgroundImage && (
         <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#c9a96e]/5 rounded-full blur-3xl group-hover:bg-[#c9a96e]/10 transition-all duration-500 pointer-events-none" />
@@ -71,13 +78,15 @@ const PremiumCard = ({ title, subtitle, link, delay, icon, isLarge, backgroundIm
           {!backgroundImage && <div />}
           <Link
             to={link}
-            className={`inline-flex items-center gap-2 font-black uppercase tracking-widest transition-colors group-hover:gap-3 text-[9px] md:text-[10px] ${
+            className={`inline-flex items-center gap-2 font-black uppercase tracking-widest transition-all group-hover:gap-3 text-[9px] md:text-[10px] ${
               backgroundImage
-                ? 'text-white hover:text-[#c9a96e]'
+                ? isLarge
+                  ? 'text-white bg-[#1a3a2a] px-6 py-2.5 rounded-lg hover:bg-[#0f2817] shadow-lg'
+                  : 'text-[#1a3a2a] hover:text-[#c9a96e]'
                 : 'text-[#1a3a2a] hover:text-[#c9a96e]'
             }`}
           >
-            {backgroundImage ? 'Explore' : 'Shop Now'}
+            {backgroundImage ? 'Explore More' : 'Shop Now'}
             <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
