@@ -9,6 +9,23 @@
  * Version: 1.0.0 - Production stable
  */
 
+// ── PHP 7.x Compatibility - PHP 8 functions ──────────────────────────────
+if (!function_exists('str_starts_with')) {
+    function str_starts_with($haystack, $needle) {
+        return strpos($haystack, $needle) === 0;
+    }
+}
+if (!function_exists('str_ends_with')) {
+    function str_ends_with($haystack, $needle) {
+        return strlen($needle) > 0 && substr($haystack, -strlen($needle)) === $needle;
+    }
+}
+if (!function_exists('str_contains')) {
+    function str_contains($haystack, $needle) {
+        return strpos($haystack, $needle) !== false;
+    }
+}
+
 // ── Environment Detection ─────────────────────────────────────────────────
 $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 $isProduction = !in_array(strtolower(explode(':', $host)[0]), ['localhost', '127.0.0.1', '::1']);

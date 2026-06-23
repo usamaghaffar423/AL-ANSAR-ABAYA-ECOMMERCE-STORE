@@ -254,8 +254,13 @@ try {
     echo json_encode($products);
 
 } catch (\Throwable $e) {
-    error_log('get_products error: ' . $e->getMessage());
+    error_log('get_products error: ' . $e->getMessage() . ' | File: ' . $e->getFile() . ' | Line: ' . $e->getLine());
     http_response_code(500);
-    echo json_encode(['error' => 'Failed to load products. Please try again.']);
+    echo json_encode([
+        'error' => 'Failed to load products.',
+        'message' => $e->getMessage(),
+        'file' => basename($e->getFile()),
+        'line' => $e->getLine()
+    ]);
 }
 ?>
