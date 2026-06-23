@@ -40,8 +40,8 @@ if (file_exists($envFile)) {
 }
 
 if ($isProduction) {
-    // Production: Try env variables first, then fall back to config
-    define('DB_HOST', getenv('DB_HOST') ?: (defined('PROD_DB_HOST') ? PROD_DB_HOST : 'localhost'));
+    // Production: Hostinger uses localhost (127.0.0.1) for database
+    define('DB_HOST', getenv('DB_HOST') ?: (defined('PROD_DB_HOST') ? PROD_DB_HOST : '127.0.0.1'));
     define('DB_USER', getenv('DB_USER') ?: (defined('PROD_DB_USER') ? PROD_DB_USER : 'u463999436_alansarabaya'));
     define('DB_PASS', getenv('DB_PASS') ?: (defined('PROD_DB_PASS') ? PROD_DB_PASS : 'Abaya@9911323!'));
     define('DB_NAME', getenv('DB_NAME') ?: (defined('PROD_DB_NAME') ? PROD_DB_NAME : 'u463999436_alansarabaya'));
