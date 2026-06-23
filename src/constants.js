@@ -9,6 +9,19 @@ import image123 from './assets/image-123.webp';
 import image99 from './assets/image-99.webp';
 import logo from './assets/logo-abaya.png';
 
+// Category Featured Images
+import simpleAbaya from './assets/categories/Simple Abaya.webp';
+import openAbaya from './assets/categories/Open Abaya.webp';
+import maxiSimpleGalla from './assets/categories/Maxi Simple Galla.webp';
+import maxiCutGalla from './assets/categories/Maxi Cut Galla.webp';
+import embroideredAbayas from './assets/categories/Embriodered Abayas.webp';
+import straightOpenAbayas from './assets/categories/Open Abaya.webp';
+import zoomFabricAbayas from './assets/categories/Zoom Fabrics Abaya.webp';
+import nidaFabricsAbayas from './assets/categories/Nida Fabrics Abaya.webp';
+import handmadeAbayas from './assets/categories/Handmade Abayas.webp';
+import butterflyAbayas from './assets/categories/Butterfly Abaya.webp';
+import doubleShirtAbayas from './assets/categories/Double Shirt Abaya.webp';
+
 export const IMAGES = {
     hero: image105,
     hero_secondary: image110,
@@ -27,4 +40,15 @@ export const IMAGES = {
     product_3: image110,
     product_4: image115,
     blog_1: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=800",
+    simple_abaya: simpleAbaya,
+    open_abaya: openAbaya,
+    maxi_simple_galla: maxiSimpleGalla,
+    maxi_cut_galla: maxiCutGalla,
+    embroidered_abayas: embroideredAbayas,
+    straight_open_abayas: straightOpenAbayas,
+    zoom_fabric_abayas: zoomFabricAbayas,
+    nida_fabrics_abayas: nidaFabricsAbayas,
+    handmade_abayas: handmadeAbayas,
+    butterfly_abayas: butterflyAbayas,
+    double_shirt_abayas: doubleShirtAbayas,
 };
